@@ -4,4 +4,20 @@
 
 <h1> REGION PLACES </h1>
 
+<h2> {{ context }} </h2>
+
+    {% for place in context%}
+    <div class="col-6 text-center">
+        <img src=" {{ place.place_image_src }} " class="w-75 rounded">
+        <p>place: {{ place.place }}</p>
+        <p>info: {{ place.info|truncatewords:10 }}</p>
+        <p>place: {{ place.altitude }}</p>
+        <p>place: {{ place.region }}</p>
+        <p>place: {{ place.type_location }}</p>
+        
+
+
+    </div>
+    {% endfor %}
+
 {% endblock %}
