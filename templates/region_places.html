@@ -6,10 +6,14 @@
 
 <h2> {{ context }} </h2>
 
-    {% for place in context%}
+    {% for place in context %}
     <div class="col-6 text-center">
         <img src=" {{ place.place_image_src }} " class="w-75 rounded">
-        <p>place: {{ place.place }}</p>
+        
+        <a href="{% url 'place_information' place.slug %}" class="post-link">
+            <h2 class="card-title">{{ place.place }}</h2>
+        </a>
+        
         <p>info: {{ place.info|truncatewords:10 }}</p>
         <p>place: {{ place.altitude }}</p>
         <p>place: {{ place.region }}</p>
