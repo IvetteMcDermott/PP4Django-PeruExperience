@@ -13,6 +13,10 @@ def landing_page(request):
     return render(request, 'index.html')
 
 
+def index_page(request):
+    return render(request, 'index_no_modal.html')
+
+
 class Coast(View):
 
     def get(self, request, *args, **kwargs):

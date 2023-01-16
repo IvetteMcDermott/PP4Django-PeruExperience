@@ -1,31 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
 <div class="container d-flex justify-content-around">
-    <div class="col">
-        <div class="col">
-            <img src="" alt="">
-        </div>
-        <div class="col">
-            <a href="coast/">Coast</a>
-        </div>
+    <div id="welcome-modal">
+        <a href="home/" id="modal-close" onclick="myFunction()"> Discover Peru </a>
     </div>
-    <div class="col">
-        <div class="col">
-            <img src="" alt="">
+    <div class="regions">
+        <div class="container">
+            <div class="circle-container">
+        
+                <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png" class="circle-traveler" alt="traveler">
+                <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889320/IMG_20200130_094307869_g4ylil.jpg" class="circle-background" alt="background">
+            
+            </div>
+            <div class="title">
+                <h2><a href="coast">Coast</a></h2>
+            </div>
+        
         </div>
-        <div class="col">
-            <a href="andes/">Andes</a>
+        
+        <div class="container">
+            <div class="circle-container">
+        
+                <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png" class="circle-traveler" alt="traveler">
+                <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889277/DSC00687_ihmzee.jpg" class="circle-background" alt="background">
+            
+            </div>
+            <div class="title">
+                <h2><a href="coast">The Andes</a></h2>
+            </div>
+        
         </div>
-    </div>
-    <div class="col">
-        <div class="col">
-            <img src="" alt="">
+        
+        <div class="container">
+            <div class="circle-container">
+        
+                <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png" class="circle-traveler" alt="traveler">
+                <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889287/P1030567_rkt5fr.jpg" class="circle-background" alt="background">
+            
+            </div>
+            <div class="title">
+                <h2><a href="coast">Jungle</a></h2>
+            </div>
+        
         </div>
-        <div class="col">
-            <a href="jungle/">Jungle</a>
+        
         </div>
-    </div>
-</div>
+        
 
 {% endblock %}
