@@ -35,7 +35,7 @@ img{
 }
 
 .circle-container{
-    min-width: 300px;
+    min-width: 200px;
     position:relative;
     max-width: 10em;
     margin-inline: auto;

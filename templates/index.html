@@ -5,23 +5,23 @@
 
 <div class="container d-flex justify-content-around">
     <div id="welcome-modal">
-        <a href="home/" id="modal-close" onclick="myFunction()"> Discover Peru </a>
+        <a href="{% url 'home' %}" id="modal-close" onclick="myFunction()"> Discover Peru </a>
     </div>
-    <div class="regions">
-        <div class="container">
+    <div class="regions row">
+        <div class="container col">
             <div class="circle-container">
         
                 <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png" class="circle-traveler" alt="traveler">
                 <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889320/IMG_20200130_094307869_g4ylil.jpg" class="circle-background" alt="background">
             
             </div>
-            <div class="title">
-                <h2><a href="coast">Coast</a></h2>
+            <div class="title col">
+                <h2><a href="{% url 'coast_places_display' %}">Coast</a></h2>
             </div>
         
         </div>
         
-        <div class="container">
+        <div class="container col">
             <div class="circle-container">
         
                 <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png" class="circle-traveler" alt="traveler">
@@ -29,7 +29,7 @@
             
             </div>
             <div class="title">
-                <h2><a href="coast">The Andes</a></h2>
+                <h2><a href="{% url 'andes_places_display' %}">The Andes</a></h2>
             </div>
         
         </div>
@@ -42,7 +42,7 @@
             
             </div>
             <div class="title">
-                <h2><a href="coast">Jungle</a></h2>
+                <h2><a href="{% url 'jungle_places_display' %}">Jungle</a></h2>
             </div>
         
         </div>
