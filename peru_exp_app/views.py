@@ -73,18 +73,18 @@ class PlaceInformation(View):
     def post(self, request, slug, *args, **kwargs):
         place = PlacesList.objects.all()
         place_data = get_object_or_404(place, slug=slug)
-        comments = place_data.comments.all()
+        comments = place_data.comments.all().order_by('-date_created')
         template = 'place_information.html'
 
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
-            comment_form.instance.author = request.user.username
+            comment_form.instance.author = request.user
             comment = comment_form.save(commit=False)
             comment.place_data = place_data
             comment.save()
         else:
-            comment_form = CommentForm()
+            print(comment_form.errors)
 
         return render(request, template, {
             'context': place_data,
