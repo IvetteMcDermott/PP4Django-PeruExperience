@@ -14,12 +14,12 @@ class PlacesItems(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('place', 'body', 'date_created', 'date_updated')
+    list_display = ('place', 'body', 'author', 'date_created', 'date_updated')
     list_filter = ('author', 'place')
     search_fields = ['author', 'place']
 
     def place_comments(self, request, queryset):
-        queryset
+        queryset.update()
 
 
 @admin.register(UserProfile)

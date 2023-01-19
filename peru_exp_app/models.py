@@ -26,7 +26,7 @@ class PlacesList(models.Model):
 class Comment(models.Model):
     place = models.ForeignKey(PlacesList, related_name="comments", null=False, on_delete=models.CASCADE)
     body = models.TextField(max_length=300)
-    author = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    author = models.CharField(max_length=50)
     date_created = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
 

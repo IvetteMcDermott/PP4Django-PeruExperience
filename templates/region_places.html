@@ -18,8 +18,9 @@
         <p>place: {{ place.altitude }}</p>
         <p>place: {{ place.region }}</p>
         <p>place: {{ place.type_location }}</p>
-        <p>{{ place.comments }}
-        </p>
+        {% for comment in place.comments.all %}
+            <p>{{ comment }}</p>
+        {% endfor %}
         
 
 
