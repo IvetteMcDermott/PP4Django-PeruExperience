@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <h2> PLACE INFORMATION</h2>
 
 <img src="{{ context.place_image_src.url }}">
@@ -11,5 +10,11 @@
 
 {{ context.info }}
 
+{% for comment in comments %}
+
+{{ comments.author }}
+{{ comments.body }}
+
+{% endfor %}
 
 {% endblock %}

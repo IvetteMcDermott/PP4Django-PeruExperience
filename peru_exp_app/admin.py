@@ -18,6 +18,9 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('author', 'place')
     search_fields = ['author', 'place']
 
+    def place_comments(self, request, queryset):
+        queryset
+
 
 @admin.register(UserProfile)
 class UserProfile(admin.ModelAdmin):

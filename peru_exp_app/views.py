@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 
 from django.http import HttpResponse
-from .models import PlacesList
+from .models import PlacesList, Comment
 
 
 # Create your views here.
@@ -11,10 +11,6 @@ from .models import PlacesList
 
 def landing_page(request):
     return render(request, 'index.html')
-
-
-def index_page(request):
-    return render(request, 'index_no_modal.html')
 
 
 class Coast(View):
@@ -62,9 +58,11 @@ class PlaceInformation(View):
     def get(self, request, slug, *args, **kwargs):
         place = PlacesList.objects.all()
         place_data = get_object_or_404(place, slug=slug)
+        comments = place_data.comments.all()
         template = 'place_information.html'
         context = {
-            'context': place_data
+            'context': place_data,
+            'comments': comments
         }
 
         return render(request, template, context)

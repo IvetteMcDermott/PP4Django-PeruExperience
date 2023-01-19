@@ -1,39 +1,31 @@
-#welcome-modal {
-    width:100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    background-color: aqua;
-    z-index: 5;
-    display: block;
+#name { color: aliceblue;}
+
+#regions {
+    height: 140em;
 }
 
-#modal-close {
-    border: none;
-    background-color: none;
+#carouselExampleCaptions {
+    min-width: 200px;
+    max-width: 850px;
+    height: 80%;
+    margin: auto;
 }
-
-.invisible {
-    display: none !important;
+.modal-title {
+    margin-top: 40px;
 }
-
 body {
-    background-color: black;
+    background-color: rgb(151, 144, 144);
 }
-
 img{ 
     max-width: 100%;
     display: block;
 }
 
-
 .regions{
     display:flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 10px;
 }
-
 .circle-container{
     min-width: 200px;
     position:relative;
@@ -45,14 +37,11 @@ img{
     border-radius: 0 0 100vw 100vw;
     overflow: hidden;
     display: flex;
-
     transition: transform 500ms ease-in-out;
 }
-
 .circle-container:hover{
     transform: scale(1.1);
 }
-
 
 .circle-background{
     position: absolute;
@@ -60,7 +49,6 @@ img{
     object-fit: cover;
     border-radius: 50%;
 }
-
 .circle-traveler{
     width: 70%;
     position: relative;
@@ -69,20 +57,16 @@ img{
     aspect-ratio: 1/1;
     z-index: 2;
     transform: scale(1.2);
-
 }
-
 .circle-container:hover .circle-traveler{
     transform: scale(1.5);  
 }
-
 .title {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
-
 .title:hover{
     transition: display(block);
-    color:aliceblue;
+    color:rgb(20, 21, 22);
 }
