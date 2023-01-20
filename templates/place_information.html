@@ -18,11 +18,13 @@
     <div class="col">
         {% for comment in context.comments.all %}
         <p>{{ comment }}</p>
+
+     
         {% endfor %}
 
     </div>
 
-
+<div class="modal">
     <div class="comment_section col">
 
         {% if commented %}
@@ -41,7 +43,8 @@
 
             {% csrf_token %}
 
-            <button type="submit" class="btn btn-signup">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
+            
     </div>
     </form>
     {% else %}
@@ -50,6 +53,7 @@
 
 </div>
 
+</div>
 {% endif %}
 {% endif %}
 {% endblock %}

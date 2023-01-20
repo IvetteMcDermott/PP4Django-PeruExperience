@@ -81,7 +81,7 @@ class PlaceInformation(View):
             comment_form.instance.email = request.user.email
             comment_form.instance.author = request.user
             comment = comment_form.save(commit=False)
-            comment.place_data = place_data
+            comment.place = place_data
             comment.save()
         else:
             print(comment_form.errors)
