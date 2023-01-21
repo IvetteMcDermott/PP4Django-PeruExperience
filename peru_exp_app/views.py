@@ -1,6 +1,9 @@
+
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
+from django.views.generic import UpdateView
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 
 from django.http import HttpResponse
 from .models import PlacesList, Comment
@@ -77,6 +80,7 @@ class PlaceInformation(View):
         template = 'place_information.html'
 
         comment_form = CommentForm(data=request.POST)
+
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
             comment_form.instance.author = request.user
@@ -92,3 +96,25 @@ class PlaceInformation(View):
             'commented': True,
             'comment_form': comment_form
         })
+
+
+# class CommentUpdateView(UpdateView):
+#    model = Comment
+#    fields = ["body",]#
+
+#    def form_valid(self, form):
+#        form.instance.comment_pk = self.kwargs["pk"]
+#        form.instance.author = self.request.user
+#        return super().form_valid(form)
+
+def comment_update_view(request, slug, pk):
+    
+    if request.method == 'POST':
+        body = request.POST.get('body')
+
+        # get the review to update
+        comment = Comment.objects.get(id=pk)
+        comment.body = body
+        comment.save()
+
+    return redirect('/')

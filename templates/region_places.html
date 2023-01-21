@@ -19,17 +19,10 @@
         <p>place: {{ place.region }}</p>
         <p>place: {{ place.type_location }}</p>
 
-        {% if user.is_authenticated %}
-
-            {% for comment in place.comments.all %}
-                <p>{{ comment }}</p>
-            {% endfor %}
         
-        {% else %}
-
             {{ place.comments.count}} Comments
 
-        {% endif %}
+        
     </div>
     {% endfor %}
 
