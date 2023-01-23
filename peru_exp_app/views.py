@@ -108,7 +108,11 @@ def comment_update_view(request, slug, pk):
         comment.body = body
         comment.save()
 
-    return redirect('/')
+        place = comment.place_id
+        place_info = PlacesList.objects.all()
+        place_slug = get_object_or_404(place_info, pk=int(place))
+        slug = place_slug.slug
+    return redirect('place_information', slug=slug)
 
 
 def comment_delete_view(request, slug, pk):
@@ -118,5 +122,11 @@ def comment_delete_view(request, slug, pk):
 
         # get the review to update
         comment.delete()
+
+        place = comment.place_id
+        place_info = PlacesList.objects.all()
+        place_slug = get_object_or_404(place_info, pk=int(place))
+        slug = place_slug.slug
+    return redirect('place_information', slug=slug)
 
     return redirect('/')
