@@ -24,7 +24,7 @@
 
         {% if comment.author == request.user %}
 
-        <!--   -->
+        <!-- UPDATE COMMENT  -->
         <form method="post" action="{% url 'comment_update' context.id comment.id %}" style="margin-top: 1.3em;">
             <div>
                 <a href="" type="button" data-toggle="modal" data-target="#ModalUpdateComment-{{ forloop.counter }}"
@@ -55,9 +55,38 @@
         </form>
 
 
-        <!--  -->
-        <a href="" type="button" data-toggle="modal" data-target="#ModalCommenting" data-backdrop="false">Delete</a>
+        <!-- DELETE COMMENT -->
 
+        <form method="get" action="{% url 'comment_delete' context.id comment.id %}" style="margin-top: 1.3em;">
+
+            <a href="" type="button" data-toggle="modal" data-target="#exampleModal" data-backdrop="false">Delete</a>
+
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            <p name="body">{{ comment.body }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
         {% endif %}
         <hr>
 

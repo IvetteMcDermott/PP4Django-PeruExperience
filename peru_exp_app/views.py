@@ -4,6 +4,7 @@ from django.views import generic, View
 from django.views.generic import UpdateView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+from django.urls import reverse, reverse_lazy
 
 from django.http import HttpResponse
 from .models import PlacesList, Comment
@@ -98,23 +99,24 @@ class PlaceInformation(View):
         })
 
 
-# class CommentUpdateView(UpdateView):
-#    model = Comment
-#    fields = ["body",]#
-
-#    def form_valid(self, form):
-#        form.instance.comment_pk = self.kwargs["pk"]
-#        form.instance.author = self.request.user
-#        return super().form_valid(form)
-
 def comment_update_view(request, slug, pk):
-    
+
     if request.method == 'POST':
         body = request.POST.get('body')
-
         # get the review to update
         comment = Comment.objects.get(id=pk)
         comment.body = body
         comment.save()
+
+    return redirect('/')
+
+
+def comment_delete_view(request, slug, pk):
+
+    if request.method == 'GET':
+        comment = Comment.objects.get(id=pk)
+
+        # get the review to update
+        comment.delete()
 
     return redirect('/')
