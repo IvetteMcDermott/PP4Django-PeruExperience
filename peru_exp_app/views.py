@@ -132,4 +132,11 @@ def comment_delete_view(request, slug, pk):
     return redirect('/')
 
 
-#def profile(request, user):
+def profile(request, *args, **kwargs):
+    user = request.user
+    template = 'user_profile.html'
+    return render(request, template)
+
+
+def favourites(request, user, slug):
+    user = request.user
