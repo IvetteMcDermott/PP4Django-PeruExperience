@@ -130,3 +130,6 @@ def comment_delete_view(request, slug, pk):
     return redirect('place_information', slug=slug)
 
     return redirect('/')
+
+
+#def profile(request, user):
