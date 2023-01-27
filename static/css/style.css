@@ -1,13 +1,51 @@
-body{
-    margin:0;
-    margin-left: 50px !important;
-    margin-right: 50px !important;
+/* CSS for navbar - overwrite Bootstrap */
+
+.navbar-css {
+    background-color: #83240d !important;
 }
 
-#name { color: aliceblue;}
+.navbar-dark {
+    margin-bottom: 10px !important;
+}
+
+.navbar-css a{
+    color: #5c777a !important;
+    font-weight: 800;
+}
+
+.navbar-toggler-css {
+    background-color: #cca64d !important;
+    color: #83240d !important;
+    justify-items: initial;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.navbar-toggler-css a{
+    color: #560804 !important;
+}
+
+/* Body Background */
+
+body {
+    background-color: #e4d1a3;
+    overflow-x: hidden;
+}
+
+/* General Styling */
+
+a {
+    text-decoration: none;
+    color: #5c777a !important;
+}
 
 #regions {
-    height: 140em;
+    height: 30em;
+}
+
+.carrousel-section{
+    margin-top: 10px;
 }
 
 #carouselExampleCaptions {
@@ -23,9 +61,7 @@ body{
     max-height: 10em;
 }
 
-body {
-    background-color: rgb(151, 144, 144);
-}
+
 img{ 
     max-width: 100%;
     display: block;
@@ -79,5 +115,14 @@ img{
 .title:hover{
     transition: display(block);
     color:rgb(20, 21, 22);
+}
+
+
+/* Footer  */
+
+.blockquote-footer {
+    background-color: #a4acac;
+    margin:0;
+    height: 2em;
 }
 

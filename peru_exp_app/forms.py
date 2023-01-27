@@ -1,4 +1,4 @@
-from .models import Comment
+from .models import Comment, PlacesList
 from django import forms
 
 
@@ -12,3 +12,16 @@ class UpdateCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
+
+
+class AddPlacesForm(forms.ModelForm):
+    class Meta:
+        model = PlacesList
+        fields = ('place_image_src', 'place', 'slug', 'region', 'location', 'altitude', 'type_location', 'info', 'author', )
+        prepopulated_fields = {'slug': "place", }
+
+
+class UpdatePlacesForm(forms.ModelForm):
+    class Meta:
+        model = PlacesList
+        fields = ('place_image_src', 'place', 'slug', 'region', 'location', 'altitude', 'type_location', 'info', 'author', )
