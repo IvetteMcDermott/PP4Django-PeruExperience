@@ -174,6 +174,17 @@ def place_update_view(request, slug):
     return redirect("/")
 
 
+def place_delete_view(request, slug):
+    """ VIEW FOR DELETE A POST, JUST ADMIN HAS ACCESS TO """
+    if request.method == 'GET':
+        place = PlacesList.objects.get(slug=slug)
+
+        # get the review to update
+        place.delete()
+
+    return redirect('/')
+
+
 """ USER PROFILE SECTION """
 
 
