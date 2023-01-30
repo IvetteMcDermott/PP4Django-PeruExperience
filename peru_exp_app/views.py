@@ -157,6 +157,23 @@ class AddPlace(LoginRequiredMixin, CreateView):
         return super(AddPlace, self).form_valid(form)
 
 
+#THIS IS WORKING TO SAVE BUT DOESNT SHOW IN THE FORM THE DATA AND HTML NEEDS TO BE CALL BY FIELD
+# class place_update_view(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+
+def place_update_view(request, slug):
+    """ VIEW FOR EDIT PLACES INFORMATION """
+    form = UpdatePlacesForm()
+
+    if request.method == 'POST':
+        information = request.POST.get('info')
+        # get the review to update
+        place = PlacesList.objects.get(slug=slug)
+        place.info = information
+        place.save()
+
+    return redirect("/")
+
+
 """ USER PROFILE SECTION """
 
 
