@@ -1,7 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
-from django.views.generic import UpdateView, ListView
+from django.views.generic import UpdateView, ListView, CreateView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
@@ -17,16 +18,18 @@ from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
 
 
 def landing_page(request):
+    """ VIEW FOR LANDING PAGE - HOME """
     return render(request, 'index.html')
 
 
 class Coast(ListView):
+    """ VIEW FOR LIST OF PLACES FILTER: COAST """
 
     def get(self, request, *args, **kwargs):
         model = PlacesList
         data_filtered = PlacesList.objects.filter(region='Coast')
         template = "region_places.html"
-        paginate_by = 6
+        paginate_by = 3
         context = {
             'context': data_filtered
         }
@@ -35,11 +38,12 @@ class Coast(ListView):
 
 
 class Andes(ListView):
+    """ VIEW FOR LIST OF PLACES FILTER: THE ANDES """
     def get(self, request, *args, **kwargs):
         model = PlacesList
         data_filtered = PlacesList.objects.filter(region='The Andes')
         template = "region_places.html"
-        paginate_by = 6
+        paginate_by = 3
         context = {
             'context': data_filtered
         }
@@ -48,11 +52,12 @@ class Andes(ListView):
 
 
 class Jungle(ListView):
+    """ VIEW FOR LIST OF PLACES FILTER: JUNGLE """
     def get(self, request, *args, **kwargs):
         model = PlacesList
         data_filtered = PlacesList.objects.filter(region='Jungle')
         template = "region_places.html"
-        paginate_by = 6
+        paginate_by = 3
         context = {
             'context': data_filtered
         }
@@ -61,22 +66,27 @@ class Jungle(ListView):
 
 
 class PlaceInformation(View):
-
+    """ VIEW FOR DETAILED INFORMATION OF THE SELECTED PLACE """
+    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE COMMENTED BY REGULAR REGISTED USERS """
+    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE EDIT OR DELETE, REDIRECTING YOU TO THE LANDING - HOME PAGE """
     def get(self, request, slug, *args, **kwargs):
         place = PlacesList.objects.all()
         place_data = get_object_or_404(place, slug=slug)
         comments = place_data.comments.all().order_by('date_created')
         template = 'place_information.html'
         comment_form = CommentForm()
+        updateform = UpdatePlacesForm(instance=place_data)
         context = {
             'context': place_data,
             'comments': comments,
             'commented': False,
-            'comment_form': comment_form
+            'comment_form': comment_form,
+            'update_form': updateform
         }
         return render(request, template, context)
 
     def post(self, request, slug, *args, **kwargs):
+        """ VIEW FOR POST A COMMENT """
         place = PlacesList.objects.all()
         place_data = get_object_or_404(place, slug=slug)
         comments = place_data.comments.all().order_by('-date_created')
@@ -102,7 +112,7 @@ class PlaceInformation(View):
 
 
 def comment_update_view(request, slug, pk):
-
+    """ VIEW FOR EDIT A COMMENT IF AUTHOR OF IT """
     if request.method == 'POST':
         body = request.POST.get('body')
         # get the review to update
@@ -118,7 +128,7 @@ def comment_update_view(request, slug, pk):
 
 
 def comment_delete_view(request, slug, pk):
-
+    """ VIEW FOR DELETE A COMMENT IF AUTHOR OF IT OR ADMIN """
     if request.method == 'GET':
         comment = Comment.objects.get(id=pk)
 
@@ -132,81 +142,28 @@ def comment_delete_view(request, slug, pk):
     return redirect('place_information', slug=slug)
 
 
+""" VIEWS FOR ADMIN FUNCTIONALITY IN THE HTML """
+
+
+class AddPlace(LoginRequiredMixin, CreateView):
+    """ VIEW FOR ADD A NEW PLACE-POST """
+    template_name = 'add_place.html'
+    model = PlacesList
+    form_class = AddPlacesForm
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AddPlace, self).form_valid(form)
+
+
+""" USER PROFILE SECTION """
+
+
 def profile(request, *args, **kwargs):
+    """ VIEW FOR USER PROFILE """
     user = request.user
     template = 'user_profile.html'
     return render(request, template)
 
 
-#class favourites(ListView):
-#    def add_favourites(UserProfile, PlacesList, slug):
-#        user = get_object_or_404(User, user=request.User)
-#        if user.favourites.exists():
-#            user.favourites.remove(request.user)
-#        else:
-#            user.favourites.add(request.user)
-
-#    def favourites(request, user, slug):
-#        user_modal = UserProfile
-#        user = user_modal.objects.filter(user=request.user)
-#        favs = user.favourites
-
-#        place = PlacesList
-#        place_items = place.objects.all()
-
-
-# class AddPlace(View):
-#    def AddPlace(self, request, *args, **kwargs):
-#        place = PlacesList.objects.all()
-#        template = 'add_place.html'
-#        context = {
-#            'add_place_form': AddPlacesForm()
-#        }
-
-#        return render(request, template, context)
-
-#    def post(self, request, *args, **kwargs):
-#        data = PlacesList.objects.all()
-
-#        template = 'add_place.html'
-#        add_place_form = AddPlacesForm()
-#        if add_place_form.is_valid():
-#            if not self.slug in data:
-#                self.slug = slugify(self.place)
-#            add_place_form.instance.place = request.place
-#            new_place = add_place_form.save()
-#            new_place.place = place
-#            new_place.save()
-
-#        return render(request, 'add_place.html', {'form': add_place_form})
-
-def AddPlace(request):
-    if request.method == 'POST':
-        form = AddPlacesForm(request.POST)
-        places = PlacesList.objects.all()
-        if form.is_valid():
-            form.save()
-            message = messages.success(request, "Posted.")
-            return redirect('/')
-        else:
-            message = messages.error(request, "It exist.")
-            return redirect('/')
-
-    elif request.method == 'GET':
-        form = AddPlacesForm(request.GET)
-    return render(request, 'add_place.html', {'form': form})
-
-
-#def place_update_view(request, slug):
-
-#    if request.method == 'POST':
-#        place_data = request.POST.get('__all__')
-#        # get the review to update
-#        place = PlacesList.objects.all()
-#        place_slug = get_object_or_404(place, slug=slug)
-#        slug = place_slug.slug
-
-#        place.info = info
-#        place.save()
-
-#    return redirect('place_information', slug)

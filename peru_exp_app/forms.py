@@ -1,5 +1,6 @@
 from .models import Comment, PlacesList
 from django import forms
+from django.forms import fields, ModelForm
 
 
 class CommentForm(forms.ModelForm):
