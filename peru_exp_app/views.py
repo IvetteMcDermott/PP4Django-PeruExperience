@@ -103,6 +103,39 @@ class Andes(ListView):
         return render(request, template, context)
 
 
+""" LOCATIONS AT THE ANDES FILTERS """
+
+
+class ArqueologicAndes(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+
+    def get(self, request, *args, **kwargs):
+        model = PlacesList
+        data_filtered = PlacesList.objects.filter(region='The Andes', type_location='Arqueologic')
+        template = "region_the_andes.html"
+        paginate_by = 3
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
+class NatureAndes(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
+
+    def get(self, request, *args, **kwargs):
+        model = PlacesList
+        data_filtered = PlacesList.objects.filter(region='The Andes', type_location='Nature')
+        template = "region_the_andes.html"
+        paginate_by = 3
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
 class Jungle(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: JUNGLE """
     def get(self, request, *args, **kwargs):

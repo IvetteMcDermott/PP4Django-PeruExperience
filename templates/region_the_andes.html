@@ -4,7 +4,12 @@
 
 <h1> REGION THE ANDES </h1>
 
-<h2> {{ context }} </h2>
+<center>
+    <div class="row">
+    <div class="col"><a href="{% url 'arqueologic_andes_places_display' %}">Arqueologic</a></h2></div>
+    <div class="col"><a href="{% url 'nature_andes_places_display' %}">Nature</a></h2></div>
+    </div>
+</center>
 
     {% for place in context %}
     <div class="col-6 text-center">
