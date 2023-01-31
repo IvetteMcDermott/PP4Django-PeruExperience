@@ -32,7 +32,7 @@ class Coast(ListView):
     def get(self, request, *args, **kwargs):
         model = PlacesList
         data_filtered = PlacesList.objects.filter(region='Coast')
-        template = "region_places.html"
+        template = "region_coast.html"
         paginate_by = 3
         context = {
             'context': data_filtered
@@ -46,7 +46,7 @@ class Andes(ListView):
     def get(self, request, *args, **kwargs):
         model = PlacesList
         data_filtered = PlacesList.objects.filter(region='The Andes')
-        template = "region_places.html"
+        template = "region_the_andes.html"
         paginate_by = 3
         context = {
             'context': data_filtered
@@ -60,7 +60,7 @@ class Jungle(ListView):
     def get(self, request, *args, **kwargs):
         model = PlacesList
         data_filtered = PlacesList.objects.filter(region='Jungle')
-        template = "region_places.html"
+        template = "region_jungle.html"
         paginate_by = 3
         context = {
             'context': data_filtered
@@ -160,6 +160,19 @@ class AddPlace(LoginRequiredMixin, CreateView):
         return super(AddPlace, self).form_valid(form)
 
         return redirect(request.META.get('HTTP_REFERER'))
+
+
+def SearchResults(request):
+    """ VIEW FOR SEARCH A PLACE POST """
+    if request.method == 'POST':
+        search = request.POST.get('search')
+        search_result = PlacesList.objects.all().filter(place__icontains=search)
+        template = 'search.html'
+        context = {
+            'searched': search,
+            'search_result': search_result
+        }
+        return render(request, template, context)
 
 
 #THIS IS WORKING TO SAVE BUT DOESNT SHOW IN THE FORM THE DATA AND HTML NEEDS TO BE CALL BY FIELD

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> SEARCH RESULT </h1>
+
+<h2> {{ context }} </h2>
+
+{% if search_result%}
+    <h2> You searched for ... {{ searched }}</h2>
+    <br/>
+    {% for place in search_result %}
+    <div class="col-6 text-center">
+        
+        <a href="{% url 'place_information' place.slug %}" class="post-link">
+            <h2 class="card-title">{{ place.place }}</h2>
+            
+        </a>
+       
+    </div>
+    {% endfor %}
+{% else %}
+    <h2> You searched for ... {{ searched }}</h2>
+
+    <h3> No results </h3>
+{% endif %}
+
+{% endblock %}

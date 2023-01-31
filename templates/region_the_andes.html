@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> REGION THE ANDES </h1>
+
+<h2> {{ context }} </h2>
+
+    {% for place in context %}
+    <div class="col-6 text-center">
+        <img src=" {{ place.place_image_src.url }} " class="w-75 rounded">
+        
+        <a href="{% url 'place_information' place.slug %}" class="post-link">
+            <h2 class="card-title">{{ place.place }}</h2>
+        </a>
+        
+        <p>info: {{ place.info|truncatewords:10 }}</p>
+        <p>place: {{ place.altitude }}</p>
+        <p>place: {{ place.region }}</p>
+        <p>place: {{ place.type_location }}</p>
+
+        
+            {{ place.comments.count}} Comments
+
+        
+    </div>
+    {% endfor %}
+
+{% endblock %}

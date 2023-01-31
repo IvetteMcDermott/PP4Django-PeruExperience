@@ -26,3 +26,9 @@ class UpdatePlacesForm(forms.ModelForm):
     class Meta:
         model = PlacesList
         fields = ('place_image_src', 'place', 'slug', 'region', 'location', 'altitude', 'type_location', 'info', 'author', )
+
+
+class SearchPlacesForm(forms.ModelForm):
+    class Meta:
+        model = PlacesList
+        fields = ('place',)
