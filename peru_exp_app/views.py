@@ -1,3 +1,6 @@
+from django.shortcuts import redirect
+
+
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from django.shortcuts import render, get_object_or_404
@@ -6,6 +9,7 @@ from django.views.generic import UpdateView, ListView, CreateView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
+from django.core.paginator import Paginator
 
 from django.contrib import messages
 
@@ -124,7 +128,7 @@ def comment_update_view(request, slug, pk):
         place_info = PlacesList.objects.all()
         place_slug = get_object_or_404(place_info, pk=int(place))
         slug = place_slug.slug
-    return redirect('place_information', slug=slug)
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 def comment_delete_view(request, slug, pk):
@@ -139,7 +143,7 @@ def comment_delete_view(request, slug, pk):
         place_info = PlacesList.objects.all()
         place_slug = get_object_or_404(place_info, pk=int(place))
         slug = place_slug.slug
-    return redirect('place_information', slug=slug)
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 """ VIEWS FOR ADMIN FUNCTIONALITY IN THE HTML """
@@ -150,15 +154,17 @@ class AddPlace(LoginRequiredMixin, CreateView):
     template_name = 'add_place.html'
     model = PlacesList
     form_class = AddPlacesForm
-    success_url = '/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(AddPlace, self).form_valid(form)
 
+        return redirect(request.META.get('HTTP_REFERER'))
+
 
 #THIS IS WORKING TO SAVE BUT DOESNT SHOW IN THE FORM THE DATA AND HTML NEEDS TO BE CALL BY FIELD
 # class place_update_view(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+
 
 def place_update_view(request, slug):
     """ VIEW FOR EDIT PLACES INFORMATION """
@@ -171,7 +177,7 @@ def place_update_view(request, slug):
         place.info = information
         place.save()
 
-    return redirect("/")
+    return redirect(request.META.get('HTTP_REFERER'))
 
 
 def place_delete_view(request, slug):
