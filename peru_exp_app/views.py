@@ -41,6 +41,54 @@ class Coast(ListView):
         return render(request, template, context)
 
 
+""" LOCATIONS AT COAST FILTERS """
+
+
+class ArqueologicCoast(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+
+    def get(self, request, *args, **kwargs):
+        model = PlacesList
+        data_filtered = PlacesList.objects.filter(region='Coast', type_location='Arqueologic')
+        template = "region_coast.html"
+        paginate_by = 3
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
+class BeachCoast(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: BEACH """
+
+    def get(self, request, *args, **kwargs):
+        model = PlacesList
+        data_filtered = PlacesList.objects.filter(region='Coast', type_location='Beach')
+        template = "region_coast.html"
+        paginate_by = 3
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
+class NatureCoast(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
+
+    def get(self, request, *args, **kwargs):
+        model = PlacesList
+        data_filtered = PlacesList.objects.filter(region='Coast', type_location='Nature')
+        template = "region_coast.html"
+        paginate_by = 3
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
 class Andes(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: THE ANDES """
     def get(self, request, *args, **kwargs):
