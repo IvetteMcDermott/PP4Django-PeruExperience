@@ -150,6 +150,39 @@ class Jungle(ListView):
         return render(request, template, context)
 
 
+""" LOCATIONS AT JUNGLE FILTERS """
+
+
+class ArqueologicJungle(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+
+    def get(self, request, *args, **kwargs):
+        model = PlacesList
+        data_filtered = PlacesList.objects.filter(region='Jungle', type_location='Arqueologic')
+        template = "region_jungle.html"
+        paginate_by = 3
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
+class NatureJungle(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
+
+    def get(self, request, *args, **kwargs):
+        model = PlacesList
+        data_filtered = PlacesList.objects.filter(region='Jungle', type_location='Nature')
+        template = "region_jungle.html"
+        paginate_by = 3
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
 class PlaceInformation(View):
     """ VIEW FOR DETAILED INFORMATION OF THE SELECTED PLACE """
     """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE COMMENTED BY REGULAR REGISTED USERS """

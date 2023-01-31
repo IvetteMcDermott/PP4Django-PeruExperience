@@ -2,13 +2,14 @@
 
 {% block content %}
 
-<h1> REGION THE ANDES </h1>
-
 <center>
+    <h1> REGION THE ANDES </h1>
+
     <div class="row">
     <div class="col"><a href="{% url 'arqueologic_andes_places_display' %}">Arqueologic</a></h2></div>
     <div class="col"><a href="{% url 'nature_andes_places_display' %}">Nature</a></h2></div>
     </div>
+    <br/>
 </center>
 
     {% for place in context %}

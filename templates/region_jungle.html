@@ -2,9 +2,15 @@
 
 {% block content %}
 
-<h1> REGION JUNGLE </h1>
-
-<h2> {{ context }} </h2>
+<center>
+    <h1> REGION JUNGLE </h1>
+    <br/>
+    <div class="row">
+    <div class="col"><a href="{% url 'arqueologic_jungle_places_display' %}">Arqueologic</a></h2></div>
+    <div class="col"><a href="{% url 'nature_jungle_places_display' %}">Nature</a></h2></div>
+    </div>
+    <br/>
+</center>
 
     {% for place in context %}
     <div class="col-6 text-center">
