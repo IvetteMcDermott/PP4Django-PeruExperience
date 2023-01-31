@@ -35,9 +35,18 @@ body {
 
 /* General Styling */
 
-a {
-    text-decoration: none;
-    color: #5c777a !important;
+.a-css {
+    font-size: 20px;
+    color: #5c777a;
+}
+
+.a-css:hover {
+    color:rgb(104, 10, 10) !important;
+    font-weight: 900 !important;
+}
+
+.a-css:visited {
+    color: #b36e08;
 }
 
 #regions {
@@ -124,11 +133,4 @@ img{
     background-color: #a4acac;
     margin:0;
     height: 2em;
-}
-
-/* ------------------branch work----------------------------------------*/
-
-.form_section {
-    width: 80%;
-    
 }

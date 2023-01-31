@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.landing_page, name='home'),
     path('profile/', views.profile, name='profile'),
-    path('addplace/', views.AddPlace.as_view(), name='add_place'),
+    path('adminpage/', views.AdminPage.as_view(), name='admin_page'),
     path('searchplace/', views.SearchResults, name='search_place'),
     path('home/coast/', views.Coast.as_view(), name='coast_places_display'),
     path('home/coast/arqueologic', views.ArqueologicCoast.as_view(), name='arqueologic_coast_places_display'),

@@ -5,14 +5,14 @@
 
 <!-- DISPLAY OF INFORMATION -->
 <div>
-<div class="d-flex flex-row" >
-    <div class="p-2">
-    <h2 > PLACE INFORMATION</h2>
+    <div class="d-flex flex-row">
+        <div class="p-2">
+            <h2> PLACE INFORMATION</h2>
+        </div>
+        <div class="p-2">
+            <button class="bookmark">Favourite</button>
+        </div>
     </div>
-    <div class="p-2">
-    <button class="bookmark">Favourite</button>
-    </div>
-</div>
     <img src="{{ context.place_image_src.url }}">
     <br>
 
@@ -23,12 +23,14 @@
 <hr>
 
 <!-- EDIT PLACE FORM -->
-<div >
-    <form method="post" action="{% url 'edit_place_information' context.slug %}" novalidate style="margin-top: 1.3em;" enctype="multipart/form-data">
+<div>
+    <form method="post" action="{% url 'edit_place_information' context.slug %}" novalidate style="margin-top: 1.3em;"
+        enctype="multipart/form-data">
         <div>
-            <a href="" type="button" data-toggle="modal" data-target="#EditPlace-{{ context.slug }}" data-backdrop="false">Edit a Place</a>
+            <a href="" type="button" data-toggle="modal" data-target="#EditPlace-{{ context.slug }}"
+                data-backdrop="false">Edit a Place</a>
         </div>
-    
+
         <div class="modal" id="EditPlace-{{ context.slug }}">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -44,8 +46,6 @@
                         {{ context.info }}
                         {{ context.slug }}
 
-
-    
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -54,12 +54,12 @@
                 </div>
             </div>
         </div>
-    
+
     </form>
     <hr>
-                 
+
     <hr>
-    </div>
+</div>
 <!-- FORM DELETE POST -->
 
 {% if request.user.is_superuser %}
@@ -68,12 +68,13 @@
 
 <form method="get" action="{% url 'delete_place_information' context.slug %}" style="margin-top: 1.3em;">
 
-    <a href="" type="button" data-toggle="modal" data-target="#exampleModal-{{ context.slug }}" data-backdrop="false">Delete</a>
+    <a href="" type="button" data-toggle="modal" data-target="#exampleModal-{{ context.slug }}"
+        data-backdrop="false">Delete</a>
 
 
     <!-- MODAL FOR DELETE PLACE -->
-    <div class="modal fade" id="exampleModal-{{ context.slug }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal-{{ context.slug }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -110,76 +111,76 @@
         <p>{{ comment.date_created }} </p>
 
 
-            <!-- OPTIONS UPDATE AND DELETE COMMENT IF USER IS THE AUTHOR OF IT -->
-            {% if comment.author == request.user %}
+        <!-- OPTIONS UPDATE AND DELETE COMMENT IF USER IS THE AUTHOR OF IT -->
+        {% if comment.author == request.user %}
 
-            <!-- UPDATE/EDIT COMMENT FORM -->
-            <form method="post" action="{% url 'comment_update' context.id comment.id %}" style="margin-top: 1.3em;">
-                <div>
-                    <a href="" type="button" data-toggle="modal" data-target="#ModalUpdateComment-{{ forloop.counter }}"
-                        data-backdrop="false">Edit</a>
-                </div>
-                <!-- MODAL FOR UPDATE/EDIT COMMENT -->
-                <div class="modal" id="ModalUpdateComment-{{ forloop.counter }}">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Edit Comment</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                {% csrf_token %}
-                                <textarea name="body">{{ comment.body }}</textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Edit Comment</button>
-                            </div>
+        <!-- UPDATE/EDIT COMMENT FORM -->
+        <form method="post" action="{% url 'comment_update' context.id comment.id %}" style="margin-top: 1.3em;">
+            <div>
+                <a href="" type="button" data-toggle="modal" data-target="#ModalUpdateComment-{{ forloop.counter }}"
+                    data-backdrop="false">Edit</a>
+            </div>
+            <!-- MODAL FOR UPDATE/EDIT COMMENT -->
+            <div class="modal" id="ModalUpdateComment-{{ forloop.counter }}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Comment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            <textarea name="body">{{ comment.body }}</textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Edit Comment</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-            </form>
+        </form>
 
-            {% endif %}
+        {% endif %}
 
-            {% if request.user.is_superuser or comment.author == request.user %}
+        {% if request.user.is_superuser or comment.author == request.user %}
 
-            <!-- DELETE COMMENT FORM -->
+        <!-- DELETE COMMENT FORM -->
 
-            <form method="get" action="{% url 'comment_delete' context.id comment.id %}" style="margin-top: 1.3em;">
+        <form method="get" action="{% url 'comment_delete' context.id comment.id %}" style="margin-top: 1.3em;">
 
-                <a href="" type="button" data-toggle="modal" data-target="#exampleModal" data-backdrop="false">Delete</a>
+            <a href="" type="button" data-toggle="modal" data-target="#exampleModal" data-backdrop="false">Delete</a>
 
 
-                <!-- MODAL FOR DELETE COMMENT -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Delete Comment</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                {% csrf_token %}
-                                <p name="body">{{ comment.body }}</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </div>
+            <!-- MODAL FOR DELETE COMMENT -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete Comment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            <p name="body">{{ comment.body }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-            </form>
+        </form>
 
-            {% endif %}
+        {% endif %}
 
             <hr>
         
@@ -199,8 +200,11 @@
         <!-- LEAVE A COMMENT FOR AUTHENTICATED USERS -->
 
         <div class="form col">
-
-
+            {% if commented %}
+            <div class="alert alert-success" role="alert">
+                You a post a comment 
+            </div>
+            {% endif %}
             {% if user.is_authenticated %}
 
             <p> posting as: {{ user.username }}</p>

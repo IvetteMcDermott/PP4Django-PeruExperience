@@ -237,11 +237,11 @@ def comment_update_view(request, slug, pk):
         comment = Comment.objects.get(id=pk)
         comment.body = body
         comment.save()
-
         place = comment.place_id
         place_info = PlacesList.objects.all()
         place_slug = get_object_or_404(place_info, pk=int(place))
         slug = place_slug.slug
+
     return redirect(request.META.get('HTTP_REFERER'))
 
 
@@ -263,9 +263,9 @@ def comment_delete_view(request, slug, pk):
 """ VIEWS FOR ADMIN FUNCTIONALITY IN THE HTML """
 
 
-class AddPlace(LoginRequiredMixin, CreateView):
+class AdminPage(LoginRequiredMixin, CreateView):
     """ VIEW FOR ADD A NEW PLACE-POST """
-    template_name = 'add_place.html'
+    template_name = 'admin_page.html'
     model = PlacesList
     form_class = AddPlacesForm
 

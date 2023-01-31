@@ -6,7 +6,9 @@
 <div >
 <form method="post" id="form_section" style="margin-top: 1.3em;">
     <div>
-        <a href="" type="button" data-toggle="modal" data-target="#AddPlace" data-backdrop="false">Add a Place</a>
+        <p>To Add a New Place?
+        <a href="" type="button" data-toggle="modal" data-target="#AddPlace" data-backdrop="false"> Add it here</a>
+        </p>
     </div>
 
     <div class="modal" id="AddPlace">
@@ -40,7 +42,9 @@
 <div >
     <form method="post" id="form_section" action="{% url 'search_place' %}" style="margin-top: 1.3em;">
         <div>
-            <a href="" type="button" data-toggle="modal" data-target="#EditPlace" data-backdrop="false">Edit a Place</a>
+            <p>To Edit or Delete a Place?
+            <a href="" type="button" data-toggle="modal" data-target="#EditPlace" data-backdrop="false">Find it here</a>            
+            </p>
         </div>
     
         <div class="modal" id="EditPlace">
@@ -58,7 +62,7 @@
                         {% csrf_token %}
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Find the place</button>
+                        <button type="submit" class="btn btn-primary"> Find the place</button>
                     </div>
                 </div>
             </div>
@@ -70,7 +74,9 @@
     <hr>
     </div>
 <div>
-    
+    <p>Access to the Admin Panel
+    <a href="https://8000-ivettemcder-pp4djangope-uf66l859zzx.ws-eu84.gitpod.io/admin/"> Here </a>
+    </p>
 </div>    
 
 {% endblock %}
