@@ -1,4 +1,4 @@
-from .models import Comment, PlacesList
+from .models import Comment, Place
 from django import forms
 from django.forms import fields, ModelForm
 
@@ -17,18 +17,18 @@ class UpdateCommentForm(forms.ModelForm):
 
 class AddPlacesForm(forms.ModelForm):
     class Meta:
-        model = PlacesList
-        fields = ('place_image_src', 'place', 'slug', 'region', 'location', 'altitude', 'type_location', 'info', 'author', )
-        prepopulated_fields = {'slug': "place", }
+        model = Place
+        fields = ('image', 'name', 'slug', 'region', 'cardinal_location', 'altitude', 'type_location', 'info', 'author', )
+        prepopulated_fields = {'slug': 'name', }
 
 
 class UpdatePlacesForm(forms.ModelForm):
     class Meta:
-        model = PlacesList
-        fields = ('place_image_src', 'place', 'slug', 'region', 'location', 'altitude', 'type_location', 'info', 'author', )
+        model = Place
+        fields = ('image', 'name', 'slug', 'region', 'cardinal_location', 'altitude', 'type_location', 'info', 'author', )
 
 
 class SearchPlacesForm(forms.ModelForm):
     class Meta:
-        model = PlacesList
-        fields = ('place',)
+        model = Place
+        fields = ('name',)

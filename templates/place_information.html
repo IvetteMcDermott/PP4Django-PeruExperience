@@ -13,10 +13,10 @@
             <button class="bookmark">Favourite</button>
         </div>
     </div>
-    <img src="{{ context.place_image_src.url }}">
+    <img src="{{ context.image.url }}">
     <br>
 
-    {{ context.place }}
+    {{ context.name }}
 
     {{ context.info }}
 </div>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="modal-body">
                     {% csrf_token %}
-                    <p name="body">{{ context.place }}</p>
+                    <p name="body">{{ context.name }}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

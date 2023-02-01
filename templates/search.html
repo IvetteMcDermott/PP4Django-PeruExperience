@@ -12,8 +12,8 @@
     {% for place in search_result %}
     <div class="col-6 text-center">
         
-        <a href="{% url 'place_information' place.slug %}" class="post-link">
-            <h2 class="card-title">{{ place.place }}</h2>
+        <a href="{% url 'place_information' name.slug %}" class="post-link">
+            <h2 class="card-title">{{ place.name }}</h2>
             
         </a>
        
