@@ -200,11 +200,11 @@
         <!-- LEAVE A COMMENT FOR AUTHENTICATED USERS -->
 
         <div class="form col">
-            {% if commented %}
+            <!-- {% if commented %}
             <div class="alert alert-success" role="alert">
                 You a post a comment 
             </div>
-            {% endif %}
+            {% endif %} -->
             {% if user.is_authenticated %}
 
             <p> posting as: {{ user.username }}</p>
@@ -213,7 +213,8 @@
                     <a href="" type="button" data-toggle="modal" data-target="#ModalCommenting" data-backdrop="false">Leave
                         a comment</a>
                 </div>
-
+                <br/>
+                <br/>
                 <div class="modal" id="ModalCommenting">
                     <div class="modal-dialog">
                         <div class="modal-content">

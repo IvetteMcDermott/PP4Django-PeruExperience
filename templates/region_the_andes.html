@@ -11,25 +11,31 @@
     </div>
     <br/>
 </center>
+<center>
+<div class="row">
+    <div class="col text-center">
+        {% for place in context %}
 
-    {% for place in context %}
-    <div class="col-6 text-center">
+        <div class="flex">
         <img src=" {{ place.image.url }} " class="w-75 rounded">
-        
-        <a href="{% url 'place_information' name.slug %}" class="post-link">
+        </div>
+        <div>
+        <a href="{% url 'place_information' place.slug %}" class="post-link">
             <h2 class="card-title">{{ place.name }}</h2>
         </a>
-        
+
         <p>info: {{ place.info|truncatewords:10 }}</p>
         <p>place: {{ place.altitude }}</p>
         <p>place: {{ place.region }}</p>
         <p>place: {{ place.type_location }}</p>
 
-        
-            {{ place.comments.count}} Comments
+        </div>
+        {{ place.comments.count}} Comments
 
-        
+        {% endfor %}
+
     </div>
-    {% endfor %}
+</div>
+</center>
 
 {% endblock %}

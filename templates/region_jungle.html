@@ -16,7 +16,7 @@
     <div class="col-6 text-center">
         <img src=" {{ place.image.url }} " class="w-75 rounded">
         
-        <a href="{% url 'place_information' name.slug %}" class="post-link">
+        <a href="{% url 'place_information' place.slug %}" class="post-link">
             <h2 class="card-title">{{ place.name }}</h2>
         </a>
         
