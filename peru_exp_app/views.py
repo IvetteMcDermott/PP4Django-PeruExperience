@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -270,9 +271,8 @@ class AdminPage(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super(AdminPage, self).form_valid(form)
-        
-        return redirect('/')
+        form.save()
+        return redirect('/adminpage/')
 
 
 def SearchResults(request):
@@ -314,7 +314,7 @@ def place_delete_view(request, slug):
         # get the review to update
         place.delete()
 
-    return redirect('/')
+    return redirect('/adminpage/')
 
 
 """ USER PROFILE SECTION """
