@@ -26,304 +26,304 @@ def landing_page(request):
     return render(request, 'index.html')
 
 
-class Coast(ListView):
-    """ VIEW FOR LIST OF PLACES FILTER: COAST """
+# class Coast(ListView):
+#     """ VIEW FOR LIST OF PLACES FILTER: COAST """
 
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast')
-        template = "region_coast.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='Coast')
+#         template = "region_coast.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
 
-        return render(request, template, context)
+#         return render(request, template, context)
 
 
-""" LOCATIONS AT COAST FILTERS """
+# """ LOCATIONS AT COAST FILTERS """
 
 
-class ArqueologicCoast(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+# class ArqueologicCoast(ListView):
+#     """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
 
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast', type_location='Arqueologic')
-        template = "region_coast.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='Coast', type_location='Arqueologic')
+#         template = "region_coast.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
 
-        return render(request, template, context)
+#         return render(request, template, context)
 
 
-class BeachCoast(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: BEACH """
+# class BeachCoast(ListView):
+#     """ VIEW FOR LIST OF COAST PLACES FILTER: BEACH """
 
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast', type_location='Beach')
-        template = "region_coast.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='Coast', type_location='Beach')
+#         template = "region_coast.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
 
-        return render(request, template, context)
+#         return render(request, template, context)
 
 
-class NatureCoast(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
+# class NatureCoast(ListView):
+#     """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
 
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast', type_location='Nature')
-        template = "region_coast.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='Coast', type_location='Nature')
+#         template = "region_coast.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
 
-        return render(request, template, context)
+#         return render(request, template, context)
 
 
-class Andes(ListView):
-    """ VIEW FOR LIST OF PLACES FILTER: THE ANDES """
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='The Andes')
-        template = "region_the_andes.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
+# class Andes(ListView):
+#     """ VIEW FOR LIST OF PLACES FILTER: THE ANDES """
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='The Andes')
+#         template = "region_the_andes.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
 
-        return render(request, template, context)
+#         return render(request, template, context)
 
 
-""" LOCATIONS AT THE ANDES FILTERS """
+# """ LOCATIONS AT THE ANDES FILTERS """
 
 
-class ArqueologicAndes(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='The Andes', type_location='Arqueologic')
-        template = "region_the_andes.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class NatureAndes(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='The Andes', type_location='Nature')
-        template = "region_the_andes.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class Jungle(ListView):
-    """ VIEW FOR LIST OF PLACES FILTER: JUNGLE """
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Jungle')
-        template = "region_jungle.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-""" LOCATIONS AT JUNGLE FILTERS """
-
-
-class ArqueologicJungle(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Jungle', type_location='Arqueologic')
-        template = "region_jungle.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class NatureJungle(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Jungle', type_location='Nature')
-        template = "region_jungle.html"
-        paginate_by = 3
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class PlaceInformation(View):
-    """ VIEW FOR DETAILED INFORMATION OF THE SELECTED PLACE """
-    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE COMMENTED BY REGULAR REGISTED USERS """
-    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE EDIT OR DELETE, REDIRECTING YOU TO THE LANDING - HOME PAGE """
-    def get(self, request, slug, *args, **kwargs):
-        place = Place.objects.all()
-        place_data = get_object_or_404(place, slug=slug)
-        comments = place_data.comments.all().order_by('date_created')
-        template = 'place_information.html'
-        comment_form = CommentForm()
-        updateform = UpdatePlacesForm(instance=place_data)
-        context = {
-            'context': place_data,
-            'comments': comments,
-            'commented': False,
-            'comment_form': comment_form,
-            'update_form': updateform
-        }
-        return render(request, template, context)
-
-    def post(self, request, slug, *args, **kwargs):
-        """ VIEW FOR POST A COMMENT """
-        place = Place.objects.all()
-        place_data = get_object_or_404(place, slug=slug)
-        comments = place_data.comments.all().order_by('-date_created')
-        template = 'place_information.html'
-
-        comment_form = CommentForm(data=request.POST)
-
-        if comment_form.is_valid():
-            comment_form.instance.email = request.user.email
-            comment_form.instance.author = request.user
-            comment = comment_form.save(commit=False)
-            comment.place = place_data
-            comment.save()
-        else:
-            print(comment_form.errors)
-
-        return render(request, template, {
-            'context': place_data,
-            'comments': comments,
-            'commented': True,
-            'comment_form': comment_form
-        })
-
-
-def comment_update_view(request, slug, pk):
-    """ VIEW FOR EDIT A COMMENT IF AUTHOR OF IT """
-    if request.method == 'POST':
-        body = request.POST.get('body')
-        # get the review to update
-        comment = Comment.objects.get(id=pk)
-        comment.body = body
-        comment.save()
-        place = comment.place_id
-        place_info = Place.objects.all()
-        place_slug = get_object_or_404(place_info, pk=int(place))
-        slug = place_slug.slug
-
-    return redirect(request.META.get('HTTP_REFERER'))
-
-
-def comment_delete_view(request, slug, pk):
-    """ VIEW FOR DELETE A COMMENT IF AUTHOR OF IT OR ADMIN """
-    if request.method == 'GET':
-        comment = Comment.objects.get(id=pk)
-
-        # get the review to update
-        comment.delete()
-
-        place = comment.place_id
-        place_info = Place.objects.all()
-        place_slug = get_object_or_404(place_info, pk=int(place))
-        slug = place_slug.slug
-    return redirect(request.META.get('HTTP_REFERER'))
-
-
-""" VIEWS FOR ADMIN FUNCTIONALITY IN THE HTML """
-
-
-class AdminPage(LoginRequiredMixin, CreateView):
-    """ VIEW FOR ADD A NEW PLACE-POST """
-    template_name = 'admin_page.html'
-    model = Place
-    form_class = AddPlacesForm
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        form.save()
-        return redirect('/adminpage/')
-
-
-def SearchResults(request):
-    """ VIEW FOR SEARCH A PLACE POST """
-    if request.method == 'POST':
-        search = request.POST.get('search')
-        search_result = Place.objects.all().filter(name__icontains=search)
-        template = 'search.html'
-        context = {
-            'searched': search,
-            'search_result': search_result
-        }
-        return render(request, template, context)
-
-
-#THIS IS WORKING TO SAVE BUT DOESNT SHOW IN THE FORM THE DATA AND HTML NEEDS TO BE CALL BY FIELD
-# class place_update_view(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-
-
-def place_update_view(request, slug):
-    """ VIEW FOR EDIT PLACES INFORMATION """
-    form = UpdatePlacesForm()
-
-    if request.method == 'POST':
-        information = request.POST.get('info')
-        # get the review to update
-        place = Place.objects.get(slug=slug)
-        place.info = information
-        place.save()
-
-    return redirect(request.META.get('HTTP_REFERER'))
-
-
-def place_delete_view(request, slug):
-    """ VIEW FOR DELETE A POST, JUST ADMIN HAS ACCESS TO """
-    if request.method == 'GET':
-        place = Place.objects.get(slug=slug)
-
-        # get the review to update
-        place.delete()
-
-    return redirect('/adminpage/')
-
-
-""" USER PROFILE SECTION """
-
-
-def profile(request, *args, **kwargs):
-    """ VIEW FOR USER PROFILE """
-    user = request.user
-    template = 'user_profile.html'
-    return render(request, template)
+# class ArqueologicAndes(ListView):
+#     """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='The Andes', type_location='Arqueologic')
+#         template = "region_the_andes.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
+
+#         return render(request, template, context)
+
+
+# class NatureAndes(ListView):
+#     """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
+
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='The Andes', type_location='Nature')
+#         template = "region_the_andes.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
+
+#         return render(request, template, context)
+
+
+# class Jungle(ListView):
+#     """ VIEW FOR LIST OF PLACES FILTER: JUNGLE """
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='Jungle')
+#         template = "region_jungle.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
+
+#         return render(request, template, context)
+
+
+# """ LOCATIONS AT JUNGLE FILTERS """
+
+
+# class ArqueologicJungle(ListView):
+#     """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='Jungle', type_location='Arqueologic')
+#         template = "region_jungle.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
+
+#         return render(request, template, context)
+
+
+# class NatureJungle(ListView):
+#     """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
+
+#     def get(self, request, *args, **kwargs):
+#         model = Place
+#         data_filtered = Place.objects.filter(region='Jungle', type_location='Nature')
+#         template = "region_jungle.html"
+#         paginate_by = 3
+#         context = {
+#             'context': data_filtered
+#         }
+
+#         return render(request, template, context)
+
+
+# class PlaceInformation(View):
+#     """ VIEW FOR DETAILED INFORMATION OF THE SELECTED PLACE """
+#     """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE COMMENTED BY REGULAR REGISTED USERS """
+#     """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE EDIT OR DELETE, REDIRECTING YOU TO THE LANDING - HOME PAGE """
+#     def get(self, request, slug, *args, **kwargs):
+#         place = Place.objects.all()
+#         place_data = get_object_or_404(place, slug=slug)
+#         comments = place_data.comments.all().order_by('date_created')
+#         template = 'place_information.html'
+#         comment_form = CommentForm()
+#         updateform = UpdatePlacesForm(instance=place_data)
+#         context = {
+#             'context': place_data,
+#             'comments': comments,
+#             'commented': False,
+#             'comment_form': comment_form,
+#             'update_form': updateform
+#         }
+#         return render(request, template, context)
+
+#     def post(self, request, slug, *args, **kwargs):
+#         """ VIEW FOR POST A COMMENT """
+#         place = Place.objects.all()
+#         place_data = get_object_or_404(place, slug=slug)
+#         comments = place_data.comments.all().order_by('-date_created')
+#         template = 'place_information.html'
+
+#         comment_form = CommentForm(data=request.POST)
+
+#         if comment_form.is_valid():
+#             comment_form.instance.email = request.user.email
+#             comment_form.instance.author = request.user
+#             comment = comment_form.save(commit=False)
+#             comment.place = place_data
+#             comment.save()
+#         else:
+#             print(comment_form.errors)
+
+#         return render(request, template, {
+#             'context': place_data,
+#             'comments': comments,
+#             'commented': True,
+#             'comment_form': comment_form
+#         })
+
+
+# def comment_update_view(request, slug, pk):
+#     """ VIEW FOR EDIT A COMMENT IF AUTHOR OF IT """
+#     if request.method == 'POST':
+#         body = request.POST.get('body')
+#         # get the review to update
+#         comment = Comment.objects.get(id=pk)
+#         comment.body = body
+#         comment.save()
+#         place = comment.place_id
+#         place_info = Place.objects.all()
+#         place_slug = get_object_or_404(place_info, pk=int(place))
+#         slug = place_slug.slug
+
+#     return redirect(request.META.get('HTTP_REFERER'))
+
+
+# def comment_delete_view(request, slug, pk):
+#     """ VIEW FOR DELETE A COMMENT IF AUTHOR OF IT OR ADMIN """
+#     if request.method == 'GET':
+#         comment = Comment.objects.get(id=pk)
+
+#         # get the review to update
+#         comment.delete()
+
+#         place = comment.place_id
+#         place_info = Place.objects.all()
+#         place_slug = get_object_or_404(place_info, pk=int(place))
+#         slug = place_slug.slug
+#     return redirect(request.META.get('HTTP_REFERER'))
+
+
+# """ VIEWS FOR ADMIN FUNCTIONALITY IN THE HTML """
+
+
+# class AdminPage(LoginRequiredMixin, CreateView):
+#     """ VIEW FOR ADD A NEW PLACE-POST """
+#     template_name = 'admin_page.html'
+#     model = Place
+#     form_class = AddPlacesForm
+
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         form.save()
+#         return redirect('/adminpage/')
+
+
+# def SearchResults(request):
+#     """ VIEW FOR SEARCH A PLACE POST """
+#     if request.method == 'POST':
+#         search = request.POST.get('search')
+#         search_result = Place.objects.all().filter(name__icontains=search)
+#         template = 'search.html'
+#         context = {
+#             'searched': search,
+#             'search_result': search_result
+#         }
+#         return render(request, template, context)
+
+
+# #THIS IS WORKING TO SAVE BUT DOESNT SHOW IN THE FORM THE DATA AND HTML NEEDS TO BE CALL BY FIELD
+# # class place_update_view(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+
+
+# def place_update_view(request, slug):
+#     """ VIEW FOR EDIT PLACES INFORMATION """
+#     form = UpdatePlacesForm()
+
+#     if request.method == 'POST':
+#         information = request.POST.get('info')
+#         # get the review to update
+#         place = Place.objects.get(slug=slug)
+#         place.info = information
+#         place.save()
+
+#     return redirect(request.META.get('HTTP_REFERER'))
+
+
+# def place_delete_view(request, slug):
+#     """ VIEW FOR DELETE A POST, JUST ADMIN HAS ACCESS TO """
+#     if request.method == 'GET':
+#         place = Place.objects.get(slug=slug)
+
+#         # get the review to update
+#         place.delete()
+
+#     return redirect('/adminpage/')
+
+
+# """ USER PROFILE SECTION """
+
+
+# def profile(request, *args, **kwargs):
+#     """ VIEW FOR USER PROFILE """
+#     user = request.user
+#     template = 'user_profile.html'
+#     return render(request, template)
 
 
