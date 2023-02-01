@@ -4,7 +4,7 @@
 {% load crispy_forms_tags %}
 
 <div >
-<form method="post" id="form_section" style="margin-top: 1.3em;">
+<form method="post" id="form_section" enctype="multipart/form-data" style="margin-top: 1.3em;">
     <div>
         <p>To Add a New Place?
         <a href="" type="button" data-toggle="modal" data-target="#AddPlace" data-backdrop="false"> Add it here</a>
@@ -40,7 +40,7 @@
 </div>
 
 <div >
-    <form method="post" id="form_section" action="{% url 'search_place' %}" style="margin-top: 1.3em;">
+    <form method="post" id="form_section" action="{% url 'search_place' %}" enctype="multipart/form-data" style="margin-top: 1.3em;">
         <div>
             <p>To Edit or Delete a Place?
             <a href="" type="button" data-toggle="modal" data-target="#EditPlace" data-backdrop="false">Find it here</a>            
