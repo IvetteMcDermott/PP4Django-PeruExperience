@@ -7,13 +7,16 @@ from django.contrib.auth.models import User
 
 
 class PlacesList(models.Model):
+    type_location_options = ['Beach', 'Nature', 'Arqueologic', 'Cultural']
+    region_options = ['Coast', 'The Andes', 'Jungle']
+    location_options = ['North', 'Center', 'South']
     place_image_src = CloudinaryField('image', default='placeholder')
     place = models.CharField(max_length=60, unique=True, null=False, blank=False)
     slug = models.SlugField(max_length=60, null=False, unique=True)
-    region = models.CharField(max_length=15, null=False, blank=False)
-    location = models.CharField(max_length=20, null=False, blank=False)
+    region = models.CharField(max_length=15, choices=region_options, null=False, blank=False)
+    location = models.CharField(max_length=20, choices=location_options, null=False, blank=False)
     altitude = models.IntegerField(null=False, blank=False)
-    type_location = models.CharField(max_length=20, null=False, blank=False)
+    type_location = models.CharField(max_length=20, choices=type_location_options, null=False, blank=False)
     info = models.TextField(null=False, blank=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now_add=True, null=False, blank=False)
