@@ -1,6 +1,5 @@
 from django.shortcuts import redirect
 
-
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from django.shortcuts import render, get_object_or_404
@@ -271,9 +270,9 @@ class AdminPage(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super(AddPlace, self).form_valid(form)
-
-        return redirect(request.META.get('HTTP_REFERER'))
+        return super(AdminPage, self).form_valid(form)
+        
+        return redirect('/')
 
 
 def SearchResults(request):

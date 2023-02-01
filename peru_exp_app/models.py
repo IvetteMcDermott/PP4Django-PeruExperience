@@ -10,7 +10,7 @@ class PlacesList(models.Model):
     type_location_options = [('Beach', 'Beach'), ('Nature', 'Nature'), ('Arqueologic', 'Arqueologic'), ('Cultural', 'Cultural'),]
     region_options = [('Coast', 'Coast'), ('The Andes', 'The Andes'), ('Jungle', 'Jungle'),]
     location_options = [('North', 'North'), ('Center', 'Center'), ('South', 'South'),]
-    place_image_src = CloudinaryField('image', default='placeholder')
+    place_image_src = models.ImageField(upload_to='images/', default='placeholder')
     place = models.CharField(max_length=60, unique=True, null=False, blank=False)
     slug = models.SlugField(max_length=60, null=False, unique=True)
     region = models.CharField(max_length=15, choices=region_options, null=False, blank=False)
