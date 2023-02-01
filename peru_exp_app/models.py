@@ -7,9 +7,9 @@ from django.contrib.auth.models import User
 
 
 class PlacesList(models.Model):
-    type_location_options = ['Beach', 'Nature', 'Arqueologic', 'Cultural']
-    region_options = ['Coast', 'The Andes', 'Jungle']
-    location_options = ['North', 'Center', 'South']
+    type_location_options = [('Beach', 'Beach'), ('Nature', 'Nature'), ('Arqueologic', 'Arqueologic'), ('Cultural', 'Cultural'),]
+    region_options = [('Coast', 'Coast'), ('The Andes', 'The Andes'), ('Jungle', 'Jungle'),]
+    location_options = [('North', 'North'), ('Center', 'Center'), ('South', 'South'),]
     place_image_src = CloudinaryField('image', default='placeholder')
     place = models.CharField(max_length=60, unique=True, null=False, blank=False)
     slug = models.SlugField(max_length=60, null=False, unique=True)
