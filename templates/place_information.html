@@ -10,7 +10,21 @@
             <h2> PLACE INFORMATION</h2>
         </div>
         <div class="p-2">
-            <button class="bookmark">Favourite</button>
+
+            <form method="POST" action="{% url 'user_interests' context.slug %}" style="margin-top: 1.3em;">
+
+                {% csrf_token %}
+                {% if interest %}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bi bi-bookmark-check-fill"></i>
+                </button>
+                {% else %}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="bi bi-bookmark"></i>
+                </button>
+                {% endif %}
+            </form>
+    
         </div>
     </div>
     <img src="{{ context.image.url }}">
@@ -105,6 +119,7 @@
     <div class="col">
 
         {% if user.is_authenticated %}
+        <span><i class="bi bi-chat-left-text"></i></span>
 
         {% for comment in context.comments.all %}
         <p>{{ comment }}</p> <span>{{ comment.pk }}</span>
@@ -154,7 +169,6 @@
 
             <a href="" type="button" data-toggle="modal" data-target="#exampleModal" data-backdrop="false">Delete</a>
 
-
             <!-- MODAL FOR DELETE COMMENT -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -191,7 +205,8 @@
 
             <!-- DISPLAY AMOUNT OF COMMENTS IF USER IS NO AUTHENTICATED -->
 
-            Comments {{ context.comments.count}}
+            <span><i class="bi bi-chat-left-text"></i> {{ context.comments.count}} </span>
+            
 
         {% endif %}
 
@@ -251,5 +266,6 @@
 </div>
 
 
-
+</br>
+</br>
 {% endblock %}

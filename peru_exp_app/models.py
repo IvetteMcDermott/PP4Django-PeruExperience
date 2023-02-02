@@ -7,9 +7,19 @@ from django.contrib.auth.models import User
 
 
 class Place(models.Model):
-    type_location_options = [('Beach', 'Beach'), ('Nature', 'Nature'), ('Arqueologic', 'Arqueologic'), ('Cultural', 'Cultural'),]
-    region_options = [('Coast', 'Coast'), ('The Andes', 'The Andes'), ('Jungle', 'Jungle'),]
-    cardinal_location_options = [('North', 'North'), ('Center', 'Center'), ('South', 'South'),]
+    type_location_options = [
+                        ('Beach', 'Beach'),
+                        ('Nature', 'Nature'),
+                        ('Arqueologic', 'Arqueologic'),
+                        ('Cultural', 'Cultural'),]
+    region_options = [
+                    ('Coast', 'Coast'),
+                    ('The Andes', 'The Andes'),
+                    ('Jungle', 'Jungle'),]
+    cardinal_location_options = [
+                                ('North', 'North'),
+                                ('Center', 'Center'),
+                                ('South', 'South'),]
     image = CloudinaryField(default='placeholder', max_length=255, verbose_name='image')
     name = models.CharField(max_length=60, unique=True, null=False, blank=False)
     slug = models.SlugField(max_length=60, null=False, unique=True)
@@ -39,7 +49,7 @@ class Comment(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    interests = models.ManyToManyField(Place)
+    interests = models.ManyToManyField(Place, related_name='interest', blank='True')
 
     def __str__(self):
-        return self.user
+        return str(self.user)

@@ -325,3 +325,5 @@ def profile(request, *args, **kwargs):
     user = request.user
     template = 'user_profile.html'
     return render(request, template)
+
+
