@@ -5,32 +5,24 @@
 
 <!-- DISPLAY OF INFORMATION -->
 <div>
+    <h2> PLACE INFORMATION</h2>
+
     <div class="d-flex flex-row">
         <div class="p-2">
-            <h2> PLACE INFORMATION</h2>
+            {{ context.name }}
+
         </div>
+<hr>
+        {% if user.is_authenticated %}
         <div class="p-2">
-
-            <form method="POST" action="{% url 'user_interests' context.slug %}" style="margin-top: 1.3em;">
-
-                {% csrf_token %}
-                {% if interest %}
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="bi bi-bookmark-check-fill"></i>
-                </button>
-                {% else %}
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="bi bi-bookmark"></i>
-                </button>
-                {% endif %}
-            </form>
+        <a href="#"><i class="bi bi-bookmark"></i></a>
     
         </div>
+        {% endif %}
     </div>
-    <img src="{{ context.image.url }}">
+    <img src="{{ context.image.url }}" class="w-50">
     <br>
 
-    {{ context.name }}
 
     {{ context.info }}
 </div>
@@ -38,8 +30,7 @@
 
 <!-- EDIT PLACE FORM -->
 <div>
-    <form method="post" action="{% url 'edit_place_information' context.slug %}" enctype="multipart/form-data" novalidate style="margin-top: 1.3em;"
-        enctype="multipart/form-data">
+    <form method="post" action="{% url 'edit_place_information' context.slug %}" enctype="multipart/form-data" novalidate style="margin-top: 1.3em;">
         <div>
             <a href="" type="button" data-toggle="modal" data-target="#EditPlace-{{ context.slug }}"
                 data-backdrop="false">Edit a Place</a>

@@ -297,11 +297,15 @@ def place_update_view(request, slug):
     form = UpdatePlacesForm()
 
     if request.method == 'POST':
-        information = request.POST.get('info')
-        # get the review to update
-        place = Place.objects.get(slug=slug)
-        place.info = information
-        place.save()
+        lugar = Place.objects.get(slug=slug)
+        form = UpdatePlacesForm(request.POST, request.FILES, instance=lugar)
+        if form.is_valid():
+            form.save(commit=False)
+            form.save()
+        # # get the review to update
+        # place = Place.objects.get(slug=slug)
+        # place.info = information
+        # place.save()
 
     return redirect(request.META.get('HTTP_REFERER'))
 
@@ -327,3 +331,11 @@ def profile(request, *args, **kwargs):
     return render(request, template)
 
 
+def add_interest(request, user, slug):
+    user = get_object_or_404(UserProfile, user=user)
+    if user.interests.filter(slug=request.slug).exist():
+        user.interest.remove(request.slug)
+    else:
+        user.interest.add(request.slug)
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

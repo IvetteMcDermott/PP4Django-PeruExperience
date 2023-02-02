@@ -18,6 +18,7 @@ urlpatterns = [
     path('home/jungle/nature', views.NatureJungle.as_view(), name='nature_jungle_places_display'),
     path('home/jungle/arqueologic', views.ArqueologicJungle.as_view(), name='arqueologic_jungle_places_display'),
     path('<slug:slug>/', views.PlaceInformation.as_view(), name='place_information'),
+    path('interest/<slugslug>', views.add_interest, name='add_interest'),
     path('<slug:slug>/update/', views.place_update_view, name='edit_place_information'),
     path('<slug:slug>/delete/', views.place_delete_view, name='delete_place_information'),
     path('<slug:slug>/<int:pk>/update/', views.comment_update_view, name="comment_update"),
