@@ -4,32 +4,50 @@
 
 <center>
     <h1> REGION JUNGLE </h1>
-    <br/>
+    <br />
     <div class="row">
-    <div class="col"><a href="{% url 'arqueologic_jungle_places_display' %}">Arqueologic</a></h2></div>
-    <div class="col"><a href="{% url 'nature_jungle_places_display' %}">Nature</a></h2></div>
+        <div class="col"><a href="{% url 'arqueologic_jungle_places_display' %}">Arqueologic</a></h2>
+        </div>
+        <div class="col"><a href="{% url 'nature_jungle_places_display' %}">Nature</a></h2>
+        </div>
     </div>
-    <br/>
+    <br />
 </center>
 
+<section class="display-region d-flex">
+
     {% for place in context %}
-    <div class="col-6 text-center">
-        <img src=" {{ place.image.url }} " class="w-75 rounded">
-        
+    <div class="text-center display-card">
         <a href="{% url 'place_information' place.slug %}" class="post-link">
-            <h2 class="card-title">{{ place.name }}</h2>
+
+            <div class="container d-flex">
+                <div class="col">
+                    <div class="row align">
+                        <img src=" {{ place.image.url }} " class="rounded">
+                    </div>
+                    <div class="row">
+                        <h3 class="card-title">{{ place.name }}</h3>
+
+                        <div class="row ">
+                            <div class="col justify-content-start d-flex">
+                                <p>info: {{ place.info|truncatewords:10 }}</p>
+                            </div>
+                            <div class="col justify-content-end d-flex">
+                                <span><i class="bi bi-chat-left-text"></i> {{ place.comments.count}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </a>
-        
-        <p>info: {{ place.info|truncatewords:10 }}</p>
-        <p>place: {{ place.altitude }}</p>
-        <p>place: {{ place.region }}</p>
-        <p>place: {{ place.type_location }}</p>
 
-        
-        <span><i class="bi bi-chat-left-text"></i> {{ place.comments.count}} </span>
+    </div>
 
-        
+
     </div>
     {% endfor %}
 
-{% endblock %}
+
+
+
+    {% endblock %}

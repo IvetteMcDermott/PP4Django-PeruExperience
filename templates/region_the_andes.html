@@ -12,30 +12,34 @@
     <br/>
 </center>
 <center>
-<div class="row">
-    <div class="col text-center">
+    <section class="display-region d-flex">
+
         {% for place in context %}
-
-        <div class="flex">
-        <img src=" {{ place.image.url }} " class="w-75 rounded">
+        <div class="text-center display-card">
+            <a href="{% url 'place_information' place.slug %}" class="post-link">
+            
+            <div class="container d-flex">
+                <div class="col">
+                    <div class="row align">
+                        <img src=" {{ place.image.url }} " class="rounded">
+                    </div>
+                    <div class="row">
+                        <h3 class="card-title">{{ place.name }}</h3>
+                        
+                        <div class="row ">
+                            <div class="col justify-content-start d-flex">
+                                <p>{{ place.info|truncatewords:5 }}...</p>
+                            </div>
+                            <div class="col justify-content-end d-flex">
+                                <span><i class="bi bi-chat-left-text"></i> {{ place.comments.count}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></a>
+    
         </div>
-        <div>
-        <a href="{% url 'place_information' place.slug %}" class="post-link">
-            <h2 class="card-title">{{ place.name }}</h2>
-        </a>
-
-        <p>info: {{ place.info|truncatewords:10 }}</p>
-        <p>place: {{ place.altitude }}</p>
-        <p>place: {{ place.region }}</p>
-        <p>place: {{ place.type_location }}</p>
-
-        </div>
-        <span><i class="bi bi-chat-left-text"></i> {{ place.comments.count}} </span>
-
         {% endfor %}
-
-    </div>
-</div>
-</center>
+    </section>
 
 {% endblock %}

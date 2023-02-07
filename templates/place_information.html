@@ -15,12 +15,15 @@
 <hr>
         {% if user.is_authenticated %}
         <div class="p-2">
-        <a href="#"><i class="bi bi-bookmark"></i></a>
-    
+        <form method="post" action="{% url 'add_interest' context.slug %}" >
+            {% csrf_token %}
+
+            <button type="submit"><i class="bi bi-bookmark"></i></button>
+        </form>
         </div>
         {% endif %}
     </div>
-    <img src="{{ context.image.url }}" class="w-50">
+    <img src="{{ context.image.url }}" style="width:150px;">
     <br>
 
 

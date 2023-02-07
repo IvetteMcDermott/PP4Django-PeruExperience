@@ -14,7 +14,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 
 from django.http import HttpResponse
-from .models import Place, Comment
+from .models import Place, Comment, UserProfile
 
 from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
 
@@ -331,11 +331,15 @@ def profile(request, *args, **kwargs):
     return render(request, template)
 
 
-def add_interest(request, user, slug):
-    user = get_object_or_404(UserProfile, user=user)
-    if user.interests.filter(slug=request.slug).exist():
-        user.interest.remove(request.slug)
-    else:
-        user.interest.add(request.slug)
-
+def add_interest(request, slug):
+    #user = get_object_or_404(UserProfile, user=request.user)
+    if request.method == 'POST':
+        place = get_object_or_404(Place, slug=request.slug)
+        if user.interests.filter(place).exist():
+            user.interest.remove(place)
+            print(request.user)
+            print(request.slug)
+        else:
+            user.interest.add(request.slug)
+    #return render(request, 'place_information', context)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
