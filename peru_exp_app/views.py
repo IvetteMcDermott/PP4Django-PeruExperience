@@ -25,6 +25,10 @@ def landing_page(request):
     return render(request, 'index.html')
 
 
+def admin(request):
+    return render(request, 'admin')
+
+
 class Coast(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: COAST """
 
@@ -264,9 +268,7 @@ class PlaceInformation(View):
             comment.save()
             commented = True
             if commented == True:
-                messages.success(request, 'Got it!')
-            else:
-                messages.error(request, message)
+                messages.success(request, 'Your comment had been add successfully!')
         else:
             comment_form()
 
@@ -288,11 +290,13 @@ def comment_update_view(request, slug, pk):
         comment = Comment.objects.get(id=pk)
         comment.body = body
         comment.save()
+        updated = True
         place = comment.place_id
         place_info = Place.objects.all()
         place_slug = get_object_or_404(place_info, pk=int(place))
         slug = place_slug.slug
-
+        if updated == True:
+            messages.info(request, 'Your commented had been updated successfully!')
     return redirect(request.META.get('HTTP_REFERER'))
 
 
@@ -303,11 +307,13 @@ def comment_delete_view(request, slug, pk):
 
         # get the review to update
         comment.delete()
-
+        deleted = True
         place = comment.place_id
         place_info = Place.objects.all()
         place_slug = get_object_or_404(place_info, pk=int(place))
         slug = place_slug.slug
+        if deleted == True:
+            messages.warning(request, 'Your comment had been deleted successfully!')      
     return redirect(request.META.get('HTTP_REFERER'))
 
 
@@ -323,6 +329,9 @@ class AdminPage(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.save()
+        added = True
+        if added == True:
+            messages.success(self.request, 'The new post has been add successfully!')
         return redirect('/adminpage/')
 
 
@@ -353,6 +362,9 @@ def place_update_view(request, slug):
         if form.is_valid():
             form.save(commit=False)
             form.save()
+            updated = True
+            if updated == True:
+                messages.success(request, 'The post had been updated successfully!')
         # # get the review to update
         # place = Place.objects.get(slug=slug)
         # place.info = information
@@ -368,6 +380,9 @@ def place_delete_view(request, slug):
 
         # get the review to update
         place.delete()
+        deleted = True
+        if deleted == True:
+            messages.success(request, 'The post has been deleted successfully!')
 
     return redirect('/adminpage/')
 
