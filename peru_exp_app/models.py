@@ -1,7 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
-
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -28,13 +28,18 @@ class Place(models.Model):
     altitude = models.IntegerField(null=False, blank=False)
     type_location = models.CharField(max_length=20, choices=type_location_options, null=False, blank=False)
     info = models.TextField(null=False, blank=False)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default='Admin')
     date_created = models.DateField(auto_now_add=True, null=False, blank=False)
     date_updated = models.DateField(auto_now=True, null=False, blank=False)
 
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
+        
 
 class Comment(models.Model):
     place = models.ForeignKey(Place, related_name="comments", on_delete=models.CASCADE)
