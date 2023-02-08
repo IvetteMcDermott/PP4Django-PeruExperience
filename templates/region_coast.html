@@ -11,6 +11,7 @@
         <div class="col"><a href="{% url 'arqueologic_coast_places_display' %}" class="a-css">Arqueologic</a></div>
         <div class="col"><a href="{% url 'beach_coast_places_display' %}" class="a-css">Beach</a></div>
         <div class="col"><a href="{% url 'nature_coast_places_display' %}" class="a-css">Nature</a></div>
+        <div class="col"><a href="{% url 'cultural_coast_places_display' %}" class="a-css">Cultural</a></div>
     </div>
     <hr />
 </center>
@@ -25,17 +26,15 @@
                 <div class="row align">
                     <img src=" {{ place.image.url }} " class="rounded">
                 </div>
-                <div class="row">
+                <div class="row align">
                     <h3 class="card-title">{{ place.name }}</h3>
-                    
-                    <div class="row ">
-                        <div class="col justify-content-start d-flex">
+                </div>
+                        <div class="row justify-content-start d-flex info-div" style="height: 12px;">
                             <p>info: {{ place.info|truncatewords:10 }}</p>
                         </div>
-                        <div class="col justify-content-end d-flex">
+                        <div class="row align justify-content-end d-flex comment-div">
                             <span><i class="bi bi-chat-left-text"></i> {{ place.comments.count}} </span>
                         </div>
-                    </div>
                 </div>
             </div>
         </div></a>

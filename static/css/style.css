@@ -55,6 +55,7 @@ body {
 .a-css:hover {
     color:#791212 !important;
     font-weight: 900 !important;
+    text-decoration: none !important;
 }
 
 .a-css:visited {
@@ -198,19 +199,15 @@ h1, h2, h3 {
     color:#791212;
     font-family: 'Michroma', sans-serif;}
 
-a {
-    text-decoration: none;
-}
-
 /* Region page */
 
 .display-card {
-    padding-top: 20px;
+    padding: 10px;
     border: #dbd8d4 outset 2px;
     background-color: #dbd8d370;
     border-radius: 5px;
     width: 20em;
-    height: 20em;
+    height: 22em;
     display: flex;
     margin: 0;
     margin: auto;
@@ -241,6 +238,10 @@ a {
     column-gap: 10px;                
 }
 
+.info-div{
+    height: fit-content;
+}
+
 /* Footer  */
 
 .footer {
@@ -256,4 +257,9 @@ a {
 
 .fa-brands {
     color:#141313;
+}
+
+.alert-css{
+    position: absolute;
+    z-index: 1000;
 }

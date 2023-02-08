@@ -31,6 +31,8 @@
 </div>
 <hr>
 
+{% if request.user.is_superuser %}
+
 <!-- EDIT PLACE FORM -->
 <div>
     <form method="post" action="{% url 'edit_place_information' context.slug %}" enctype="multipart/form-data" novalidate style="margin-top: 1.3em;">
@@ -70,7 +72,6 @@
 </div>
 <!-- FORM DELETE POST -->
 
-{% if request.user.is_superuser %}
 
 <!-- DELETE COMMENT FORM -->
 
@@ -262,4 +263,5 @@
 
 </br>
 </br>
+
 {% endblock %}

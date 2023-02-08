@@ -3,13 +3,14 @@
 {% block content %}
 
 <center>
-    <h1> REGION JUNGLE </h1>
+    <a href="{% url 'jungle_places_display' %}">
+        <h1> REGION JUNGLE </h1>
+    </a>
     <br />
     <div class="row">
-        <div class="col"><a href="{% url 'arqueologic_jungle_places_display' %}">Arqueologic</a></h2>
-        </div>
-        <div class="col"><a href="{% url 'nature_jungle_places_display' %}">Nature</a></h2>
-        </div>
+        <div class="col"><a href="{% url 'arqueologic_jungle_places_display' %}">Arqueologic</a></h2></div>
+        <div class="col"><a href="{% url 'nature_jungle_places_display' %}">Nature</a></h2></div>
+        <div class="col"><a href="{% url 'cultural_jungle_places_display' %}" class="a-css">Cultural</a></div>
     </div>
     <br />
 </center>
