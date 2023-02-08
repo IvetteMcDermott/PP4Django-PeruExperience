@@ -7,7 +7,6 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic import UpdateView, ListView, CreateView
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.core.paginator import Paginator
 
@@ -33,7 +32,7 @@ class Coast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast')
         template = "region_coast.html"
-        paginate_by = 3
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -51,7 +50,7 @@ class ArqueologicCoast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast', type_location='Arqueologic')
         template = "region_coast.html"
-        paginate_by = 3
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -66,7 +65,7 @@ class BeachCoast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast', type_location='Beach')
         template = "region_coast.html"
-        paginate_by = 3
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -81,7 +80,22 @@ class NatureCoast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast', type_location='Nature')
         template = "region_coast.html"
-        paginate_by = 3
+        paginate_by = 4
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
+class CulturalCoast(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+
+    def get(self, request, *args, **kwargs):
+        model = Place
+        data_filtered = Place.objects.filter(region='Coast', type_location='Cultural')
+        template = "region_coast.html"
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -95,7 +109,7 @@ class Andes(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='The Andes')
         template = "region_the_andes.html"
-        paginate_by = 3
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -113,7 +127,7 @@ class ArqueologicAndes(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='The Andes', type_location='Arqueologic')
         template = "region_the_andes.html"
-        paginate_by = 3
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -128,7 +142,22 @@ class NatureAndes(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='The Andes', type_location='Nature')
         template = "region_the_andes.html"
-        paginate_by = 3
+        paginate_by = 4
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
+class CulturalAndes(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+
+    def get(self, request, *args, **kwargs):
+        model = Place
+        data_filtered = Place.objects.filter(region='The Andes', type_location='Cultural')
+        template = "region_the_andes.html"
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -142,7 +171,7 @@ class Jungle(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Jungle')
         template = "region_jungle.html"
-        paginate_by = 3
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -160,7 +189,7 @@ class ArqueologicJungle(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Jungle', type_location='Arqueologic')
         template = "region_jungle.html"
-        paginate_by = 3
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -175,7 +204,22 @@ class NatureJungle(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Jungle', type_location='Nature')
         template = "region_jungle.html"
-        paginate_by = 3
+        paginate_by = 4
+        context = {
+            'context': data_filtered
+        }
+
+        return render(request, template, context)
+
+
+class CulturalJungle(ListView):
+    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
+
+    def get(self, request, *args, **kwargs):
+        model = Place
+        data_filtered = Place.objects.filter(region='Jungle', type_location='Cultural')
+        template = "region_jungle.html"
+        paginate_by = 4
         context = {
             'context': data_filtered
         }
@@ -185,7 +229,7 @@ class NatureJungle(ListView):
 
 class PlaceInformation(View):
     """ VIEW FOR DETAILED INFORMATION OF THE SELECTED PLACE """
-    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE COMMENTED BY REGULAR REGISTED USERS """
+    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE COMMENTED BY REGULAR REGISTERED USERS """
     """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE EDIT OR DELETE, REDIRECTING YOU TO THE LANDING - HOME PAGE """
     def get(self, request, slug, *args, **kwargs):
         place = Place.objects.all()
@@ -201,6 +245,7 @@ class PlaceInformation(View):
             'comment_form': comment_form,
             'update_form': updateform
         }
+        
         return render(request, template, context)
 
     def post(self, request, slug, *args, **kwargs):
@@ -209,7 +254,6 @@ class PlaceInformation(View):
         place_data = get_object_or_404(place, slug=slug)
         comments = place_data.comments.all().order_by('-date_created')
         template = 'place_information.html'
-
         comment_form = CommentForm(data=request.POST)
 
         if comment_form.is_valid():
@@ -218,15 +262,22 @@ class PlaceInformation(View):
             comment = comment_form.save(commit=False)
             comment.place = place_data
             comment.save()
+            commented = True
+            if commented == True:
+                messages.success(request, 'Got it!')
+            else:
+                messages.error(request, message)
         else:
-            print(comment_form.errors)
+            comment_form()
 
-        return render(request, template, {
-            'context': place_data,
-            'comments': comments,
-            'commented': True,
-            'comment_form': comment_form
-        })
+        return redirect(request.META.get('HTTP_REFERER'))
+
+        # return render(request, template, {
+        #     'context': place_data,
+        #     'comments': comments,
+        #     'commented': True,
+        #     'comment_form': comment_form
+        # })
 
 
 def comment_update_view(request, slug, pk):
