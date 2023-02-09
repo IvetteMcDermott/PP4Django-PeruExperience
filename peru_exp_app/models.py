@@ -2,6 +2,7 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -27,7 +28,7 @@ class Place(models.Model):
     cardinal_location = models.CharField(max_length=20, choices=cardinal_location_options, null=False, blank=False)
     altitude = models.IntegerField(null=False, blank=False)
     type_location = models.CharField(max_length=20, choices=type_location_options, null=False, blank=False)
-    info = models.TextField(null=False, blank=False)
+    info = RichTextField(null=False, blank=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default='Admin')
     date_created = models.DateField(auto_now_add=True, null=False, blank=False)
     date_updated = models.DateField(auto_now=True, null=False, blank=False)
@@ -43,7 +44,7 @@ class Place(models.Model):
 
 class Comment(models.Model):
     place = models.ForeignKey(Place, related_name="comments", on_delete=models.CASCADE)
-    body = models.TextField(max_length=300)
+    body = RichTextField(null=False, blank=False, max_length=300)
     author = models.ForeignKey(User, related_name="author", on_delete=models.CASCADE)
     date_created = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)

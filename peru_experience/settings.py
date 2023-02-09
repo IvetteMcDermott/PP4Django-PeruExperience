@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary',
+    'ckeditor',
     'crispy_forms',
     'allauth',
     'allauth.account',
