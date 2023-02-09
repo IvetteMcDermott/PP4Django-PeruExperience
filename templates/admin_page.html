@@ -22,7 +22,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ form | crispy }}
+                    {{ form.as_p }}
+
+                    {{ form.media }}
 
                     {% csrf_token %}
                 </div>
