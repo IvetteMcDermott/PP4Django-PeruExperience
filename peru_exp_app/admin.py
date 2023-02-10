@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Place, Comment, UserProfile
+from .models import Place, Comment
 
 #Register your models here.
 
@@ -19,8 +19,3 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ['author', 'place']
 
 
-@admin.register(UserProfile)
-class UserProfile(admin.ModelAdmin):
-    list_display = ['user',]
-    list_filter = ('user',)
-    search_fields = ['user_name']

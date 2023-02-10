@@ -41,7 +41,7 @@ class Place(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
-        
+
 
 class Comment(models.Model):
     place = models.ForeignKey(Place, related_name="comments", on_delete=models.CASCADE)
@@ -52,10 +52,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment {self.body} by {self.author}'
-
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.user)

@@ -5,12 +5,11 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic import UpdateView, ListView, CreateView
 from django.http import HttpResponseRedirect
-# from django.core.paginator import Paginator
 
 from django.contrib import messages
 
 from django.http import HttpResponse
-from .models import Place, Comment, UserProfile, User
+from .models import Place, Comment, User
 
 from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
 
@@ -29,16 +28,10 @@ def admin(request):
 class Coast(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: COAST """
 
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast')
-        template = "region_coast.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
+    model = Place
+    queryset = Place.objects.filter(region='Coast')
+    paginate_by = 4
+    template_name = "region_coast.html"
 
 
 """ LOCATIONS AT COAST FILTERS """
@@ -106,16 +99,11 @@ class CulturalCoast(ListView):
 
 class Andes(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: THE ANDES """
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='The Andes')
-        template = "region_the_andes.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
+ 
+    model = Place
+    queryset = Place.objects.filter(region='The Andes')
+    paginate_by = 4
+    template_name = "region_the_andes.html"
 
 
 """ LOCATIONS AT THE ANDES FILTERS """
@@ -168,16 +156,10 @@ class CulturalAndes(ListView):
 
 class Jungle(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: JUNGLE """
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Jungle')
-        template = "region_jungle.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
+    model = Place
+    queryset = Place.objects.filter(region='Jungle')
+    paginate_by = 4
+    template_name = "region_jungle.html"
 
 
 """ LOCATIONS AT JUNGLE FILTERS """
@@ -267,7 +249,7 @@ class PlaceInformation(View):
             comment.place = place_data
             comment.save()
             commented = True
-            
+
             if commented == True:
                 messages.success(request, 'Your comment had been add successfully!')
         else:
