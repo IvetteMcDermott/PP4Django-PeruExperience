@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic import UpdateView, ListView, CreateView
 from django.http import HttpResponseRedirect
-from django.core.paginator import Paginator
+# from django.core.paginator import Paginator
 
 from django.contrib import messages
 
@@ -239,14 +239,17 @@ class PlaceInformation(View):
         template = 'place_information.html'
         comment_form = CommentForm()
         updateform = UpdatePlacesForm(instance=place_data)
+        interested = False
+        if place_data.interests.filter(id=self.request.user.id).exists():
+            interested = True
         context = {
             'context': place_data,
             'comments': comments,
             'commented': False,
+            'interested': interested,
             'comment_form': comment_form,
             'update_form': updateform
         }
-        
         return render(request, template, context)
 
     def post(self, request, slug, *args, **kwargs):
@@ -256,7 +259,7 @@ class PlaceInformation(View):
         comments = place_data.comments.all().order_by('-date_created')
         template = 'place_information.html'
         comment_form = CommentForm(data=request.POST)
-
+        interested = False
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
             comment_form.instance.author = request.user
@@ -264,10 +267,14 @@ class PlaceInformation(View):
             comment.place = place_data
             comment.save()
             commented = True
+            
             if commented == True:
                 messages.success(request, 'Your comment had been add successfully!')
         else:
             comment_form()
+
+        if place_data.interests.filter(id=self.request.user.id).exists():
+            interested = True
 
         return redirect(request.META.get('HTTP_REFERER'))
 
@@ -381,7 +388,7 @@ def profile(request, *args, **kwargs):
     user = request.user
     template = 'user_profile.html'
     interests = Place.objects.filter(interests=request.user.id)
-
+    paginate_by = 6
     context = {
         'interests': interests,
     }
@@ -389,6 +396,7 @@ def profile(request, *args, **kwargs):
 
 
 def add_interest(request, slug):
+    interested = False
     if request.method == 'POST':
         place = get_object_or_404(Place, slug=slug)
         if place.interests.filter(id=request.user.id).exists():
@@ -396,6 +404,7 @@ def add_interest(request, slug):
             messages.success(request, 'Place removed from interests')
         else:
             place.interests.add(request.user)
+            interested = True
             messages.success(request, 'Place added to interests')
 
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
