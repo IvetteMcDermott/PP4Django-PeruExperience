@@ -12,6 +12,7 @@ from django.http import HttpResponse
 from .models import Place, Comment, User
 
 from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
+from profiles_app.views import MyProfile
 
 # Create your views here.
 
@@ -23,6 +24,10 @@ def landing_page(request):
 
 def admin(request):
     return render(request, 'admin')
+
+
+def profile(request):
+    return MyProfile(request)
 
 
 class Coast(ListView):
@@ -365,10 +370,10 @@ def place_delete_view(request, slug):
 """ USER PROFILE SECTION """
 
 
-def profile(request, *args, **kwargs):
+def interests(request, *args, **kwargs):
     """ VIEW FOR USER PROFILE """
     user = request.user
-    template = 'user_profile.html'
+    template = 'interests.html'
     interests = Place.objects.filter(interests=request.user.id)
     paginate_by = 6
     context = {

@@ -55,8 +55,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'peru_exp_app',
     'profiles_app',
+    'peru_exp_app',
 ]
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 

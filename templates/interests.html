@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> USER PROFILE </h1>
+
+{{ user.username }}
+
+<h3>Favourites</h3>
+
+<p>context query: {{ context }} </p>
+
+
+
+{% for interest in interests %}
+
+<div class="text-center display-card">
+    <a href="{% url 'place_information' interest.slug %}" class="post-link">
+    
+    <div class="container d-flex">
+        <div class="col">
+            <div class="row align">
+                <img src=" {{ interest.image.url }} " class="rounded">
+            </div>
+            <div class="row align">
+                <h3 class="card-title">{{ interest.name }}</h3>
+            </div>
+                    <div class="row justify-content-start d-flex info-div" style="height: 12px;">
+                        <p>info: {{ interest.info|truncatewords:10 }}</p>
+                    </div>
+                    <div class="row align justify-content-end d-flex comment-div">
+                        <span><i class="bi bi-chat-left-text"></i> {{ interest.comments.count}} </span>
+                    </div>
+            </div>
+        </div>
+    </div></a>
+
+</div>
+{% endfor %}
+
+<p>HERE SHOULD RENDER THE BOOKMARKED PLACES</p>
+
+{% endblock %}
