@@ -1,13 +1,10 @@
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.views.generic import UpdateView, ListView, CreateView
 from django.http import HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
 from django.core.paginator import Paginator
 
 from django.contrib import messages
@@ -313,7 +310,7 @@ def comment_delete_view(request, slug, pk):
 """ VIEWS FOR ADMIN FUNCTIONALITY IN THE HTML """
 
 
-class AdminPage(LoginRequiredMixin, CreateView):
+class AdminPage(CreateView):
     """ VIEW FOR ADD A NEW PLACE-POST """
     template_name = 'admin_page.html'
     model = Place
@@ -358,10 +355,6 @@ def place_update_view(request, slug):
             updated = True
             if updated == True:
                 messages.success(request, 'The post had been updated successfully!')
-        # # get the review to update
-        # place = Place.objects.get(slug=slug)
-        # place.info = information
-        # place.save()
 
     return redirect(request.META.get('HTTP_REFERER'))
 
@@ -387,8 +380,8 @@ def profile(request, *args, **kwargs):
     """ VIEW FOR USER PROFILE """
     user = request.user
     template = 'user_profile.html'
-    user = get_object_or_404(UserProfile, user=request.user)
-    interests = user.interests
+    interests = Place.objects.filter(interests=request.user.id)
+
     context = {
         'interests': interests,
     }
@@ -398,41 +391,11 @@ def profile(request, *args, **kwargs):
 def add_interest(request, slug):
     if request.method == 'POST':
         place = get_object_or_404(Place, slug=slug)
-        #getting the post object by slug
-        # user = UserProfile()
-        username = get_object_or_404(UserProfile, user=request.user)
-        #getting the user from allaut by request.user
-        username.interests.add(place.pk)
-        # interest.save()
+        if place.interests.filter(id=request.user.id).exists():
+            place.interests.remove(request.user)
+            messages.success(request, 'Place removed from interests')
+        else:
+            place.interests.add(request.user)
+            messages.success(request, 'Place added to interests')
 
-        #create the new object in UserProfile, assigning the 2 fields values
-
-    return redirect('/')
-    # if request.method == 'POST':
-        # place = Place.objects.get(slug=instance.slug)
-        # UserProfile.interest.add(place)
-    #     # return redirect('home')
-    # place = get_object_or_404(Place, slug=slug)
-    # username = get_object_or_404(User, username=request.user)
-    # interest.objects.create(user=user, slug=slug)
-    
-    # return redirect('/')
-    # if username.interests.exist(place.slug):
-    #     username.interests.remove(place.slug)
-    # else:
-    #     username.interests.add(request.slug)
-    
-    # return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-    # #user = get_object_or_404(UserProfile, user=request.user)
-    # if request.method == 'POST':
-    #     #user = get_object_or_404(UserProfile, user=request.user)
-    #     place = get_object_or_404(Place, slug=slug)
-    #     if user.interests.filter(slug=self.request.place.slug).exist():
-    #         user.interest.remove(place)
-    #         print(request.user)
-    #         print(request.slug)
-    #     else:
-    #         user.interest.add(request.slug)
-    # #return render(request, 'place_information', context)
-    # return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
