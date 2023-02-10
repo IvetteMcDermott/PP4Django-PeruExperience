@@ -7,7 +7,12 @@
 {{ user.username }}
 
 <h3>Favourites</h3>
-{{ context }}
+
+<p>context query: {{ context }} </p>
+
+{{ user.interests }}
+
+
 {% for item in items %}
 
 {{ item.name }}

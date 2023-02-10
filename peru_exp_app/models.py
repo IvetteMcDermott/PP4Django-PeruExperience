@@ -29,6 +29,7 @@ class Place(models.Model):
     altitude = models.IntegerField(null=False, blank=False)
     type_location = models.CharField(max_length=20, choices=type_location_options, null=False, blank=False)
     info = RichTextField(null=False, blank=False)
+    interests = models.ManyToManyField(User, related_name='interest', blank='True')
     author = models.ForeignKey(User, on_delete=models.CASCADE, default='Admin')
     date_created = models.DateField(auto_now_add=True, null=False, blank=False)
     date_updated = models.DateField(auto_now=True, null=False, blank=False)
@@ -55,7 +56,6 @@ class Comment(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    interests = models.ManyToManyField(Place, related_name='interest', blank='True')
 
     def __str__(self):
         return str(self.user)

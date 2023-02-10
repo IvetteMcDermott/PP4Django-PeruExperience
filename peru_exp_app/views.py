@@ -13,7 +13,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 
 from django.http import HttpResponse
-from .models import Place, Comment, UserProfile
+from .models import Place, Comment, UserProfile, User
 
 from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
 
@@ -36,7 +36,7 @@ class Coast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast')
         template = "region_coast.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -54,7 +54,7 @@ class ArqueologicCoast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast', type_location='Arqueologic')
         template = "region_coast.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -69,7 +69,7 @@ class BeachCoast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast', type_location='Beach')
         template = "region_coast.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -84,7 +84,7 @@ class NatureCoast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast', type_location='Nature')
         template = "region_coast.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -99,7 +99,7 @@ class CulturalCoast(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Coast', type_location='Cultural')
         template = "region_coast.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -113,7 +113,7 @@ class Andes(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='The Andes')
         template = "region_the_andes.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -131,7 +131,7 @@ class ArqueologicAndes(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='The Andes', type_location='Arqueologic')
         template = "region_the_andes.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -146,7 +146,7 @@ class NatureAndes(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='The Andes', type_location='Nature')
         template = "region_the_andes.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -161,7 +161,7 @@ class CulturalAndes(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='The Andes', type_location='Cultural')
         template = "region_the_andes.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -175,7 +175,7 @@ class Jungle(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Jungle')
         template = "region_jungle.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -193,7 +193,7 @@ class ArqueologicJungle(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Jungle', type_location='Arqueologic')
         template = "region_jungle.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -208,7 +208,7 @@ class NatureJungle(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Jungle', type_location='Nature')
         template = "region_jungle.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -223,7 +223,7 @@ class CulturalJungle(ListView):
         model = Place
         data_filtered = Place.objects.filter(region='Jungle', type_location='Cultural')
         template = "region_jungle.html"
-        paginate_by = 4
+        paginate_by = 6
         context = {
             'context': data_filtered
         }
@@ -273,13 +273,6 @@ class PlaceInformation(View):
             comment_form()
 
         return redirect(request.META.get('HTTP_REFERER'))
-
-        # return render(request, template, {
-        #     'context': place_data,
-        #     'comments': comments,
-        #     'commented': True,
-        #     'comment_form': comment_form
-        # })
 
 
 def comment_update_view(request, slug, pk):
@@ -394,18 +387,52 @@ def profile(request, *args, **kwargs):
     """ VIEW FOR USER PROFILE """
     user = request.user
     template = 'user_profile.html'
-    return render(request, template)
+    user = get_object_or_404(UserProfile, user=request.user)
+    interests = user.interests
+    context = {
+        'interests': interests,
+    }
+    return render(request, template, context)
 
 
 def add_interest(request, slug):
-    #user = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
-        place = get_object_or_404(Place, slug=request.slug)
-        if user.interests.filter(place).exist():
-            user.interest.remove(place)
-            print(request.user)
-            print(request.slug)
-        else:
-            user.interest.add(request.slug)
-    #return render(request, 'place_information', context)
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        place = get_object_or_404(Place, slug=slug)
+        #getting the post object by slug
+        # user = UserProfile()
+        username = get_object_or_404(UserProfile, user=request.user)
+        #getting the user from allaut by request.user
+        username.interests.add(place.pk)
+        # interest.save()
+
+        #create the new object in UserProfile, assigning the 2 fields values
+
+    return redirect('/')
+    # if request.method == 'POST':
+        # place = Place.objects.get(slug=instance.slug)
+        # UserProfile.interest.add(place)
+    #     # return redirect('home')
+    # place = get_object_or_404(Place, slug=slug)
+    # username = get_object_or_404(User, username=request.user)
+    # interest.objects.create(user=user, slug=slug)
+    
+    # return redirect('/')
+    # if username.interests.exist(place.slug):
+    #     username.interests.remove(place.slug)
+    # else:
+    #     username.interests.add(request.slug)
+    
+    # return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+    # #user = get_object_or_404(UserProfile, user=request.user)
+    # if request.method == 'POST':
+    #     #user = get_object_or_404(UserProfile, user=request.user)
+    #     place = get_object_or_404(Place, slug=slug)
+    #     if user.interests.filter(slug=self.request.place.slug).exist():
+    #         user.interest.remove(place)
+    #         print(request.user)
+    #         print(request.slug)
+    #     else:
+    #         user.interest.add(request.slug)
+    # #return render(request, 'place_information', context)
+    # return HttpResponseRedirect(request.META['HTTP_REFERER'])
