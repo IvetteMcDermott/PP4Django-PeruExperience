@@ -1,110 +1,157 @@
 ![💻] (https://pp4django-peru-experience.herokuapp.com/)
 
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome IvetteMcDermott,
+# About
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+This site had been created thinking of provide information in more personal way about Peru touristic attractions and experience on them. It has a search engine by type of places that allows the users to find more accurates places to their like. 
+It has a extra features for users that decide to register, they can pin places that like and review them in a private page. It also opens the option to create a profile and get in touch with the app community where could be even travel partners.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+# UX
 
-## Gitpod Reminders
+## Target User
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+The user target is a user that enjoys to know new places and is looking for information about Peru's ones.
 
-`python3 -m http.server`
+## User Stories
 
-A blue button should appear to click: _Make Public_,
+User Story: User Registration. LogIn and LogOut#7
 
-Another blue button should appear to click: _Open Browser_.
+## User Stories RoadMap
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
 
-A blue button should appear to click: _Make Public_,
+# Features
 
-Another blue button should appear to click: _Open Browser_.
+## Base
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Index
 
-To log into the Heroku toolbelt CLI:
+## Regions
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+## Detail
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Profile
 
-------
+## Features to Implement in Future
 
-## Release History
+## Bugs
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+# Design
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+## Wireframes
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Color Scheme
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+## Font
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## Logo
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+# Technologies Used
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## Languages
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### [HTML](!https://html.com/)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### [CSS](!https://www.w3.org/Style/CSS/)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+### [Python](!https://www.python.org/)
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### [JavaScript](!https://www.javascript.com/)
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## Frameworks and Libraries
 
-------
+### [Django](!https://www.djangoproject.com/)
+Documentation for [here](https://docs.djangoproject.com/en/4.1/intro/)
 
-## FAQ about the uptime script
+### [Jquery](!https://jquery.com/) 
 
-**Why have you added this script?**
+### [Boostrap](!https://getbootstrap.com/)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### [Gunicorn](!https://gunicorn.org/)
 
-**How will this affect me?**
+### [CkEditor](!https://ckeditor.com/)
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+## Database Host
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+### [ElephantSQL](!https://www.elephantsql.com/)  
+   Documentation for set a database [here](https://www.elephantsql.com/docs/).
 
-**So….?**
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+## Deployment Host
 
-**Can I opt out?**
+### [Heroku](!https://id.heroku.com/login)
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+## Other Resources
 
-**Anything more?**
+### [GitHub](!https://github.com/)
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+### [GitPod](!https://www.gitpod.io/)
 
----
+### [Allauth](!https://django-allauth.readthedocs.io/)
 
-Happy coding!
+### [DjangoCrispyForms](!https://django-cryptography.readthedocs.io/)
+
+### [Cloudinary Media](!https://cloudinary.com/)
+
+### [iColorpalette](!https://icolorpalette.com/)
+
+### [GoogleFonts](!https://fonts.google.com/knowledge)
+
+### [FontAwesome](!https://fontawesome.com/)
+
+
+# Testing
+
+## Validation
+
+### HTML
+
+### CSS
+
+### Python
+
+### Js
+
+### LightHouse
+
+
+## Manual Testing
+
+
+# Deployment
+
+The site had been deployed through Heroku.
+The site had been developed on GitPod, committed and pushed to GitHub. And Heroku once the site is deployed would update automatically.
+
+Deployment proccess:
+
+1. Log in [Github](!https://github.com/).
+    - Open the repo to deploy. The one for the site is [here](!https://github.com/IvetteMcDermott/PP4Django-PeruExperience).
+2. Log in [Heroku](!https://id.heroku.com/login).
+    - Click in the "New" button in the top right.
+    - Select "Create New App"
+    - Give a name to the App and choose a region.
+    - Click in "Create App" button.
+    - Go to Settings in the nav bar, and select "Add Buildpacks".
+    - Add Python and save, do the same for Node.js, in that order. Python must show first in the list.
+    - Go to Deploy in the nav bar. In Deploment Method, select GitHub/Connect to GitHub.
+    - In Connect to GitHub, write the repository name and click in search.
+    - Once the route for the repo appears under the search, click in "Connect" button.
+    - The deployment can be Manual or Automatic, select the one of your preference. Automatic has the advantage of updating your deployed site as you push the commit in GitHub.
+    - Verify that "Branch to deploy" is master/main.
+    - Click Deploy.
+
+Steps to use this repository:
+
+- Access to the repo in GitHub [here](!https://github.com/IvetteMcDermott/PP4Django-PeruExperience)..
+- It can be "Fork" following the steps [here](!https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+- It can be "Clone" following the steps [here](!https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository).
+
+
+
+# Credits
+
