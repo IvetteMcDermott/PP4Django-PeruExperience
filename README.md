@@ -51,57 +51,57 @@ User Story: User Registration. LogIn and LogOut#7
 
 ## Languages
 
-### [HTML](!https://html.com/)
+- [HTML](https://html.com/)
 
-### [CSS](!https://www.w3.org/Style/CSS/)
+- [CSS](https://www.w3.org/Style/CSS/)
 
-### [Python](!https://www.python.org/)
+- [Python](!https://www.python.org/)
 
-### [JavaScript](!https://www.javascript.com/)
+- [JavaScript](!https://www.javascript.com/)
 
 
 ## Frameworks and Libraries
 
-### [Django](!https://www.djangoproject.com/)
+- [Django](!https://www.djangoproject.com/)
 Documentation for [here](https://docs.djangoproject.com/en/4.1/intro/)
 
-### [Jquery](!https://jquery.com/) 
+- [Jquery](!https://jquery.com/) 
 
-### [Boostrap](!https://getbootstrap.com/)
+- [Boostrap](!https://getbootstrap.com/)
 
-### [Gunicorn](!https://gunicorn.org/)
+- [Gunicorn](!https://gunicorn.org/)
 
-### [CkEditor](!https://ckeditor.com/)
+- [CkEditor](!https://ckeditor.com/)
 
 
 ## Database Host
 
-### [ElephantSQL](!https://www.elephantsql.com/)  
+- [ElephantSQL](!https://www.elephantsql.com/)  
    Documentation for set a database [here](https://www.elephantsql.com/docs/).
 
 
 ## Deployment Host
 
-### [Heroku](!https://id.heroku.com/login)
+- [Heroku](!https://id.heroku.com/login)
 
 
 ## Other Resources
 
-### [GitHub](!https://github.com/)
+- [GitHub](!https://github.com/)
 
-### [GitPod](!https://www.gitpod.io/)
+- [GitPod](!https://www.gitpod.io/)
 
-### [Allauth](!https://django-allauth.readthedocs.io/)
+- [Allauth](!https://django-allauth.readthedocs.io/)
 
-### [DjangoCrispyForms](!https://django-cryptography.readthedocs.io/)
+- [DjangoCrispyForms](!https://django-cryptography.readthedocs.io/)
 
-### [Cloudinary Media](!https://cloudinary.com/)
+- [Cloudinary Media](!https://cloudinary.com/)
 
-### [iColorpalette](!https://icolorpalette.com/)
+- [iColorpalette](!https://icolorpalette.com/)
 
-### [GoogleFonts](!https://fonts.google.com/knowledge)
+- [GoogleFonts](!https://fonts.google.com/knowledge)
 
-### [FontAwesome](!https://fontawesome.com/)
+- [FontAwesome](!https://fontawesome.com/)
 
 
 # Testing
