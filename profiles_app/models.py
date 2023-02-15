@@ -24,4 +24,4 @@ class UserProfile(models.Model):
     joined = models.DateField(auto_now_add=True, null=False, blank=False)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.user_name)

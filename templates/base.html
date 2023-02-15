@@ -1,4 +1,6 @@
 {% load static %}
+{% load crispy_forms_tags %}
+
 {% load cloudinary %}
 <!DOCTYPE html>
 <html lang="en">
@@ -38,12 +40,10 @@
             <div class="top ">
                 <div class="collapse navbar-css" id="navbarToggleExternalContent">
                     <div class="bg-dark p-4 navbar-toggler-css">
-                        {% if user.is_authenticated %}
-
+                        {% if request.user.is_authenticated %}
                         <a class="nav-item">
                             <a class="nav-link" href="{% url 'profiles_app:my_profile' %}">My Profile</a>
                         </a>
-                        
                         <a class="nav-item">
                             <a class="nav-link" href="{% url 'interests' %}">Interests</a>
                         </a>
@@ -63,24 +63,25 @@
                         <a class="nav-item">
                             <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                         </a>
+
                         {% endif %}
                     </div>
                 </div>
                 <div >
-                    <nav class="navbar navbar-dark bg-dark navbar-css ">
+                    <nav class="navbar bg-dark navbar-css" id="navbar-dark">
                         <a href="{% url 'home' %}" id='logo'><img
                                 src='https://res.cloudinary.com/dwjq6izv5/image/upload/v1675708947/PP1/THUMBNAIL_PER%C3%9A_rinoue.png'></a>
                         <div class="flex">
-                        {% if user.is_authenticated %}
+                        {% if request.user.is_authenticated %}
 
-                        <a>Login as: {{ user }}</a>
+                        <a>Login as: {{ request.user }} </a>
 
                         {% else %}
 
                         <a>You are no login.</a>
 
                         {% endif %}
-
+                        
                         <!--<h3> current user {{ user.username }}</h3> -->
                         <button class="navbar-toggler" id="color" type="button" data-toggle="collapse"
                             data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
@@ -88,6 +89,7 @@
                             <span><i class="fas fa-bars"></i></span>
                         </button>
                 </div>
+               
                 </nav>
             </div>
         </div>
@@ -107,6 +109,7 @@
 
 <!---->
     <section class="content">
+        {% block search %} {% endblock search %}
         {% block content %}
 
         <!--  Here goes the content-->
