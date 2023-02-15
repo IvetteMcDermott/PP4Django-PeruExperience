@@ -1,23 +1,18 @@
 {% extends "base.html" %}
+{% block search %} {% include 'search_bar.html' %}{% endblock search %}
 
 {% block content %}
 
 <center>
     <a href="{% url 'andes_places_display' %}">
-        <h1> REGION THE ANDES </h1>
+        <h1>THE ANDES</h1>
     </a>
-
-    <div class="row">
-    <div class="col"><a href="{% url 'arqueologic_andes_places_display' %}">Arqueologic</a></h2></div>
-    <div class="col"><a href="{% url 'nature_andes_places_display' %}">Nature</a></h2></div>
-    <div class="col"><a href="{% url 'cultural_andes_places_display' %}" class="a-css">Cultural</a></div>
-    </div>
     <br/>
 </center>
 <center>
     <section class="display-region d-flex">
 
-        {% for place in context %}
+        {% for place in object_list %}
         <div class="text-center display-card">
             <a href="{% url 'place_information' place.slug %}" class="post-link">
             
@@ -43,6 +38,8 @@
     
         </div>
         {% endfor %}
+        {% block paginator %} {% include 'paginator.html' %}{% endblock paginator %}
+
     </section>
 
 {% endblock %}

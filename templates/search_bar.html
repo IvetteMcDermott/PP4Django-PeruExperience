@@ -1,0 +1,28 @@
+{% load crispy_forms_tags %}
+<section  class="text-right align-middle">
+{% if request.user.is_authenticated %}
+
+<form method="post" action="{% url 'search_location' %}" enctype="multipart/form-data" >
+
+    <div class="d-flex justify-content-end modal-body" id="searchbar">
+        {{ SearchPlacesForm | crispy }}
+        <select name="searchregion" class="searchitems">
+            <option selected disabled=true>--Region--</option>
+            <option>Coast</option>
+            <option>The Andes</option>
+            <option>Jungle</option>
+        </select>  
+        <select name="searchlocation" class="searchitems">
+            <option selected disabled=true>--Type Location--</option>
+            <option>Beach</option>
+            <option>Cultural</option>
+            <option>Nature</option>
+            <option>Arqueologic</option>
+        </select>
+            {% csrf_token %}
+        <button type="submit" class="btn btn-primary searchitems">Go</button>
+</div>
+
+ </form>
+</section> 
+ {% endif %}

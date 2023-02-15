@@ -4,24 +4,52 @@
 
 <h1> SEARCH RESULT </h1>
 
-<h2> {{ context }} </h2>
+<h2> You searched for ... {{ searched }} {{ location }} </h2>
+{% if searched_region %}
+<h2>in {{ searched_region }}</h2>
+{% endif %}
+{% block paginator %} {% include 'paginator_function.html' %}{% endblock paginator %}
 
-{% if search_result%}
-    <h2> You searched for ... {{ searched }}</h2>
-    <br/>
-    {% for place in search_result %}
-    <div class="col-6 text-center">
-        <a href="{% url 'place_information' place.slug %}" class="post-link">
-            <h2 class="card-title">{{ place.name }}</h2>
 
-        </a>
-       
+{% if search_result %}
+<div class="row">
+    {% for place in page_obj %}
+    <div class="col">
+        <div class="text-center display-card">
+
+            <a href="{% url 'place_information' place.slug %}" class="post-link">
+
+
+                <div class="container d-flex">
+                    <div class="col">
+                        <div class="row align">
+                            <img src=" {{ place.image.url }} " class="rounded">
+                        </div>
+                        <div class="row align">
+                            <h3 class="card-title">{{ place.name }}</h3>
+                        </div>
+                        <div class="row justify-content-start d-flex info-div" style="height: 12px;">
+                            <p>info: {{ place.info|truncatewords:10 }}</p>
+                        </div>
+                        <div class="row align justify-content-end d-flex comment-div">
+                            <span><i class="bi bi-chat-left-text"></i> {{ place.comments.count}} </span>
+                        </div>
+                    </div>
+                </div>
+        </div></a>
     </div>
     {% endfor %}
-{% else %}
-    <h2> You searched for ... {{ searched }}</h2>
+</div>
 
-    <h3> No results </h3>
+{% else %}
+
+<h2>There is no results to your search</h2>
+
 {% endif %}
+
+
+
+
+ {% block paginator-function %} {% include 'paginator_function.html' %}{% endblock paginator-function %}
 
 {% endblock %}

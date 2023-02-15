@@ -12,7 +12,10 @@ from django.http import HttpResponse
 from .models import Place, Comment, User
 
 from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
-from profiles_app.views import MyProfile
+from profiles_app.views import my_profile
+
+from django.core.paginator import Paginator, EmptyPage, InvalidPage, PageNotAnInteger
+
 
 # Create your views here.
 
@@ -27,7 +30,7 @@ def admin(request):
 
 
 def profile(request):
-    return MyProfile(request)
+    return my_profile(request)
 
 
 class Coast(ListView):
@@ -39,69 +42,6 @@ class Coast(ListView):
     template_name = "region_coast.html"
 
 
-""" LOCATIONS AT COAST FILTERS """
-
-
-class ArqueologicCoast(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast', type_location='Arqueologic')
-        template = "region_coast.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class BeachCoast(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: BEACH """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast', type_location='Beach')
-        template = "region_coast.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class NatureCoast(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast', type_location='Nature')
-        template = "region_coast.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class CulturalCoast(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Coast', type_location='Cultural')
-        template = "region_coast.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
 class Andes(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: THE ANDES """
  
@@ -111,108 +51,12 @@ class Andes(ListView):
     template_name = "region_the_andes.html"
 
 
-""" LOCATIONS AT THE ANDES FILTERS """
-
-
-class ArqueologicAndes(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='The Andes', type_location='Arqueologic')
-        template = "region_the_andes.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class NatureAndes(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='The Andes', type_location='Nature')
-        template = "region_the_andes.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class CulturalAndes(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='The Andes', type_location='Cultural')
-        template = "region_the_andes.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
 class Jungle(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: JUNGLE """
     model = Place
     queryset = Place.objects.filter(region='Jungle')
     paginate_by = 4
     template_name = "region_jungle.html"
-
-
-""" LOCATIONS AT JUNGLE FILTERS """
-
-
-class ArqueologicJungle(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Jungle', type_location='Arqueologic')
-        template = "region_jungle.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class NatureJungle(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: NATURE """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Jungle', type_location='Nature')
-        template = "region_jungle.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
-
-
-class CulturalJungle(ListView):
-    """ VIEW FOR LIST OF COAST PLACES FILTER: ARQUEOLOGIC """
-
-    def get(self, request, *args, **kwargs):
-        model = Place
-        data_filtered = Place.objects.filter(region='Jungle', type_location='Cultural')
-        template = "region_jungle.html"
-        paginate_by = 6
-        context = {
-            'context': data_filtered
-        }
-
-        return render(request, template, context)
 
 
 class PlaceInformation(View):
@@ -248,7 +92,6 @@ class PlaceInformation(View):
         comment_form = CommentForm(data=request.POST)
         interested = False
         if comment_form.is_valid():
-            comment_form.instance.email = request.user.email
             comment_form.instance.author = request.user
             comment = comment_form.save(commit=False)
             comment.place = place_data
@@ -319,6 +162,39 @@ class AdminPage(CreateView):
         return redirect('/adminpage/')
 
 
+def SearchLocationsResults(request, page=1):
+    """ VIEW FOR SEARCH A PLACE POST """
+    if request.method == 'POST':
+
+        region = request.POST.get('searchregion')
+        search = Place.objects.all().filter(region=region)
+        location = request.POST.get('searchlocation')
+        template = 'search.html'
+        search_result = search.filter(type_location=location).order_by('-date_created')
+        paginator = Paginator(search_result, 4)
+
+        template = 'search.html'
+
+        page_number = request.GET.get('page', 1)
+        page_obj = paginator.get_page(page_number)
+
+        try:
+            pag_count = paginator.num_pages
+        except PageNotAnInteger:
+            pag_count = paginator.page(1)
+        except EmptyPage:
+            pag_count = paginator.page(paginator.num_pages)
+        print(paginator.num_pages)
+        context = {
+                'searched_region': region,
+                'pag_count': pag_count,
+                'search_result': search_result,
+                'location': location,
+                'page_obj': page_obj,
+            }
+        return render(request, template, context)
+
+
 def SearchResults(request):
     """ VIEW FOR SEARCH A PLACE POST """
     if request.method == 'POST':
@@ -341,8 +217,8 @@ def place_update_view(request, slug):
     form = UpdatePlacesForm()
 
     if request.method == 'POST':
-        lugar = Place.objects.get(slug=slug)
-        form = UpdatePlacesForm(request.POST, request.FILES, instance=lugar)
+        place = Place.objects.get(slug=slug)
+        form = UpdatePlacesForm(request.POST, request.FILES, instance=place)
         if form.is_valid():
             form.save(commit=False)
             form.save()
