@@ -55,8 +55,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'profiles_app',
     'peru_exp_app',
+    'profiles_app',
 ]
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
@@ -105,11 +105,17 @@ MESSAGE_TAGS = {
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': 300,
+        'toolbar': [["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],
+                ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter',
+                 'JustifyRight', 'JustifyBlock'],
+                [ "Table", "Link", "Anchor", ], ['Undo', 'Redo'],
+                ["Maximize"]],
+        'height': 'full', 
+        'width': 'full', 
     },
-}
+    }
+
+
 WSGI_APPLICATION = 'peru_experience.wsgi.application'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
