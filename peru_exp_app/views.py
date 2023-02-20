@@ -157,10 +157,9 @@ class AdminPage(CreateView):
         return redirect('/adminpage/')
 
 
-def SearchLocationsResults(request, page=1):
+def search_locations(request, page=1):
     """ VIEW FOR SEARCH A PLACE POST """
     if request.method == 'POST':
-
         region = request.POST.get('searchregion')
         search = Place.objects.all().filter(region=region)
         location = request.POST.get('searchlocation')
@@ -168,22 +167,22 @@ def SearchLocationsResults(request, page=1):
         search_result = search.filter(type_location=location).order_by('-date_created')
         template = 'search.html'
         context = {
-                'searched_region': region,
+                'searched': region,
                 'search_result': search_result,
                 'location': location,
             }
         return render(request, template, context)
 
 
-def SearchResults(request):
+def search_place(request):
     """ VIEW FOR SEARCH A PLACE POST """
     if request.method == 'POST':
         search = request.POST.get('search')
-        search_result_by_name = Place.objects.all().filter(name__icontains=search)
+        search_result = Place.objects.all().filter(name__icontains=search)
         template = 'search.html'
         context = {
             'searched': search,
-            'search_result_by_name': search_result_by_name
+            'search_result': search_result
         }
         return render(request, template, context)
 
@@ -216,6 +215,11 @@ def place_delete_view(request, slug):
             messages.success(request, 'The post has been deleted successfully!')
 
     return redirect('/adminpage/')
+
+
+def search(request):
+    """ VIEW FOR LANDING PAGE - HOME """
+    return render(request, 'search.html')
 
 
 """ USER PROFILE SECTION """

@@ -1,52 +1,40 @@
 {% extends "base.html" %}
-{% block search %} {% include 'search_bar.html' %}{% endblock search %}
-
 {% block content %}
-
-<center>
-    <a href="{% url 'jungle_places_display' %}">
-        <h1>JUNGLE</h1>
-    </a>
-    <br />
-    
-    <br />
+<div class="d-flex flex-row bd-highlight align-items-center" style="margin:0px; margin-top: 8px; margin-left: 8px;">
+    <div class="p-2 bd-highlight">
+    <a href="javascript:history.go(-1)"><h4><i class="bi bi-arrow-left-square"></i></h4></a>
+    </div>
+    <div class="p-2 bd-highlight"><h6>Previous</h6></div>
+</div>
+<center class="align-items-center" style="height: 5em; background-image: url(https://res.cloudinary.com/dwjq6izv5/image/upload/v1676919836/jungle_textile_xvu6bi_58d366.jpg);">
+    <a href="{% url 'jungle_places_display' %}" class="titles-nodeco" >
+        <h1 class="titles-nodeco" style="color:#faf9f8e0" name="searchregion">JUNGLE</h1>
+        <h6 id="region-text" style="color:#f3ede8e0; font-weight: 600;">Almost 60% of the country's area in this region (700,000 km2) giving Peru the fourth largest area of tropical forest in the world
+        </h6>    </a>
 </center>
-
-<section class="display-region d-flex">
+<div class="d-flex justify-content-end" style="margin-bottom: 2em;">
+    {% block paginator1 %} {% include 'paginator.html' %}{% endblock paginator1 %}
+</div>
+<section class="display-region d-flex flex-col">
 
     {% for place in object_list %}
-    <div class="text-center display-card">
+    <div class="card display-card" style="width: 18rem;">
         <a href="{% url 'place_information' place.slug %}" class="post-link">
 
-            <div class="container d-flex">
-                <div class="col">
-                    <div class="row align">
-                        <img src=" {{ place.image.url }} " class="rounded">
-                    </div>
-                    <div class="row">
-                        <h3 class="card-title">{{ place.name }}</h3>
-
-                        <div class="row ">
-                            <div class="col justify-content-start d-flex">
-                                <p>info: {{ place.info|truncatewords:10 }}</p>
-                            </div>
-                            <div class="col justify-content-end d-flex">
-                                <span><i class="bi bi-chat-left-text"></i> {{ place.comments.count}} </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <img src="{{ place.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h4 class="card-title text-center">{{ place.name }}</h5>
+          <p class="card-text">{{ place.info|truncatewords:10|safe }}</p>
+        </div>
+        <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ place.comments.count}}</i>
+        </div>
         </a>
-
     </div>
 
-
-    </div>
     {% endfor %}
-
-    {% block paginator %} {% include 'paginator.html' %}{% endblock paginator %}
-
-
+   
 </section>
+<div class="d-flex justify-content-end">
+    {% block paginator %} {% include 'paginator.html' %}{% endblock paginator %}
+</div>
 {% endblock %}
