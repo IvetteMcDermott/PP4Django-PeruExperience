@@ -14,8 +14,6 @@ from .models import Place, Comment, User
 from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
 from profiles_app.views import my_profile
 
-from django.core.paginator import Paginator, EmptyPage, InvalidPage, PageNotAnInteger
-
 
 # Create your views here.
 
@@ -35,7 +33,6 @@ def profile(request):
 
 class Coast(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: COAST """
-
     model = Place
     queryset = Place.objects.filter(region='Coast')
     paginate_by = 4
@@ -44,7 +41,6 @@ class Coast(ListView):
 
 class Andes(ListView):
     """ VIEW FOR LIST OF PLACES FILTER: THE ANDES """
- 
     model = Place
     queryset = Place.objects.filter(region='The Andes')
     paginate_by = 4
@@ -97,7 +93,6 @@ class PlaceInformation(View):
             comment.place = place_data
             comment.save()
             commented = True
-
             if commented == True:
                 messages.success(request, 'Your comment had been add successfully!')
         else:
@@ -171,26 +166,11 @@ def SearchLocationsResults(request, page=1):
         location = request.POST.get('searchlocation')
         template = 'search.html'
         search_result = search.filter(type_location=location).order_by('-date_created')
-        paginator = Paginator(search_result, 4)
-
         template = 'search.html'
-
-        page_number = request.GET.get('page', 1)
-        page_obj = paginator.get_page(page_number)
-
-        try:
-            pag_count = paginator.num_pages
-        except PageNotAnInteger:
-            pag_count = paginator.page(1)
-        except EmptyPage:
-            pag_count = paginator.page(paginator.num_pages)
-        print(paginator.num_pages)
         context = {
                 'searched_region': region,
-                'pag_count': pag_count,
                 'search_result': search_result,
                 'location': location,
-                'page_obj': page_obj,
             }
         return render(request, template, context)
 
@@ -199,17 +179,13 @@ def SearchResults(request):
     """ VIEW FOR SEARCH A PLACE POST """
     if request.method == 'POST':
         search = request.POST.get('search')
-        search_result = Place.objects.all().filter(name__icontains=search)
+        search_result_by_name = Place.objects.all().filter(name__icontains=search)
         template = 'search.html'
         context = {
             'searched': search,
-            'search_result': search_result
+            'search_result_by_name': search_result_by_name
         }
         return render(request, template, context)
-
-
-#THIS IS WORKING TO SAVE BUT DOESNT SHOW IN THE FORM THE DATA AND HTML NEEDS TO BE CALL BY FIELD
-# class place_update_view(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 def place_update_view(request, slug):
@@ -233,7 +209,6 @@ def place_delete_view(request, slug):
     """ VIEW FOR DELETE A POST, JUST ADMIN HAS ACCESS TO """
     if request.method == 'GET':
         place = Place.objects.get(slug=slug)
-
         # get the review to update
         place.delete()
         deleted = True
@@ -251,7 +226,6 @@ def interests(request, *args, **kwargs):
     user = request.user
     template = 'interests.html'
     interests = Place.objects.filter(interests=request.user.id)
-    paginate_by = 6
     context = {
         'interests': interests,
     }

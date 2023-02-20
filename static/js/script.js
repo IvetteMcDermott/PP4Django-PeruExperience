@@ -6,3 +6,4 @@ htmx.on("htmx:afterSwap", (e) => {
     modal.show()
   }
 })
+

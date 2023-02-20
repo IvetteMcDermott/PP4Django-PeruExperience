@@ -17,5 +17,3 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('place', 'body', 'author', 'date_created', 'date_updated')
     list_filter = ('author', 'place')
     search_fields = ['author', 'place']
-
-
