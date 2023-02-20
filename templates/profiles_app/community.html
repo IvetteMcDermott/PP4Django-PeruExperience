@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<center>
+        <h1> OUR COMMUNITY </h1>
+    
+    <br>
+    
+    <hr />
+</center>
+<div>
+{% block paginator %} {% include 'paginator.html' %}{% endblock paginator %}
+</div>
+<section class="display-region d-flex">
+
+    {% for user in object_list %}
+    <div class="text-center display-card">
+        {{ user.user_name}}
+
+    </div>
+
+       
+    {% endfor %}
+
+</section>
+<div>
+{% block paginator1 %} {% include 'paginator.html' %}{% endblock paginator1 %}
+</div>
+{% endblock %}

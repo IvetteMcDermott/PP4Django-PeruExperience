@@ -5,9 +5,10 @@ from ckeditor.fields import RichTextField
 from ckeditor.widgets import CKEditorWidget
 
 
-class ProfileForm(forms.ModelForm):
+class UpProfileForm(forms.ModelForm):
     bio = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = UserProfile
         fields = ('user_name', 'location', 'picture', 'bio', 'traveller_type', )
+

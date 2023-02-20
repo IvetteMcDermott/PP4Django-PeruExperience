@@ -1,42 +1,36 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import UserProfile
 from django.views import generic, View
-from .forms import ProfileForm
+from django.views.generic import UpdateView, ListView, CreateView
+
+from .forms import UpProfileForm
 from django.contrib import messages
+
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 # Create your views here.
 
-# def my_profile(request):
-
-#     template_name = 'profiles/user_profile.html'
-#     model = UserProfile
-#     form_class = ProfileForm()
-
-#     if request.method == 'POST':
-#         user_obj = UserProfile.objects.get(user=request.user)
-
-#         if form.is_valid(self, form):
-#             form.instance.user = user_obj
-#             form.save()
-#             added = True
-#             if added == True:
-#                 messages.success(self.request, 'The new post has been add successfully!')
-    
-#         return render(request, 'profiles/user_profile.html', {'form': form_class, 'user': user_obj, })
 
 def my_profile(request):
-    """ VIEW FOR PROFILE PAGE """
-    form = ProfileForm()
-    user_obj = UserProfile.objects.get(user=request.user)
-
+    """ RENDER THE PROFILE FUNCTION AND GIVE ACCESS TO THE FORM WHERE CAN ENTER/UPDATE IT """
+    """ THE PROFILE IS CREATED BY SIGNAL, SO DOESNT HAVE ANYOTHER INFORMATION THAN THE USER """
+    user_obj = get_object_or_404(UserProfile, user=request.user)
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=user_obj)
-        if form.is_valid():
-            form.save(commit=False)
-            form.save()
-            updated = True
-            if updated == True:
-                messages.success(request, 'The profile had been updated successfully!')
-    return render(request, 'profiles/user_profile.html', {'form': ProfileForm(), 'user': user_obj,})
+        form = UpProfileForm(request.POST, request.FILES, instance=user_obj)
 
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'The profile had been updated successfully!')
+    else:
+        form = UpProfileForm(instance=user_obj)
+    return render(request, 'profiles_app/user_profile.html', {'form': form, 'user': user_obj, })
+
+
+class Community(ListView):
+    """ DISPLAYS ALL THE PROFILES IN THE MODAL FOR REGISTER USERS """
+
+    model = UserProfile
+    queryset = model.objects.all()
+    paginate_by = 4
+    template_name = "profiles_app/community.html"
