@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;300;400;500;600;700;800;900&family=Itim&family=Michroma&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;300;400;500;600;700;800;900&family=Itim&family=Michroma&display=swap'); */
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
 
 
 /* CSS for navbar - overwrite Bootstrap */
@@ -17,8 +20,9 @@
     font-weight: 800;
 }
 
-#color{
+.color{
     border-color: #791212 !important;
+    color: #791212;
 }
 
 .fa-bars {
@@ -47,42 +51,25 @@ body {
 
 /* General Styling */
 
-.a-css {
-    font-size: 20px;
-    color: #5c777a;
+p, option  {
+    color:#b36e08;
 }
 
-.a-css:hover {
-    color:#791212 !important;
-    font-weight: 900 !important;
+.navbar-toggler-css>a {
+    color: #791212 !important;
+}
+.navbar-toggler-css>a:hover {
     text-decoration: none !important;
+    transform: scale(1.08);
 }
 
-.a-css:visited {
-    color: #b36e08;
+.titles-nodeco:hover{
+    text-decoration: none;
 }
 
 #regions {
     height: 30em;
 }
-
-/* .carrousel-section{
-    margin-top: 10px;
-}
-
-#carouselExampleCaptions {
-    min-width: 180px;
-    max-width: 750px;
-    height: 70%;
-    margin: auto;
-}
-
-#carrousel-item {
-    width: 90%;
-    height: 80%;
-    max-height: 10em;
-}
-*/
 
 
 /* Index  */
@@ -131,9 +118,11 @@ body {
 }
 
 .here {
-    width: 90%;
     border: #791212 3px solid;
     border-radius: 20px;
+    margin-left: 0px;
+    margin-left: auto;
+    margin-bottom: 5em;
 }
 
 .regions-img{ 
@@ -184,35 +173,37 @@ body {
 }
 .title:hover{
     transition: display(block);
+
     color:rgb(20, 21, 22);
 }
 
 .regions-anchor {
     text-decoration: none;
     color:#791212;
-    font-family: 'Michroma', sans-serif;
+    font-family: 'Raleway', sans-serif;;
 }
 
 /* Titles */
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
     color:#791212;
-    font-family: 'Michroma', sans-serif;}
+    font-family: 'Raleway', sans-serif;
+}
 
 /* Region page */
 
 .display-card {
-    padding: 10px;
+    padding: 20px;
     border: #dbd8d4 outset 2px;
     background-color: #dbd8d370;
     border-radius: 5px;
     width: 20em;
-    height: 22em;
+    height: 24em;
     display: flex;
     margin: 0;
     margin: auto;
+    margin-bottom: 20px;
     text-decoration: none;
-    font-family: 'Itim', cursive;
     transition: transform 250ms ease-in-out;
 }
 
@@ -221,14 +212,28 @@ h1, h2, h3 {
 }
 .display-card>a{
     text-decoration: none;
+    color:#b36e08;
+
+}
+.display-card>h4{
+    font-weight: 600;
 }
 
 .display-card>*{
+    font-family: 'Raleway', sans-serif;
     color:#b36e08;
 }
 
+#img-cont {
+    height: 70%;
+}
+
+.display-card>img{
+    object-fit: cover;
+}
 .post-link:hover{
     color:#b36e08;
+    text-decoration: none;
 }
 
 .display-region{
@@ -246,13 +251,16 @@ h1, h2, h3 {
 
 .footer {
     background-color: rgb(212, 220, 221);
-    margin:0;
+    width: 100%;
+    /* margin: 0; */
+    /* margin-top: 10px; */
     height: 3em;
-    padding-left:20px !important;
-    padding-right:20px !important;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    bottom: 0px;
+    position: fixed;
+    z-index: 5;
 }
 
 .fa-brands {
@@ -262,4 +270,86 @@ h1, h2, h3 {
 .alert-css{
     position: absolute;
     z-index: 1000;
+}
+
+
+/*  */
+
+.detail-css{
+    width: 90%;
+    margin: 0;
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px;
+    border: #dbd8d4 outset 2px;
+    background-color: #dbd8d370;
+    border-radius: 5px;
+}
+/* SEARCH */
+
+#top-button{
+    bottom: 7%;
+    right: 2%!important;
+    z-index: 100;
+    position:fixed !important;
+    color: #791212 !important;
+    }
+
+/* ADMIN SITE */
+.admin-site-content {
+    margin-top: 10%;
+    margin-left: 20px;;
+}
+
+
+@media screen and (min-width: 1950px){
+    body {
+        width: 80%;
+        margin-left: 0px;
+        margin: auto;
+    }    
+}
+
+/* FORMS FORMAT */
+
+.forms-format {
+        width: 90%;
+        margin-left: 0;
+        margin:auto;
+        margin-top: 15px;
+}
+
+@media (min-width: 576px){
+.modal-dialog { 
+    width: 100% !important;
+    margin-left: 0px;
+    margin: auto;
+}
+}
+
+@media (max-width: 767px){
+
+#region-text {
+    display: none;
+}
+
+.admin-site-content {
+
+flex-direction: column;
+
+}
+.profile-div-display {
+    flex-direction: row;
+   
+}
+}
+
+@media (min-width: 600px){
+
+.profile-div-display-col {
+display: none;   
+}
+.profile-div-display-col {
+display: inline;
+}
 }
