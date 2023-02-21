@@ -47,19 +47,20 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'django.contrib.sites',
     'cloudinary_storage',
+    'django.contrib.staticfiles',
     'cloudinary',
-    'ckeditor',
-    'ckeditor_uploader',
     'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'ckeditor',
+    'ckeditor_uploader',
     'peru_exp_app',
     'profiles_app',
 ]
+
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 SITE_ID = 1
