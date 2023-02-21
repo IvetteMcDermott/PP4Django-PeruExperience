@@ -3,7 +3,7 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<center> <h2>USER PROFILE </h2></center>
+<center> <h2 style="margin-top:5px;">USER PROFILE </h2></center>
 
 <!-- FORM FOR START/UPDATE USER PROFILE -->
 <div style="margin: 15px;">
@@ -41,11 +41,11 @@
 
 <!-- CARD FOR DISPLAY USER PROFILE -->
 
-<div class="container-fluid detail-css">
+<div class="container-fluid detail-css" style="margin-bottom: 4em;">
 
     <div class="d-flex row flex-wrap">
     <div class="col"  style="width: 50%; min-width: 13em;">
-        <img src="{{ user.picture.url }}" style="object-fit:cover; width: 100%; min-width: 13em;">
+        <img src="{{ user.picture.url }}" style="width: 70%; height: 70%; object-fit: contain;">
     </div>
     <div class=" col justify-content-end ">
         <div class=" justify-content-end text-right w-100">

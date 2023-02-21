@@ -31,6 +31,6 @@ class Community(ListView):
     """ DISPLAYS ALL THE PROFILES IN THE MODAL FOR REGISTER USERS """
 
     model = UserProfile
-    queryset = model.objects.all()
+    queryset = model.objects.exclude(user_name__exact="")
     paginate_by = 4
     template_name = "profiles_app/community.html"

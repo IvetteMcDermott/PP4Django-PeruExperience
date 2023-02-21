@@ -2,42 +2,42 @@
 
 {% block content %}
 
-<h1> USER PROFILE </h1>
-
-{{ user.username }}
-
-<h3>Favourites</h3>
-
-<p>context query: {{ context }} </p>
-
-
+<div class="d-flex justify-content-start" style="margin: 8px;">
+  <a href="javascript:history.go(-1)"><h2><i class="bi bi-arrow-left-square"></i></h2></a>
+</div>
+<center>
+<h3 style="margin:5px;">My Interests</h3>
+</center>
+{% block paginator1 %} {% include 'paginator.html' %}{% endblock paginator1 %}
+<section class="display-region d-flex flex-col">
 
 {% for interest in interests %}
 
-<div class="text-center display-card">
+<div class="card display-card" style="width: 18rem;">
     <a href="{% url 'place_information' interest.slug %}" class="post-link">
-    
-    <div class="container d-flex">
-        <div class="col">
-            <div class="row align">
-                <img src=" {{ interest.image.url }} " class="rounded">
-            </div>
-            <div class="row align">
-                <h3 class="card-title">{{ interest.name }}</h3>
-            </div>
-                    <div class="row justify-content-start d-flex info-div" style="height: 12px;">
-                        <p>info: {{ interest.info|truncatewords:10 }}</p>
-                    </div>
-                    <div class="row align justify-content-end d-flex comment-div">
-                        <span><i class="bi bi-chat-left-text"></i> {{ interest.comments.count}} </span>
-                    </div>
-            </div>
-        </div>
-    </div></a>
-
+      <div class="d-flex justify-content-end">
+        {% if user.is_authenticated %}
+        {% if request.user in interest.interests.all %}
+        <i class="bi bi-pin-angle-fill"></i>
+        {% else %}
+        <i class="bi bi-pin-angle"></i>
+        {% endif %}
+        {% endif %}
+      </div>
+    <img src="{{ interest.image.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h4 class="card-title text-center">{{ interest.name }}</h5>
+      <p class="card-text">{{ interest.info|truncatewords:10|safe }}</p>
+    </div>
+    <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ interest.comments.count}}</i>
+    </div>
+    </a>
 </div>
 {% endfor %}
-
-<p>HERE SHOULD RENDER THE BOOKMARKED PLACES</p>
+</section>
+<a href="#top" id="top-button" class="btn btn-outline-danger color" style="border: none !important; ">
+  <h3><i class="bi bi-box-arrow-in-up"></i></h3>
+</a>
+<div style="height: 3em;"></div>
 
 {% endblock %}

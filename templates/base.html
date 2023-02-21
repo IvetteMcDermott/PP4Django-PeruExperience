@@ -35,7 +35,7 @@
 </head>
 <body>
 
-    <header>
+    <header id="top">
         <div class="heading">
             <div class="top ">
                 <div class="collapse navbar-css" id="navbarToggleExternalContent">
@@ -45,7 +45,13 @@
                             <a class="nav-link" href="{% url 'profiles_app:my_profile' %}">My Profile</a>
                         </a>
                         <a class="nav-item">
+                            <a class="nav-link" href="{% url 'profiles_app:our_community' %}">Community</a>
+                        </a>
+                        <a class="nav-item">
                             <a class="nav-link" href="{% url 'interests' %}">Interests</a>
+                        </a>
+                        <a class="nav-item">
+                            <a class="nav-link" href="{% url 'search' %}">Search</a>
                         </a>
                         <a class="nav-item">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -83,7 +89,7 @@
                         {% endif %}
                         
                         <!--<h3> current user {{ user.username }}</h3> -->
-                        <button class="navbar-toggler" id="color" type="button" data-toggle="collapse"
+                        <button class="navbar-toggler color" type="button" data-toggle="collapse"
                             data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span><i class="fas fa-bars"></i></span>
@@ -95,14 +101,14 @@
         </div>
         </div>
     </header>
-<!-- MESSAGES -->
+
+    <!-- MESSAGES -->
+
 {% if messages %}
 {% for message in messages %}
 <div class="alert alert-success alert-css" id="message" data="modal" data-toggle="modal" role="alert" style="z-index:15">
     {{ message }}
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+
 </div>
 {% endfor %}
 {% endif %}
@@ -117,7 +123,7 @@
         {% endblock content %}
     </section>
 
-<footer class="footer fixed-bottom">
+<footer class="footer bottom">
     <div class="row">
         <div class="col"><i class="fa-brands fa-square-facebook fa-2x"></i></div>
         <div class="col"><i class="fa-brands fa-square-twitter fa-2x"></i></div>
@@ -139,7 +145,7 @@
 setTimeout(function(){ 
    message.style.display = "none"; 
 }, 4000);
-// Timeout is 4 sec, you can change it
+
 </script>
 </body>
 </html>

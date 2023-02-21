@@ -3,28 +3,29 @@
 {% block content %}
 
 <center>
-        <h1> OUR COMMUNITY </h1>
-    
-    <br>
-    
-    <hr />
+        <h2 style="margin-top:5px;"> OUR COMMUNITY </h2>
 </center>
-<div>
-{% block paginator %} {% include 'paginator.html' %}{% endblock paginator %}
+<div class="d-flex justify-content-end">
+    {% block paginator %} {% include 'paginator.html' %}{% endblock %}
 </div>
-<section class="display-region d-flex">
+
+<section class="display-region d-flex flex-col">
 
     {% for user in object_list %}
-    <div class="text-center display-card">
-        {{ user.user_name}}
-
+    <div class="card display-card d-flex justify-content-center" >
+        <img src="{{ user.picture.url }}" class="card-img-top " alt="..." style="width: 80%; height: 70%; object-fit: contain;">
+        <div class="card-body">
+          <h4 class="card-title text-center">{{ user.user_name}}</h5>
+        </div>
     </div>
 
-       
     {% endfor %}
-
+   
 </section>
-<div>
-{% block paginator1 %} {% include 'paginator.html' %}{% endblock paginator1 %}
+
+
+<div class="d-flex justify-content-end" style="margin-bottom: 2em;">
+    {% block paginator1 %} {% include 'paginator.html' %}{% endblock %}
 </div>
+<br>
 {% endblock %}

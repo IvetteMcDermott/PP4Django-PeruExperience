@@ -19,7 +19,7 @@
 <section class="display-region d-flex flex-col">
 
     {% for place in object_list %}
-    <div class="card display-card" style="width: 18rem;">
+    <div class="card display-card">
         <a href="{% url 'place_information' place.slug %}" class="post-link"> 
         <div class="d-flex justify-content-end">{% if user.is_authenticated %}
             {% if request.user in place.interests.all %}   
@@ -29,7 +29,9 @@
             {% endif %}
         {% endif %}
         </div>
-        <img src="{{ place.image.url }}" class="card-img-top" alt="...">
+        <div class="d-flex justify-content-center">
+        <img src="{{ place.image.url }}" class="card-img-top" alt="..." style="width: 80%; height: 70%; object-fit: contain; margin-left: 0 auto;">
+        </div>
         <div class="card-body">
           <h4 class="card-title text-center">{{ place.name }}</h5>
           <p class="card-text">{{ place.info|truncatewords:10|safe }}</p>

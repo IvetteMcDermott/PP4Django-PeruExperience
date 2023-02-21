@@ -148,13 +148,14 @@ class AdminPage(CreateView):
     model = Place
     form_class = AddPlacesForm
 
-    def form_valid(self, form):
+    def form_valid(self, request, form):
+        form.save(commit=False)
         form.instance.user = self.request.user
         form.save()
         added = True
         if added == True:
             messages.success(self.request, 'The new post has been add successfully!')
-        return redirect('/adminpage/')
+        return render(request, 'admin_page', {'form': AddPlacesForm()})
 
 
 def search_locations(request, page=1):

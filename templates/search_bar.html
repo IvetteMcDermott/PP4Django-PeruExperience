@@ -1,28 +1,43 @@
 {% load crispy_forms_tags %}
-<section  class="text-right align-middle">
+<section class="align-items-center">
 {% if request.user.is_authenticated %}
 
-<form method="post" action="{% url 'search_location' %}" enctype="multipart/form-data" >
-
-    <div class="d-flex justify-content-end modal-body" id="searchbar">
+<form method="post" action="{% url 'search_locations' %}" enctype="multipart/form-data" >
+<!-- <div class="container-fluid d-flex flex-row-reverse"> -->
+<div class=" d-flex justify-content-end" style="margin:10px;">
+    <p class="align-baseline">Select the location you want to search in </p>
         {{ SearchPlacesForm | crispy }}
-        <select name="searchregion" class="searchitems">
-            <option selected disabled=true>--Region--</option>
+        <select name="searchregion" class="searchbaritems">
+            <option selected disabled=true style="color:#b36e08;">--Region--</option>
             <option>Coast</option>
             <option>The Andes</option>
             <option>Jungle</option>
         </select>  
-        <select name="searchlocation" class="searchitems">
-            <option selected disabled=true>--Type Location--</option>
+        <select name="searchlocation" class="searchbaritems">
+            <option selected disabled=true style="color:#b36e08;">--Type Location--</option>
             <option>Beach</option>
             <option>Cultural</option>
             <option>Nature</option>
             <option>Arqueologic</option>
         </select>
             {% csrf_token %}
-        <button type="submit" class="btn btn-primary searchitems">Go</button>
-</div>
+        <button type="submit" class="btn btn-outline-danger searchbaritems color">Go</button>
 
- </form>
+        </div>
+</div>
+</div>
+</div>
+</form>
+<form method="post" id="form_section" action="{% url 'search_place' %}" enctype="multipart/form-data">
+    <div class=" d-flex justify-content-end" style="margin:10px;">
+        <p>Search by name</p>
+            {{ search_place_form | crispy }}
+        <input type="text" name="search">
+            {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger color "> Find the place</button>  
+    </div>
+</form>
+</div>
+<hr style="margin: 0px;">
 </section> 
  {% endif %}

@@ -1,84 +1,91 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 {% load crispy_forms_tags %}
-
-<div >
-
-<form method="post" id="form_section" enctype="multipart/form-data" style="margin-top: 1.3em;">
-    <div>
-        <p>To Add a New Place?
-        <a href="" type="button" data-toggle="modal" data-target="#AddPlace" data-backdrop="false"> Add it here</a>
-        </p>
-    </div>
-
-    <div class="modal" id="AddPlace">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add a Post</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {{ form.as_p }}
-
-                    {{ form.media }}
-
-                    {% csrf_token %}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</form>
-<hr>
-            
-<hr>
-</div>
-
-<div >
-    <form method="post" id="form_section" action="{% url 'search_place' %}" enctype="multipart/form-data" style="margin-top: 1.3em;">
+<div class="container-fluid row d-flex justify-content-between align-items-center admin-site-content" >
+    <div class="col">
         <div>
-            <p>To Edit or Delete a Place?
-            <a href="" type="button" data-toggle="modal" data-target="#EditPlace" data-backdrop="false">Find it here</a>            
-            </p>
-        </div>
-    
-        <div class="modal" id="EditPlace">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Searching for...</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        {{ search_place_form | crispy }}
-                        <input type="text" name="search">
-                        {% csrf_token %}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"> Find the place</button>
+        <form method="post" id="form_section" enctype="multipart/form-data" style="margin-top: 1.3em;">
+            <center>
+                <hr>
+                <p>To Add a New Place?
+                    <a href="" type="button" data-toggle="modal" data-target="#AddPlace" data-backdrop="false"> Add it
+                        here</a>
+                </p>
+                <hr>
+            </center>
+            <div class="modal" id="AddPlace">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add a Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ form.as_p }}
+
+                            {{ form.media }}
+
+                            {% csrf_token %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-    <hr>
-        
-    <hr>
+        </form>
     </div>
-<div>
-    <p>Access to the Admin Panel
-    <a href="{% url 'admin' %}" target="_blank"> Here </a>
-    </p>
-</div>    
+    <div>
+        <form method="post" id="form_section" action="{% url 'search_place' %}" enctype="multipart/form-data"
+            style="margin-top: 1.3em;">
+            <center>
+                <hr>
+                <p>To Edit or Delete a Place?
+                    <a href="" type="button" data-toggle="modal" data-target="#EditPlace" data-backdrop="false">Find it
+                        here</a>
+                </p>
+                <hr>
+            </center>
+            <div class="modal" id="EditPlace">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Searching for...</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ search_place_form | crispy }}
+                            <input type="text" name="search">
+                            {% csrf_token %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary"> Find the place</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <center>
+        <hr>
+        <p style="margin-top: 1.3em;">Access to the Admin Panel
+            <a href="{% url 'admin' %}" target="_blank" > Here </a>
+        </p>
+        <hr>
+    </center>
+</div>
+    <div class="col admin-img align-self-center">
+        <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1676902150/admin_site_logo_lg_eem7de.png" class="border rounded img-fluid">
+    </div>
+</div>
+    
 
+</div>
 {% endblock %}
