@@ -1,43 +1,49 @@
 {% load crispy_forms_tags %}
-<section class="align-items-center">
-{% if request.user.is_authenticated %}
+<section >
+    {% if request.user.is_authenticated %}
+    <div class="container-fluid ">
+        <div class="col d-flex justify-content-center">
+            <div class="row w-100 d-flex ">
+                <form method="post" action="{% url 'search_locations' %}" enctype="multipart/form-data">
+                    <div class=" d-flex justify-content-center align-items-start" style="margin:10px;">
+                        <p class="align-baseline">You can search by choosing the region</p>
+                        {{ SearchPlacesForm | crispy }}
+                        <select name="searchregion" style="color:#b36e08; margin-left:5px; margin-right:5px;" class="searchbaritems" required>
+                            <option>Coast</option>
+                            <option>The Andes</option>
+                            <option>Jungle</option>
+                        </select>
+                        <p class="align-baseline">and the type of location</p>
+                        <select name="searchlocation" style="color:#b36e08; margin-left:5px; margin-right:5px;" class="searchbaritems" required>
+                            <option>Beach</option>
+                            <option>Cultural</option>
+                            <option>Nature</option>
+                            <option>Arqueologic</option>
+                        </select>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger searchbaritems color">Go</button>
 
-<form method="post" action="{% url 'search_locations' %}" enctype="multipart/form-data" >
-<!-- <div class="container-fluid d-flex flex-row-reverse"> -->
-<div class=" d-flex justify-content-end" style="margin:10px;">
-    <p class="align-baseline">Select the location you want to search in </p>
-        {{ SearchPlacesForm | crispy }}
-        <select name="searchregion" class="searchbaritems">
-            <option selected disabled=true style="color:#b36e08;">--Region--</option>
-            <option>Coast</option>
-            <option>The Andes</option>
-            <option>Jungle</option>
-        </select>  
-        <select name="searchlocation" class="searchbaritems">
-            <option selected disabled=true style="color:#b36e08;">--Type Location--</option>
-            <option>Beach</option>
-            <option>Cultural</option>
-            <option>Nature</option>
-            <option>Arqueologic</option>
-        </select>
-            {% csrf_token %}
-        <button type="submit" class="btn btn-outline-danger searchbaritems color">Go</button>
+                    </div>
 
+                </form>
+            </div>
+            <div class="row w-100 ">
+              <h4 class="text-center">OR</h4>
+            </div>
+            <div class="row w-100">
+                <form method="post" id="form_section" action="{% url 'search_place' %}" enctype="multipart/form-data">
+                    <div class=" d-flex justify-content-center align-items-start" style="margin:10px;">
+                        <p>Search by name</p>
+                        {{ search_place_form | crispy }}
+                        <input type="text" name="search" style="margin-left:5px; margin-right:5px;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger color "> Find the place</button>
+                    </div>
+                </form>
+            </div>
         </div>
-</div>
-</div>
-</div>
-</form>
-<form method="post" id="form_section" action="{% url 'search_place' %}" enctype="multipart/form-data">
-    <div class=" d-flex justify-content-end" style="margin:10px;">
-        <p>Search by name</p>
-            {{ search_place_form | crispy }}
-        <input type="text" name="search">
-            {% csrf_token %}
-        <button type="submit" class="btn btn-outline-danger color "> Find the place</button>  
     </div>
-</form>
-</div>
-<hr style="margin: 0px;">
-</section> 
- {% endif %}
+    </div>
+    <hr style="margin: 0px;">
+</section>
+{% endif %}
