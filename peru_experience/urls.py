@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from peru_exp_app.views import handler404, handler500, handler403, handler405
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('peru_exp_app.urls'), name='app_urls'),
     path('profile/', include('profiles_app.urls'), name='profile_urls'),
     path('accounts/', include('allauth.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')), # The CKEditor path
+    path('ckeditor/', include('ckeditor_uploader.urls'))
 ]
+
+handler404 = 'peru_exp_app.views.handler404'
+handler500 = 'peru_exp_app.views.handler500'
+handler403 = 'peru_exp_app.views.handler403'
+handler405 = 'peru_exp_app.views.handler405'

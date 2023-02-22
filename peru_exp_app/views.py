@@ -14,6 +14,9 @@ from .models import Place, Comment, User
 from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
 from profiles_app.views import my_profile
 
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
+
 
 # Create your views here.
 
@@ -142,6 +145,7 @@ def comment_delete_view(request, slug, pk):
 """ VIEWS FOR ADMIN FUNCTIONALITY IN THE HTML """
 
 
+@method_decorator(staff_member_required, name='dispatch')
 class AdminPage(CreateView):
     """ VIEW FOR ADD A NEW PLACE-POST """
     template_name = 'admin_page.html'
@@ -164,7 +168,6 @@ def search_locations(request, page=1):
         region = request.POST.get('searchregion')
         search = Place.objects.all().filter(region=region)
         location = request.POST.get('searchlocation')
-        template = 'search.html'
         search_result = search.filter(type_location=location).order_by('-date_created')
         template = 'search.html'
         context = {
@@ -188,6 +191,7 @@ def search_place(request):
         return render(request, template, context)
 
 
+@staff_member_required
 def place_update_view(request, slug):
     """ VIEW FOR EDIT PLACES INFORMATION """
     form = UpdatePlacesForm()
@@ -205,6 +209,7 @@ def place_update_view(request, slug):
     return redirect(request.META.get('HTTP_REFERER'))
 
 
+@staff_member_required
 def place_delete_view(request, slug):
     """ VIEW FOR DELETE A POST, JUST ADMIN HAS ACCESS TO """
     if request.method == 'GET':
@@ -250,3 +255,23 @@ def add_interest(request, slug):
             messages.success(request, 'Place added to interests')
 
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def handler404(request, exception):
+    """ Custom 404 page """
+    return render(request, "errors/404.html", status=404)
+
+
+def handler500(request):
+    """ Custom 500 page """
+    return render(request, "errors/500.html", status=500)
+
+
+def handler403(request, exception):
+    """ Custom 403 page """
+    return render(request, "errors/403.html", status=403)
+
+
+def handler405(request, exception):
+    """ Custom 405 page """
+    return render(request, "errors/405.html", status=405)
