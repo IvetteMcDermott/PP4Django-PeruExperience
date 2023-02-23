@@ -105,6 +105,11 @@ p, option  {
     min-height: 50em;
 }
 
+#region-text {
+    background-color: rgba(122, 117, 117, 0.699);
+}
+
+
 .d-flex{
     flex-wrap: wrap;
     align-content: center;
@@ -198,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #dbd8d370;
     border-radius: 5px;
     width: 20em;
-    height: 24em;
+    height: 26em;
     display: flex;
     margin: 0;
     margin: auto;
@@ -228,14 +233,29 @@ h1, h2, h3, h4, h5, h6 {
     height: 70%;
 }
 
-.display-card>img{
+.display-card>img {
     object-fit: cover;
 }
-.post-link:hover{
+.post-link:hover {
     color:#b36e08;
     text-decoration: none;
 }
 
+.pin-css {
+    margin-bottom: 8px;
+}
+.card-body {
+    min-height: 1px;
+    line-height: 2em;
+    padding: 1.25rem;
+    position: absolute !important;
+    bottom: 2em !important;
+}
+.comment-icon {
+    right: 10px !important;
+    position: absolute !important;
+    bottom: 10px !important;
+}
 .display-region{
     clear: both;
     line-height: 0;
@@ -245,6 +265,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .info-div{
     height: fit-content;
+}
+
+.card-text{
+    height: 36px;
+    line-height: 16px;
 }
 
 /* Footer  */

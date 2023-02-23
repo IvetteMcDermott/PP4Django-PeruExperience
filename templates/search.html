@@ -12,7 +12,7 @@
   </div>
 </div>
 <center>
-  <h2 style="margin:5px;"> OUR COMMUNITY </h2>
+  <h2 style="margin:5px;"> Search Page </h2>
 </center>
 {% if searched  %}
 <h5>You searched for ... {{ searched }} {{ location }}</h5>
@@ -32,12 +32,12 @@
         {% endif %}
       </div>
       <div class="d-flex justify-content-center">
-        <img src="{{ place.image.url }}" class="card-img-top" alt="..."
+        <img src="{{ place.image.url }}" class="card-img-top" alt="place image"
           style="width: 80%; height: 70%; object-fit: contain;">
       </div>
       <div class="card-body">
         <h4 class="card-title text-center">{{ place.name }}</h5>
-          <p class="card-text">{{ place.info|truncatewords:10|safe }}</p>
+          <div class="card-text">{{ place.info|truncatewords:6|safe }}</div>
       </div>
       <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ place.comments.count}}</i>
       </div>
@@ -54,8 +54,6 @@
 <h5>There is nothing to display.</h5>
 {% endif %}
 
-<a href="#top" id="top-button" class="btn btn-outline-danger color" style="border: none !important;">
-  <h3><i class="bi bi-box-arrow-in-up"></i></h3>
-</a>
+
 <div style="height: 3em;"></div>
 {% endblock %}

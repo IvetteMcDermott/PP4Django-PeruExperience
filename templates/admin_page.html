@@ -61,7 +61,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{ search_place_form | crispy }}
+                            {{ search_place_form.as_p }}
+                            {{ form.media }}
+
                             <input type="text" name="search">
                             {% csrf_token %}
                         </div>

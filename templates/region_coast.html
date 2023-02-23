@@ -6,7 +6,7 @@
     </div>
     <div class="p-2 bd-highlight"><h6>Previous</h6></div>
   </div>
-<center class="align-items-center" style="height: 5em; background-image: url(https://res.cloudinary.com/dwjq6izv5/image/upload/v1676899521/coast_textile_zrxpou.webp);">
+<center class="align-items-center" style="height: 5em; margin-bottom: 15px; background-image: url(https://res.cloudinary.com/dwjq6izv5/image/upload/v1676899521/coast_textile_zrxpou.webp);">
     <a href="{% url 'coast_places_display' %}" class="titles-nodeco" >
         <h1 class="titles-nodeco" style="color:#faf9f8e0" name="searchregion">COAST</h1>
         <h6 id="region-text" style="color:#f3ede8e0; font-weight: 600;">The Coast region has a coastline of 3,080 km (1,910 mi), and it is located along the Pacific Ocean.
@@ -21,22 +21,23 @@
     {% for place in object_list %}
     <div class="card display-card">
         <a href="{% url 'place_information' place.slug %}" class="post-link"> 
-        <div class="d-flex justify-content-end">{% if user.is_authenticated %}
-            {% if request.user in place.interests.all %}   
-            <i class="bi bi-pin-angle-fill"></i>
-            {% else %}
-            <i class="bi bi-pin-angle"></i>
+        <div class="d-flex justify-content-end" class="pin-css">
+            {% if user.is_authenticated %}
+                {% if request.user in place.interests.all %}   
+                <i class="bi bi-pin-angle-fill"></i>
+                {% else %}
+                <i class="bi bi-pin-angle"></i>
+                {% endif %}
             {% endif %}
-        {% endif %}
         </div>
-        <div class="d-flex justify-content-center">
-        <img src="{{ place.image.url }}" class="card-img-top" alt="..." style="width: 80%; height: 70%; object-fit: contain; margin-left: 0 auto;">
+        <div class="d-flex justify-content-center" style="width: 50%; min-width: 13em;">
+        <img src="{{ place.image.url }}" class="card-img-top" alt="place image" style="object-fit: contain; margin-left: 0 auto;">
         </div>
         <div class="card-body">
           <h4 class="card-title text-center">{{ place.name }}</h5>
-          <p class="card-text">{{ place.info|truncatewords:10|safe }}</p>
+          <div class="card-text">{{ place.info|truncatewords:10|safe }}</div>
         </div>
-        <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ place.comments.count}}</i>
+        <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ place.comments.count }}</i>
         </div>
         </a>
     </div>

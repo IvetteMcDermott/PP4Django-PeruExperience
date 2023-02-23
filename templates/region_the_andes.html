@@ -6,7 +6,7 @@
     </div>
     <div class="p-2 bd-highlight"><h6>Previous</h6></div>
 </div>
-  <center class="align-items-center" style="height: 5em; background-image: url(https://res.cloudinary.com/dwjq6izv5/image/upload/v1676920460/andean_textile_amxas6_ca2701.jpg);">
+  <center class="align-items-center" style="height: 5em; margin-bottom: 15px; background-image: url(https://res.cloudinary.com/dwjq6izv5/image/upload/v1676920460/andean_textile_amxas6_ca2701.jpg);">
     <a href="{% url 'andes_places_display' %}" class="titles-nodeco" >
         <h1 class="titles-nodeco" style="color:#faf9f8e0" name="searchregion">THE ANDES</h1>
         <h6 id="region-text" style="color:#faf9f8e0; font-weight: 600;">The Andes shelter the very largest variety of climates in the country. Being the lowest point: Yunga marítima at 500 msnm, and the highest: Huascarán at 6768 msnm.
@@ -18,15 +18,24 @@
 <section class="display-region d-flex flex-col">
 
     {% for place in object_list %}
-    <div class="card display-card" style="width: 18rem;">
-        <a href="{% url 'place_information' place.slug %}" class="post-link">
-
-        <img src="{{ place.image.url }}" class="card-img-top" alt="...">
+    <div class="card display-card">
+        <a href="{% url 'place_information' place.slug %}" class="post-link"> 
+        <div class="d-flex justify-content-end" class="pin-css">
+            {% if user.is_authenticated %}
+            {% if request.user in place.interests.all %}   
+            <i class="bi bi-pin-angle-fill"></i>
+            {% else %}
+            <i class="bi bi-pin-angle"></i>
+            {% endif %}
+        {% endif %}
+        </div>
+        <div class="image-container" style=" min-width: 13em; max-height: 50%; ">
+        <img src="{{ place.image.url }}" class="card-img-top" alt="image" style="object-fit: scale-down;">
+        </div>
         <div class="card-body">
           <h4 class="card-title text-center">{{ place.name }}</h5>
-          <p class="card-text">{{ place.info|truncatewords:10|safe }}</p>
         </div>
-        <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ place.comments.count}}</i>
+        <div><i class="bi bi-chat-left-text comment-icon"> {{ place.comments.count}}</i>
         </div>
         </a>
     </div>

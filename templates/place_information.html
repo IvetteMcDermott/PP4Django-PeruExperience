@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-
-{% block content %}
 {% load crispy_forms_tags %}
+{% block content %}
+
 <div class="d-flex flex-row bd-highlight align-items-center" style="margin:0px; margin-top: 8px; margin-left: 8px;">
     <div class="p-2 bd-highlight">
         <a href="javascript:history.go(-1)">
@@ -16,8 +16,8 @@
 <div class="container-fluid detail-css" style="margin-bottom: 0px;">
 
     <div class="d-flex row flex-wrap">
-        <div class="col" style="width: 60%; min-width: 13em;">
-            <img src="{{ context.image.url }}" style="width: 100%; height: 70%; object-fit: contain;">
+        <div class="col" style="width: 60%; min-width: 13em;max-height: 60%;">
+            <img src="{{ context.image.url }}" style="width: 100%; max-height: 100%; object-fit: scale-down;">
         </div>
         <div class="col d-flex flex-wrap justify-content-end">
             <div class="row-flex d-flex justify-content-end w-100 align-top" style="top:0px;">
@@ -45,7 +45,7 @@
                 {{ context.cardinal_location }}
             </div>
             <div class="row-flex d-flex justify-content-end w-100">
-                {{ context.altitude }}
+                {{ context.altitude }} MASL
             </div>
             <div class="row-flex d-flex justify-content-end w-100">
                 {{ context.info|safe }}
@@ -70,15 +70,13 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Edit a Post</h5>
+                                    <h5 class="modal-title">Edit this placet</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- {{ update_form.as_p }}-->
-                                    {{ context.info }}
-                                    {{ context.slug }}
+                                   
                                     {{ update_form.as_p }}
                                     {{ update_form.media }}
 
@@ -188,8 +186,9 @@
     {% for comment in context.comments.all %}
     <div class="container-fluid detail-css" style="margin-top: 0px; margin-bottom: 0px!important;">
         <!-- <div class="d-flex bd-highlight mb-3 align-self-start"> -->
-            <div class="row">
-                <p><strong>By {{ comment.author }}:</strong> {{ comment.body|safe }}</p>
+            <div class="d-flex flex-row">
+                <div class="p-2"><p><strong>By {{ comment.author }}:</strong></p></div>
+                <div class="p-2"> <p> {{ comment.body|safe }}</p></div>
             </div>
         <div class="d-flex bd-highlight mb-3 align-self-start ">
             <div class="p-2 flex-grow-1 bd-highlight d-flex align-items-end">
@@ -202,7 +201,7 @@
             <form method="post" action="{% url 'comment_update' context.id comment.id %}" style="margin-top: 1.3em;">
                 <div>
                     <a href="" class="btn btn-outline-primary" type="button" data-toggle="modal"
-                        data-target="#ModalUpdateComment-{{ forloop.counter }}" data-backdrop="false">Edit</a>
+                        data-target="#ModalUpdateComment-{{ forloop.counter }}" data-backdrop="false" data-comment="{{ comment.body }}" onclick="updateBody(event)">Edit</a>
                 </div>
                 <!-- MODAL FOR UPDATE/EDIT COMMENT -->
                 <div class="modal" id="ModalUpdateComment-{{ forloop.counter }}">
@@ -217,10 +216,10 @@
                             <div class="modal-body">
                                 {% csrf_token %}
 
-                                {{ form.as_p }}
-                                {{ form.media }}
+                                {{ update_comment | crispy }}
 
-                                <textarea name="body">{{ comment.body }}</textarea>
+                                {{ update_comment.media }}
+                  
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -249,7 +248,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Delete Comment</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Delete this comment?</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -278,4 +277,21 @@
 {% endif %}
 </div>
 <div style="height: 5em;"></div>
+
+<script>
+    function updateBody(event) {
+        console.log(event)
+        console.log(event.target.attributes[4].value)
+        console.log(event.target.attributes[6].value)
+        let target = event.target.attributes[4].value
+        let result = target.slice(1)
+        console.log(result)
+        let parent = document.getElementById(result)
+        parent.querySelector("input[type='text']").value=event.target.attributes[6].value
+
+    }
+</script>
 {% endblock %}
+
+
+

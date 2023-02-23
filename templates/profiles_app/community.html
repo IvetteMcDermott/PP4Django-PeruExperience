@@ -13,7 +13,7 @@
 
     {% for user in object_list %}
     <div class="card display-card d-flex justify-content-center" >
-        <img src="{{ user.picture.url }}" class="card-img-top " alt="..." style="width: 80%; height: 70%; object-fit: contain;">
+        <img src="{{ user.picture.url }}" class="card-img-top " alt="user image" style="width: 80%; height: 70%; object-fit: contain;">
         <div class="card-body">
           <h4 class="card-title text-center">{{ user.user_name}}</h5>
         </div>
