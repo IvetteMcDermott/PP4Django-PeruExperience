@@ -45,7 +45,7 @@ class Place(models.Model):
 
 class Comment(models.Model):
     place = models.ForeignKey(Place, related_name="comments", on_delete=models.CASCADE)
-    body = RichTextField(null=False, blank=False, max_length=300)
+    body = models.CharField(max_length=300, null=False, blank=False)
     author = models.ForeignKey(User, related_name="author", on_delete=models.CASCADE)
     date_created = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)

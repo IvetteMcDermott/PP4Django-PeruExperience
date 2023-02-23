@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from .models import Place, Comment, User
 
-from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
+from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm, UpdateCommentForm
 from profiles_app.views import my_profile
 
 from django.contrib.admin.views.decorators import staff_member_required
@@ -69,6 +69,7 @@ class PlaceInformation(View):
         template = 'place_information.html'
         comment_form = CommentForm()
         updateform = UpdatePlacesForm(instance=place_data)
+        updatecommentform = UpdateCommentForm()
         interested = False
         if place_data.interests.filter(id=self.request.user.id).exists():
             interested = True
@@ -78,7 +79,8 @@ class PlaceInformation(View):
             'commented': False,
             'interested': interested,
             'comment_form': comment_form,
-            'update_form': updateform
+            'update_form': updateform,
+            'update_comment': updatecommentform
         }
         return render(request, template, context)
 
@@ -109,36 +111,25 @@ class PlaceInformation(View):
 
 def comment_update_view(request, slug, pk):
     """ VIEW FOR EDIT A COMMENT IF AUTHOR OF IT """
-    if request.method == 'POST':
-        body = request.POST.get('body')
+    comment = Comment.objects.get(id=pk)
+    updatecomment = UpdateCommentForm(instance=comment)
+    if updatecomment.is_valid():
+        updatedcommment = updatecomment.save(commit=False)
         # get the review to update
-        comment = Comment.objects.get(id=pk)
-        comment.body = body
-        comment.save()
-        updated = True
-        place = comment.place_id
-        place_info = Place.objects.all()
-        place_slug = get_object_or_404(place_info, pk=int(place))
-        slug = place_slug.slug
-        if updated == True:
-            messages.info(request, 'Your commented had been updated successfully!')
-    return redirect(request.META.get('HTTP_REFERER'))
+        updatedcommment.body = updatedcomment.instance.body
+        updatedcommment.save()    
+        messages.info(request, 'Your commented had been updated successfully!')
+    context = { 'form': updatecomment}
+    return redirect(request.META.get('HTTP_REFERER'), context)
 
 
 def comment_delete_view(request, slug, pk):
     """ VIEW FOR DELETE A COMMENT IF AUTHOR OF IT OR ADMIN """
     if request.method == 'GET':
         comment = Comment.objects.get(id=pk)
-
         # get the review to update
         comment.delete()
-        deleted = True
-        place = comment.place_id
-        place_info = Place.objects.all()
-        place_slug = get_object_or_404(place_info, pk=int(place))
-        slug = place_slug.slug
-        if deleted == True:
-            messages.warning(request, 'Your comment had been deleted successfully!')      
+        messages.warning(request, 'Your comment had been deleted successfully!')      
     return redirect(request.META.get('HTTP_REFERER'))
 
 

@@ -6,7 +6,6 @@ from ckeditor.widgets import CKEditorWidget
 
 
 class CommentForm(forms.ModelForm):
-    body = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Comment
@@ -14,7 +13,6 @@ class CommentForm(forms.ModelForm):
 
 
 class UpdateCommentForm(forms.ModelForm):
-    body = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Comment
