@@ -3,19 +3,22 @@
 {% block content %}
 
 <div class="d-flex justify-content-start" style="margin: 8px;">
-  <a href="javascript:history.go(-1)"><h2><i class="bi bi-arrow-left-square"></i></h2></a>
+  <a href="javascript:history.go(-1)">
+    <h2><i class="bi bi-arrow-left-square"></i></h2>
+  </a>
 </div>
-<center>
-<h3 style="margin:5px;">My Interests</h3>
-</center>
-{% block paginator1 %} {% include 'paginator.html' %}{% endblock paginator1 %}
-<section class="display-region d-flex flex-col">
+<div style="text-align:center">
+  <h3 style="margin:5px;">MY INTERESTS</h3>
+</div>
+<div class="d-flex justify-content-end" style="margin-bottom: 1em;">
+  {% block paginator1 %} {% include 'paginator.html' %}{% endblock paginator1 %}
+</div>
+  <section class="display-region d-flex flex-col">
 
-{% for interest in interests %}
-
-<div class="card display-card" style="width: 18rem;">
+  {% for interest in interests %}
+  <div class="card display-card">
     <a href="{% url 'place_information' interest.slug %}" class="post-link">
-      <div class="d-flex justify-content-end">
+      <div class="d-flex justify-content-end pin-css">
         {% if user.is_authenticated %}
         {% if request.user in interest.interests.all %}
         <i class="bi bi-pin-angle-fill"></i>
@@ -24,20 +27,28 @@
         {% endif %}
         {% endif %}
       </div>
-    <img src="{{ interest.image.url }}" class="card-img-top" alt="place image">
-    <div class="card-body">
-      <h4 class="card-title text-center">{{ interest.name }}</h5>
-      <div class="card-text">{{ interest.info|truncatewords:10|safe }}</div>
-    </div>
-    <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ interest.comments.count}}</i>
-    </div>
+      <div class="image-container" style=" min-width: 13em; max-height: 50%; ">
+        {% if "placeholder" in interest.image.url %}
+        <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1675697614/PP1/desktop_PER%C3%BA_p0clvq.png"
+          class="card-img-top" alt="image" style="object-fit: scale-down;">
+        {% else %}
+        <img src="{{ interest.image.url }}" class="card-img-top" alt="image" style="object-fit: scale-down;">
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <h4 class="card-title text-center">{{ interest.name }}</h5>
+      </div>
+      <div><i class="bi bi-chat-left-text comment-icon"> {{ interest.comments.count }}</i>
+      </div>
     </a>
-</div>
-{% endfor %}
+  </div>
+
+  {% endfor %}
+
 </section>
-<a href="#top" id="top-button" class="btn btn-outline-danger color" style="border: none !important; ">
-  <h3><i class="bi bi-box-arrow-in-up"></i></h3>
-</a>
-<div style="height: 3em;"></div>
+<div class="d-flex justify-content-end" style="margin-bottom: 2em;">
+  {% block paginator %} {% include 'paginator.html' %}{% endblock paginator %}
+</div>
+
 
 {% endblock %}

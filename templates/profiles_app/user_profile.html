@@ -1,18 +1,12 @@
-{% extends "base.html" %}
-
-{% block content %}
-{% load crispy_forms_tags %}
-
-<center> <h2 style="margin-top:5px;">My Profile </h2></center>
-
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %} <div style="text-align:center">
+    <h2 style="margin-top:5px;">MY PROFILE</h2>
+</div>
 <!-- FORM FOR START/UPDATE USER PROFILE -->
 <div style="margin: 15px;">
-    <p>Start/Update your Profile!
-    <a href="" type="button" data-toggle="modal" data-target="#Profile" data-backdrop="false"> Here!</a>
+    <p>Start/Update your Profile! <a href="" data-toggle="modal" data-target="#Profile" data-backdrop="false"> Here!</a>
     </p>
 </div>
 <form method="POST" id="form_section" enctype="multipart/form-data" style="margin-top: 1.3em;">
-
     <div class="modal forms-format" id="Profile">
         <div class="modal-dialog ">
             <div class="modal-content forms-format">
@@ -23,11 +17,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ form.as_p }}
-
-                    {{ form.media }}
-
                     {% csrf_token %}
+                    {{ form.as_p }}
+                    {{ form.media }} 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -36,38 +28,31 @@
             </div>
         </div>
     </div>
-
 </form>
-
 <!-- CARD FOR DISPLAY USER PROFILE -->
-
 <div class="container-fluid detail-css" style="margin-bottom: 4em;">
-
     <div class="d-flex row flex-wrap">
-    <div class="col"  style="width: 50%; min-width: 13em;">
-        {% if "placeholder" in user.picture.url %}
-        <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1677071935/placeholder_ezb2po.png" style="width: 80%; height: 70%; object-fit: contain;">
-        {% else %}
-        <img src=" {{ user.picture.url }}" style="width: 80%; height: 70%; object-fit: contain;">
-        {% endif %}
-    </div>
-    <div class=" col justify-content-end ">
-        <div class=" justify-content-end text-right w-100">
-            <h6><strong>Call me:</strong></h6><h4 class="text-right" style="margin: 10px;"> {{ user.user_name }}</h4>
+        <div class="col" style="width: 50%; min-width: 13em;"> {% if "placeholder" in user.picture.url %} <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1677071935/placeholder_ezb2po.png" style="width: 80%; height: 70%; object-fit: contain;" alt="image"> {% else %} <img src=" {{ user.picture.url }}" style="width: 80%; height: 70%; object-fit: contain;" alt="image"> {% endif %} </div>
+        <div class=" col justify-content-end ">
+            <div class=" justify-content-end text-right w-100">
+                <h6>
+                    <strong>Call me:</strong>
+                </h6>
+                <h4 class="text-right" style="margin: 10px;"> {{ user.user_name }}</h4>
+            </div>
+            <div class=" justify-content-end text-right">
+                <p><strong>I like to travel:</strong> {{ user.traveller_type }}</p>
+            </div>
+            <div class=" justify-content-end text-right">
+                    <p><strong>I am located:</strong> {{ user.location }}</p>
+            </div>
+            <div class=" justify-content-end text-right">
+                    <p><strong>About me:</strong></p> {{ user.bio|safe }}
+            </div>
+            <div class=" justify-content-end text-right">
+                    <p><strong>Member since:</strong> {{ user.joined }}</p>
+            </div>
         </div>
-        <div class=" justify-content-end text-right">
-            <p><strong>I like to travel:</strong> {{ user.traveller_type }}</p>
-        </div>
-        <div class=" justify-content-end text-right">
-            <p><strong>I am located:</strong> {{ user.location }}</p>
-        </div>
-        <div class=" justify-content-end text-right">
-            <p><strong>About me:</strong> {{ user.bio|safe }}</p>
-        </div>
-        <div class=" justify-content-end text-right">
-            <p><strong>Member since:</strong> {{ user.joined }}</p>
-        </div>
+    </div> 
 </div>
-</div>
-
-{% endblock %}
+    {% endblock %}

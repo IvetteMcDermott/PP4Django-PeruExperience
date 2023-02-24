@@ -6,15 +6,15 @@
 <div class="container-fluid row d-flex justify-content-between align-items-center admin-site-content" >
     <div class="col">
         <div>
-        <form method="post" id="form_section" enctype="multipart/form-data" style="margin-top: 1.3em;">
-            <center>
+        <form method="post" id="form_area"  enctype="multipart/form-data" style="margin-top: 1.3em;">
+            <div style="text-align:center">
                 <hr>
                 <p>To Add a New Place?
-                    <a href="" type="button" data-toggle="modal" data-target="#AddPlace" data-backdrop="false"> Add it
+                    <a href="" data-toggle="modal" data-target="#AddPlace" data-backdrop="false"> Add it
                         here</a>
                 </p>
                 <hr>
-            </center>
+            </div>
             <div class="modal" id="AddPlace">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -43,14 +43,14 @@
     <div>
         <form method="post" id="form_section" action="{% url 'search_place' %}" enctype="multipart/form-data"
             style="margin-top: 1.3em;">
-            <center>
+            <div style="text-align:center">
                 <hr>
                 <p>To Edit or Delete a Place?
-                    <a href="" type="button" data-toggle="modal" data-target="#EditPlace" data-backdrop="false">Find it
+                    <a href=""  data-toggle="modal" data-target="#EditPlace" data-backdrop="false">Find it
                         here</a>
                 </p>
                 <hr>
-            </center>
+            </div>
             <div class="modal" id="EditPlace">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -61,11 +61,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            {% csrf_token %}
+
                             {{ search_place_form.as_p }}
-                            {{ form.media }}
 
                             <input type="text" name="search">
-                            {% csrf_token %}
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary"> Find the place</button>
@@ -75,19 +75,17 @@
             </div>
         </form>
     </div>
-    <center>
+    <div style="text-align:center">
         <hr>
         <p style="margin-top: 1.3em;">Access to the Admin Panel
             <a href="{% url 'admin' %}" target="_blank" > Here </a>
         </p>
         <hr>
-    </center>
+    </div>
 </div>
     <div class="col admin-img align-self-center">
-        <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1676902150/admin_site_logo_lg_eem7de.png" class="border rounded img-fluid">
+        <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1676902150/admin_site_logo_lg_eem7de.png" class="border rounded img-fluid" alt="image">
     </div>
 </div>
     
-
-</div>
 {% endblock %}

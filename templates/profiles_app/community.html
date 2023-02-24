@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<center>
+<div style="text-align:center">
         <h2 style="margin-top:5px;"> OUR COMMUNITY </h2>
-</center>
+</div>
 <div class="d-flex justify-content-end">
     {% block paginator %} {% include 'paginator.html' %}{% endblock %}
 </div>
@@ -15,7 +15,7 @@
     <div class="card display-card d-flex justify-content-center" >
         <img src="{{ user.picture.url }}" class="card-img-top " alt="user image" style="width: 80%; height: 70%; object-fit: contain;">
         <div class="card-body">
-          <h4 class="card-title text-center">{{ user.user_name}}</h5>
+          <h5 class="card-title text-center">{{ user.user_name}}</h5>
         </div>
     </div>
 

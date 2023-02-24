@@ -1,7 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Exo:wght@100;200;300;400;500;600;700;800;900&family=Itim&family=Michroma&display=swap'); */
-
-
-  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
 
 
 /* CSS for navbar - overwrite Bootstrap */
@@ -51,7 +48,11 @@ body {
 
 /* General Styling */
 
-p, option  {
+p {
+    color:#b36e08;
+}
+
+.color-orange {
     color:#b36e08;
 }
 
@@ -171,16 +172,6 @@ p, option  {
 .circle-container:hover .circle-traveler{
     transform: scale(1.5);  
 }
-.title {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-.title:hover{
-    transition: display(block);
-
-    color:rgb(20, 21, 22);
-}
 
 .regions-anchor {
     text-decoration: none;
@@ -242,7 +233,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pin-css {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 .card-body {
     min-height: 1px;
@@ -298,7 +289,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/*  */
+/* PLACE INFORMATION - DETAIL PAGE */
 
 .detail-css{
     width: 90%;
@@ -327,21 +318,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+/* MEDIA */
+
 @media screen and (min-width: 1950px){
     body {
         width: 80%;
         margin-left: 0px;
         margin: auto;
     }    
-}
-
-/* FORMS FORMAT */
-
-.forms-format {
-        width: 90%;
-        margin-left: 0;
-        margin:auto;
-        margin-top: 15px;
 }
 
 @media (min-width: 576px){

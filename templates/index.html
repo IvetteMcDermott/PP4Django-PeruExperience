@@ -1,94 +1,57 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-<section class="introduction">
-
+{% extends "base.html" %} {% block content %} <section class="introduction">
   <div style="margin-top: 1em">
-    <center>
-      <a href="#regions"><img id="welcome"
-          src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1675697614/PP1/desktop_PER%C3%BA_p0clvq.png"></a>
-    </center>
+    <div style="text-align:center">
+      <a href="#regions">
+        <img id="welcome" src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1675697614/PP1/desktop_PER%C3%BA_p0clvq.png" alt="image">
+      </a>
+    </div>
   </div>
 </section>
-
 <section id="regions" style="margin-bottom: 8em;">
   <div class="container d-flex justify-content-around has-regions-in">
     <div class="col">
-    <div class="row">
-      <center>
-        <h2 id="region-title">What region do you want to look at?</h2>
-      </center>
-    </div>
-
-    <div class="row here">
-      <div class="container col">
-        <a href="{% url 'coast_places_display' %}">
-          <div class="circle-container">
-
-            <img
-              src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png"
-              class="circle-traveler regions-img" alt="traveler">
-            <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889320/IMG_20200130_094307869_g4ylil.jpg"
-              class="circle-background regions-img" alt="background">
-
-          </div>
-        </a>
-        <center>
-          <br>
-          <h2 class="regions-anchor">Coast</h2>
-        </center>
-
+      <div class="row">
+        <div style="text-align:center"> <h2 id="region-title">What region do you want to look at?</h2>
+        </div>
       </div>
-
-      <div class="container col">
-        <a href="{% url 'andes_places_display' %}">
-
-          <div class="circle-container">
-            <img
-              src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png"
-              class="circle-traveler regions-img" alt="traveler">
-
-            <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889277/DSC00687_ihmzee.jpg"
-              class="circle-background regions-img" alt="background">
-
+      <div class="row here">
+        <div class="container col">
+          <a href="{% url 'coast_places_display' %}">
+            <div class="circle-container">
+              <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png" class="circle-traveler regions-img" alt="traveler">
+              <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889320/IMG_20200130_094307869_g4ylil.jpg" class="circle-background regions-img" alt="background">
+            </div>
+          </a>
+          <div style="text-align:center">
+            <br>
+            <h2 class="regions-anchor">Coast</h2>
           </div>
-        </a>
-
-        <center>
-
-          <br>
-          <h2 class="regions-anchor">The Andes</h2>
-        </center>
-
-      </div>
-
-      <div class="container col">
-        <a href="{% url 'jungle_places_display' %}">
-          <div class="circle-container">
-
-            <img
-              src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png"
-              class="circle-traveler regions-img" alt="traveler">
-            <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889287/P1030567_rkt5fr.jpg"
-              class="circle-background regions-img" alt="background">
-
+        </div>
+        <div class="container col">
+          <a href="{% url 'andes_places_display' %}">
+            <div class="circle-container">
+              <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png" class="circle-traveler regions-img" alt="traveler">
+              <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889277/DSC00687_ihmzee.jpg" class="circle-background regions-img" alt="background">
+            </div>
+          </a>
+          <div style="text-align:center">
+            <br>
+            <h2 class="regions-anchor">The Andes</h2>
           </div>
-        </a>
-        <center>
-          <br>
-          <h2 class="regions-anchor">Jungle</h2>
-        </center>
-
+        </div>
+        <div class="container col">
+          <a href="{% url 'jungle_places_display' %}">
+            <div class="circle-container">
+              <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673887920/Pngtree_summer_travel_traveler_backpack_3939252_rnwmod.png" class="circle-traveler regions-img" alt="traveler">
+              <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1673889287/P1030567_rkt5fr.jpg" class="circle-background regions-img" alt="background">
+            </div>
+          </a>
+          <div style="text-align:center">
+            <br>
+            <h2 class="regions-anchor">Jungle</h2>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  </div>
-  </div>
-  </div>
-  </div>
-</div>
-</section>
-
-
-{% endblock %}
+</section> {% endblock %}

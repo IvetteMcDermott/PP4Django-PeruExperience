@@ -11,19 +11,20 @@
     <h6>Previous</h6>
   </div>
 </div>
-<center>
-  <h2 style="margin:5px;"> Search Page </h2>
-</center>
+<div style="text-align:center">
+  <h2 style="margin:5px;">SEARCH PAGE</h2>
+</div>
 {% if searched  %}
 <h5>You searched for ... {{ searched }} {{ location }}</h5>
 {% endif %}
 
+<section class="display-region d-flex flex-col">
 {% if search_result %}
-<div class="row">
   {% for place in search_result %}
   <div class="card display-card">
     <a href="{% url 'place_information' place.slug %}" class="post-link">
-      <div class="d-flex justify-content-end">{% if user.is_authenticated %}
+      <div class="d-flex justify-content-end pin-css">
+        {% if user.is_authenticated %}
         {% if request.user in place.interests.all %}
         <i class="bi bi-pin-angle-fill"></i>
         {% else %}
@@ -31,29 +32,32 @@
         {% endif %}
         {% endif %}
       </div>
-      <div class="d-flex justify-content-center">
-        <img src="{{ place.image.url }}" class="card-img-top" alt="place image"
-          style="width: 80%; height: 70%; object-fit: contain;">
+      <div class="image-container" style=" min-width: 13em; max-height: 50%; ">
+        {% if "placeholder" in place.image.url %}
+        <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1675697614/PP1/desktop_PER%C3%BA_p0clvq.png"
+          class="card-img-top" alt="image" style="object-fit: scale-down;">
+        {% else %}
+        <img src="{{ place.image.url }}" class="card-img-top" alt="image" style="object-fit: scale-down;">
+        {% endif %}
       </div>
       <div class="card-body">
         <h4 class="card-title text-center">{{ place.name }}</h5>
-          <div class="card-text">{{ place.info|truncatewords:6|safe }}</div>
       </div>
-      <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ place.comments.count}}</i>
+      <div><i class="bi bi-chat-left-text comment-icon"> {{ place.comments.count }}</i>
       </div>
     </a>
   </div>
 
   {% endfor %}
-</div>
+  </div>
 
-</div>
+  </div>
 
-{% else %}
+  {% else %}
 
-<h5>There is nothing to display.</h5>
-{% endif %}
+  <h5>There is nothing to display.</h5>
 
+  {% endif %}
+</section>
 
-<div style="height: 3em;"></div>
 {% endblock %}

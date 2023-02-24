@@ -17,7 +17,11 @@
 
     <div class="d-flex row flex-wrap">
         <div class="col" style="width: 60%; min-width: 13em;max-height: 60%;">
-            <img src="{{ context.image.url }}" style="width: 100%; max-height: 100%; object-fit: scale-down;">
+            {% if "placeholder" in user.picture.url %}
+            <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1675697614/PP1/desktop_PER%C3%BA_p0clvq.png" style="width: 100%; max-height: 100%; object-fit: scale-down;" alt="image">
+            {% else %}
+            <img src="{{ context.image.url }}" style="width: 100%; max-height: 100%; object-fit: scale-down;" alt="image">
+            {% endif %}
         </div>
         <div class="col d-flex flex-wrap justify-content-end">
             <div class="row-flex d-flex justify-content-end w-100 align-top" style="top:0px;">
@@ -39,19 +43,21 @@
                 <h2 style="margin: 10px;">{{ context.name }}</h2>
             </div>
             <div class="row-flex d-flex justify-content-end w-100">
-                {{ context.type_location }}
+                <p>{{ context.type_location }}</p>
             </div>
             <div class="row-flex d-flex justify-content-end w-100">
-                {{ context.cardinal_location }}
+                <p>{{ context.cardinal_location }}</p>
             </div>
             <div class="row-flex d-flex justify-content-end w-100">
-                {{ context.altitude }} MASL
+                <p>{{ context.altitude }} MASL</p>
             </div>
             <div class="row-flex d-flex justify-content-end w-100">
                 {{ context.info|safe }}
             </div>
-
-        </div>
+ <!-- DISPLAY AMOUNT OF COMMENTS IF USER IS NO AUTHENTICATED -->
+            <div class="row-flex d-flex justify-content-end w-100">
+                <p><i class="bi bi-chat-left-text"></i> {{ context.comments.count}} </p>
+            </div>
     </div>
     {% if request.user.is_superuser %}
 
@@ -116,7 +122,7 @@
                                 </div>
                                 <div class="modal-body">
                                     {% csrf_token %}
-                                    <p name="body">{{ context.name }}</p>
+                                    {{ context.name }}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -131,14 +137,14 @@
 
             {% endif %}
             <!-- LEAVE A COMMENT FOR AUTHENTICATED USERS -->
-            <div class="col d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
 
                 {% if user.is_authenticated %}
 
                 <div class="p-2 bd-highlight">
                     <form method="post" style="margin-top: 1.3em;">
                         <div>
-                            <a href="" type="button" class="btn btn-outline-success" data-toggle="modal"
+                            <a href="" class="btn btn-outline-success" data-toggle="modal"
                                 data-target="#ModalCommenting" data-backdrop="false">Leave
                                 a comment</a>
                         </div>
@@ -171,7 +177,7 @@
 
                 <!-- MESSAGE INVITING NO REGISTERED USERS TO SIGNUP -->
                 <br>
-                <p><strong>Register with us so you can see and add comments</strong></p>
+                <p><strong>Register with us <a href="{% url 'account_signup' %}">here</a> so you can see and add comments</strong></p>
 
 
                 {% endif %}
@@ -239,7 +245,7 @@
 
             <form method="get" action="{% url 'comment_delete' context.id comment.id %}" style="margin-top: 1.3em;">
 
-                <a href="" type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal"
+                <a href="" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal"
                     data-backdrop="false">Delete</a>
 
                 <!-- MODAL FOR DELETE COMMENT -->
@@ -271,9 +277,6 @@
         </div>
     </div>
     {% endfor %}
-{% else %}
-    <!-- DISPLAY AMOUNT OF COMMENTS IF USER IS NO AUTHENTICATED -->
-    <span><i class="bi bi-chat-left-text"></i> {{ context.comments.count}} </span>
 {% endif %}
 </div>
 <div style="height: 5em;"></div>
