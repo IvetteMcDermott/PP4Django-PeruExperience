@@ -136,8 +136,13 @@ Deployment proccess:
     - Select "Create New App"
     - Give a name to the App and choose a region.
     - Click in "Create App" button.
-    - Go to Settings in the nav bar, and select "Add Buildpacks".
-    - Add Python and save, do the same for Node.js, in that order. Python must show first in the list.
+    - Click in Settings.
+    - Click in Reveal Config.
+    - Add Vars Config (keys):
+        - Cloudinary (Media Storage)
+        - DataBase Elephant (DataBase Host)
+        - PORT 8000
+        - Django (Framework)
     - Go to Deploy in the nav bar. In Deploment Method, select GitHub/Connect to GitHub.
     - In Connect to GitHub, write the repository name and click in search.
     - Once the route for the repo appears under the search, click in "Connect" button.

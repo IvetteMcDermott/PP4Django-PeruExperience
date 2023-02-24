@@ -18,23 +18,24 @@
 <section class="display-region d-flex flex-col">
 
     {% for place in object_list %}
-    <div class="d-flex justify-content-end" class="pin-css">
-        {% if user.is_authenticated %}
-        {% if request.user in place.interests.all %}   
-        <i class="bi bi-pin-angle-fill"></i>
-        {% else %}
-        <i class="bi bi-pin-angle"></i>
+    <div class="card display-card">
+        <a href="{% url 'place_information' place.slug %}" class="post-link"> 
+        <div class="d-flex justify-content-end" class="pin-css">
+            {% if user.is_authenticated %}
+            {% if request.user in place.interests.all %}   
+            <i class="bi bi-pin-angle-fill"></i>
+            {% else %}
+            <i class="bi bi-pin-angle"></i>
+            {% endif %}
         {% endif %}
-    {% endif %}
-    </div>
-    <div class="d-flex justify-content-center" style="width: 50%; min-width: 13em;">
-    <img src="{{ place.image.url }}" class="card-img-top" alt="place image" style="width: 80%; height: 70%; object-fit: contain; margin-left: 0 auto;">
-    </div>
+        </div>
+        <div class="image-container" style=" min-width: 13em; max-height: 50%; ">
+        <img src="{{ place.image.url }}" class="card-img-top" alt="image" style="object-fit: scale-down;">
+        </div>
         <div class="card-body">
           <h4 class="card-title text-center">{{ place.name }}</h5>
-          <div class="card-text">{{ place.info|truncatewords:10|safe }}</div>
         </div>
-        <div><i class="bi bi-chat-left-text d-flex justify-content-end align-items-center"> {{ place.comments.count}}</i>
+        <div><i class="bi bi-chat-left-text comment-icon"> {{ place.comments.count}}</i>
         </div>
         </a>
     </div>
