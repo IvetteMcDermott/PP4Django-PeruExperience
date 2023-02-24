@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -108,13 +108,15 @@ MESSAGE_TAGS = {
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': [["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],
-                ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter',
-                 'JustifyRight', 'JustifyBlock'],
-                [ "Table", "Link", "Anchor", ], ['Undo', 'Redo'],
-                ["Maximize"]],
-        'height': 'full', 
-        'width': 'full', 
+        'toolbar': [["Format", "Bold", "Italic", "Underline", "Strike",
+                     "SpellChecker"],
+                    ['NumberedList', 'BulletedList', "Indent", "Outdent",
+                     'JustifyLeft', 'JustifyCenter',
+                     'JustifyRight', 'JustifyBlock'],
+                    ["Table", "Link", "Anchor", ], ['Undo', 'Redo'],
+                    ["Maximize"]],
+        'height': 'full',
+        'width': 'full',
     },
     }
 

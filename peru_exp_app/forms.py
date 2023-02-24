@@ -24,7 +24,8 @@ class AddPlacesForm(forms.ModelForm):
 
     class Meta:
         model = Place
-        fields = ('image', 'name', 'region', 'cardinal_location', 'altitude', 'type_location', 'info', 'author', )
+        fields = ('image', 'name', 'region', 'cardinal_location', 'altitude',
+                  'type_location', 'info', 'author', )
         prepopulated_fields = {'slug': 'name', }
 
 
@@ -33,7 +34,8 @@ class UpdatePlacesForm(forms.ModelForm):
 
     class Meta:
         model = Place
-        fields = ('image', 'name', 'region', 'cardinal_location', 'altitude', 'type_location', 'info', 'author', )
+        fields = ('image', 'name', 'region', 'cardinal_location', 'altitude',
+                  'type_location', 'info', 'author', )
 
 
 class SearchPlacesForm(forms.ModelForm):

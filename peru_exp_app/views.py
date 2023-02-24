@@ -11,8 +11,10 @@ from django.contrib import messages
 from django.http import HttpResponse
 from .models import Place, Comment, User
 
-from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm, UpdateCommentForm
+from .forms import CommentForm, AddPlacesForm, UpdatePlacesForm
+from .forms import UpdateCommentForm
 from profiles_app.views import my_profile
+from django.contrib.messages.views import SuccessMessageMixin
 
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
@@ -60,8 +62,10 @@ class Jungle(ListView):
 
 class PlaceInformation(View):
     """ VIEW FOR DETAILED INFORMATION OF THE SELECTED PLACE """
-    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE COMMENTED BY REGULAR REGISTERED USERS """
-    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE EDIT OR DELETE, REDIRECTING YOU TO THE LANDING - HOME PAGE """
+    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE COMMENTED BY """
+    """ REGULAR REGISTERED USERS """
+    """ FROM THE HTML FOR THIS VIEW A PLACE-POST CAN BE EDIT OR DELETE,"""
+    """ REDIRECTING YOU TO THE LANDING - HOME PAGE """
     def get(self, request, slug, *args, **kwargs):
         place = Place.objects.all()
         place_data = get_object_or_404(place, slug=slug)
@@ -97,9 +101,7 @@ class PlaceInformation(View):
             comment = comment_form.save(commit=False)
             comment.place = place_data
             comment.save()
-            commented = True
-            if commented == True:
-                messages.success(request, 'Your comment had been add successfully!')
+            messages.success(request, 'Comment had been added successfully!')
         else:
             comment_form()
 
@@ -115,11 +117,10 @@ def comment_update_view(request, slug, pk):
     updatecomment = UpdateCommentForm(instance=comment)
     if updatecomment.is_valid():
         updatedcommment = updatecomment.save(commit=False)
-        # get the review to update
         updatedcommment.body = updatedcomment.instance.body
-        updatedcommment.save()    
+        updatedcommment.save()
         messages.info(request, 'Your commented had been updated successfully!')
-    context = { 'form': updatecomment}
+    context = {'form': updatecomment}
     return redirect(request.META.get('HTTP_REFERER'), context)
 
 
@@ -129,7 +130,7 @@ def comment_delete_view(request, slug, pk):
         comment = Comment.objects.get(id=pk)
         # get the review to update
         comment.delete()
-        messages.warning(request, 'Your comment had been deleted successfully!')      
+        messages.warning(request, 'Comment had been deleted successfully!')
     return redirect(request.META.get('HTTP_REFERER'))
 
 
@@ -137,20 +138,13 @@ def comment_delete_view(request, slug, pk):
 
 
 @method_decorator(staff_member_required, name='dispatch')
-class AdminPage(CreateView):
+class AdminPage(SuccessMessageMixin, CreateView):
     """ VIEW FOR ADD A NEW PLACE-POST """
     template_name = 'admin_page.html'
     model = Place
     form_class = AddPlacesForm
-
-    def form_valid(self, request, form):
-        form.save(commit=False)
-        form.instance.user = self.request.user
-        form.save()
-        added = True
-        if added == True:
-            messages.success(self.request, 'The new post has been add successfully!')
-        return render(request, 'admin_page', {'form': AddPlacesForm()})
+    success_url = '/'
+    success_message = 'The new place has been add successfully!'
 
 
 def search_locations(request, page=1):
@@ -159,7 +153,7 @@ def search_locations(request, page=1):
         region = request.POST.get('searchregion')
         search = Place.objects.all().filter(region=region)
         location = request.POST.get('searchlocation')
-        search_result = search.filter(type_location=location).order_by('-date_created')
+        search_result = search.filter(type_location=location)
         template = 'search.html'
         context = {
                 'searched': region,
@@ -177,7 +171,7 @@ def search_place(request):
         template = 'search.html'
         context = {
             'searched': search,
-            'search_result': search_result
+            'search_result': search_result,
         }
         return render(request, template, context)
 
@@ -193,9 +187,7 @@ def place_update_view(request, slug):
         if form.is_valid():
             form.save(commit=False)
             form.save()
-            updated = True
-            if updated == True:
-                messages.success(request, 'The post had been updated successfully!')
+            messages.success(request, 'Place had been updated successfully!')
 
     return redirect(request.META.get('HTTP_REFERER'))
 
@@ -207,9 +199,7 @@ def place_delete_view(request, slug):
         place = Place.objects.get(slug=slug)
         # get the review to update
         place.delete()
-        deleted = True
-        if deleted == True:
-            messages.success(request, 'The post has been deleted successfully!')
+        messages.success(request, 'The post has been deleted successfully!')
 
     return redirect('/adminpage/')
 
