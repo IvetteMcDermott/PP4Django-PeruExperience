@@ -18,6 +18,22 @@ User Story: User Registration. LogIn and LogOut#7
 
 ## User Stories RoadMap
 
+## Flowcharts
+
+### Unregistered User
+
+![unregistered](./readme_docs/readme_images/diagrams/flowchart%20unregister%20user.png)
+
+### Registered User
+
+![register](./readme_docs/readme_images/diagrams/flowchart%20register%20user.png)
+
+### Admin User
+
+![admin](./readme_docs/readme_images/diagrams/flowchart%20admin%20user.png)
+
+
+
 
 # Features
 
@@ -96,12 +112,14 @@ Documentation for [here](https://docs.djangoproject.com/en/4.1/intro/)
 
 - [FontAwesome](https://fontawesome.com/)
 
-# Testing Manual
-
 
 # Validation
 
 The validation reports can be find [here](./readme_docs/md_files/validation.md)
+
+# Testing
+
+
 
 # Deployment
 

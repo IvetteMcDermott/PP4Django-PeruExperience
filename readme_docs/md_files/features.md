@@ -121,6 +121,15 @@ In this page will be display all the registered users that had updated their pro
 
 ![Community](../readme_images/features/community%20page%20site.png)
 
+## Admin Page
+
+This page is displayed just for admin users. It has access to the form for add new places, search to find a place so edit or delete it. Also has a direct link to the Django Admin Site. Note that this page will lose format once the debug is set to False.
+
+![admin](../readme_images/features/admin%20page%20s.png)
+
+![admin-add](../readme_images/features/form%20to%20add%20new%20place.png)
+
+![admin-search](../readme_images/features/form%20search%20for%20admin.png)
 
 
 
