@@ -10,7 +10,7 @@ It has a extra features for users that decide to register, they can pin places t
 
 ## Target User
 
-The user target is a user that enjoys to know new places and is looking for information about Peru's ones.
+The user target is a person that enjoys to know new places and is looking for information about Peru's touristic ones, open to the possibity to belong to a community where could find travelling partners.
 
 ## User Stories
 
@@ -21,30 +21,23 @@ User Story: User Registration. LogIn and LogOut#7
 
 # Features
 
-## Base
+The list and screenshot about them can be find [here](readme_docs/md_files/features.md).
 
-## Index
+# Features to Implement in Future
 
-## Regions
+1. In the Peru Experience, the extra search feature. To add option to search by filtering the places/posts.
+2. In the Peru Experience, a page with details and maybe an API to the news about Peru.
+3. In the Peru Experience, embed map in the details of places page.
+3. In the profile, the functionality for left messages between users. 
+4. In the community, search by location, so that the users can find potential travel partners in their region.
 
-## Detail
+# Bugs
 
-## Profile
 
-## Features to Implement in Future
-
-## Bugs
 
 # Design
 
-## Wireframes
-
-## Color Scheme
-
-## Font
-
-## Logo
-
+The details to the design can be find [here](./readme_docs/md_files/design.md)
 
 # Technologies Used
 
@@ -55,107 +48,66 @@ User Story: User Registration. LogIn and LogOut#7
 
 - [CSS](https://www.w3.org/Style/CSS/)
 
-- [Python](!https://www.python.org/)
+- [Python](https://www.python.org/)
 
-- [JavaScript](!https://www.javascript.com/)
+- [JavaScript](https://www.javascript.com/)
 
 
 ## Frameworks and Libraries
 
-- [Django](!https://www.djangoproject.com/)
+- [Django](https://www.djangoproject.com/)
 Documentation for [here](https://docs.djangoproject.com/en/4.1/intro/)
 
-- [Jquery](!https://jquery.com/) 
+- [Jquery](https://jquery.com/) 
 
-- [Boostrap](!https://getbootstrap.com/)
+- [Boostrap](https://getbootstrap.com/)
 
-- [Gunicorn](!https://gunicorn.org/)
+- [Gunicorn](https://gunicorn.org/)
 
-- [CkEditor](!https://ckeditor.com/)
+- [CkEditor](https://ckeditor.com/)
 
 
 ## Database Host
 
-- [ElephantSQL](!https://www.elephantsql.com/)  
+- [ElephantSQL](https://www.elephantsql.com/)  
    Documentation for set a database [here](https://www.elephantsql.com/docs/).
 
 
 ## Deployment Host
 
-- [Heroku](!https://id.heroku.com/login)
+- [Heroku](https://id.heroku.com/login)
 
 
 ## Other Resources
 
-- [GitHub](!https://github.com/)
+- [GitHub](https://github.com/)
 
-- [GitPod](!https://www.gitpod.io/)
+- [GitPod](https://www.gitpod.io/)
 
-- [Allauth](!https://django-allauth.readthedocs.io/)
+- [Allauth](https://django-allauth.readthedocs.io/)
 
-- [DjangoCrispyForms](!https://django-cryptography.readthedocs.io/)
+- [DjangoCrispyForms](https://django-cryptography.readthedocs.io/)
 
-- [Cloudinary Media](!https://cloudinary.com/)
+- [Cloudinary Media](https://cloudinary.com/)
 
-- [iColorpalette](!https://icolorpalette.com/)
+- [iColorpalette](https://icolorpalette.com/)
 
-- [GoogleFonts](!https://fonts.google.com/knowledge)
+- [GoogleFonts](https://fonts.google.com/knowledge)
 
-- [FontAwesome](!https://fontawesome.com/)
+- [FontAwesome](https://fontawesome.com/)
 
-
-# Testing
-
-## Validation
-
-### HTML
-
-### CSS
-
-### Python
-
-### Js
-
-### LightHouse
+# Testing Manual
 
 
-## Manual Testing
+# Validation
 
+The validation reports can be find [here](./readme_docs/md_files/validation.md)
 
 # Deployment
 
 The site had been deployed through Heroku.
 The site had been developed on GitPod, committed and pushed to GitHub. And Heroku once the site is deployed would update automatically.
-
-Deployment proccess:
-
-1. Log in [Github](!https://github.com/).
-    - Open the repo to deploy. The one for the site is [here](!https://github.com/IvetteMcDermott/PP4Django-PeruExperience).
-2. Log in [Heroku](!https://id.heroku.com/login).
-    - Click in the "New" button in the top right.
-    - Select "Create New App"
-    - Give a name to the App and choose a region.
-    - Click in "Create App" button.
-    - Click in Settings.
-    - Click in Reveal Config.
-    - Add Vars Config (keys):
-        - Cloudinary (Media Storage)
-        - DataBase Elephant (DataBase Host)
-        - PORT 8000
-        - Django (Framework)
-    - Go to Deploy in the nav bar. In Deploment Method, select GitHub/Connect to GitHub.
-    - In Connect to GitHub, write the repository name and click in search.
-    - Once the route for the repo appears under the search, click in "Connect" button.
-    - The deployment can be Manual or Automatic, select the one of your preference. Automatic has the advantage of updating your deployed site as you push the commit in GitHub.
-    - Verify that "Branch to deploy" is master/main.
-    - Click Deploy.
-
-Steps to use this repository:
-
-- Access to the repo in GitHub [here](!https://github.com/IvetteMcDermott/PP4Django-PeruExperience)..
-- It can be "Fork" following the steps [here](!https://docs.github.com/en/get-started/quickstart/fork-a-repo).
-- It can be "Clone" following the steps [here](!https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository).
-
+The step for this can be find [here](./readme_docs/md_files/deployment.md)
 
 
 # Credits
