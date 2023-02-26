@@ -1,6 +1,8 @@
 The following features are present in all the pages.
 
+
 ## Navbar
+
 
 The features will be display according to the logged user, as marked in [features](/readme_docs/md_files/features.md) page 
 
@@ -21,6 +23,7 @@ The features will be display according to the logged user, as marked in [feature
 
 ## Messages
 
+
 | Feature   	| Expected Action   	| Result   	|
 |---	|---	|---	|
 | Messages    	| They will be display in a div in top left of the screen when an action happens.   	| Pass   	|
@@ -28,12 +31,14 @@ The features will be display according to the logged user, as marked in [feature
 
 ## Previous Button
 
+
 | Feature   	| Expected Action   	| Result   	|
 |---	|---	|---	|
 | Previous Button    	| Once click it takes the user to the previous page according to the browser story.   	| Pass   	|
 
 
 ## Footer
+
 
 | Feature   	| Expected Action   	| Result   	|
 |---	|---	|---	|
@@ -47,6 +52,7 @@ From here the features are present just in the page they are mentioned.
 
 ## Index Page
 
+
 | Feature   	| Expected Action   	| Result   	|
 |---	|---	|---	|
 | Main Image    	| Brings the user to the regions section.   	| Pass   	|
@@ -56,6 +62,7 @@ From here the features are present just in the page they are mentioned.
 
 
 ## Region (Coast, Andes and Jungle)
+
 
 Each region will display the same functionality.
 
@@ -71,6 +78,7 @@ Each region will display the same functionality.
 
 
 ## Detail Page
+
 
 The features will be display according to the logged user, as marked in [features](/readme_docs/md_files/features.md) page. 
 
@@ -92,6 +100,7 @@ The features will be display according to the logged user, as marked in [feature
 
 ## Search Page
 
+
 This page is just deploy for registered users.
 
 | Feature   	| Expected Action   	| Result   	|
@@ -103,11 +112,24 @@ This page is just deploy for registered users.
 
 ## My Profile
 
+
 This page is just deploy for registered users.
 
 | Feature   	| Expected Action   	| Result   	|
 |---	|---	|---	|
-| Link to form     	| Input takes a string and search for icontains in the name of the places/posts | Pass   	|
-||and render them to the page, or print to the screen a message that there is nothing to display.   	||
-| Text  | Text prints what the user had entry in the input | Pass |
+| Link to form     	| Open a popup form where user can entry their information. | Pass   	|
+| Form for entry user information| Save and display in the page the information that was enter once submit.   	| Pass |
 
+If user does not entry their information there is a place holder image that will be display by default.
+
+
+## Community
+
+
+This page is just deploy for registered users.
+
+| Feature   	| Expected Action   	| Result   	|
+|---	|---	|---	|
+| Pagination     	| According to the number of members at the moment. | Pass   	|
+
+The users considered for this page are the ones that entry their information. If profile still in default they will not being display here.
