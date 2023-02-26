@@ -1,4 +1,6 @@
-{% load static %} {% load crispy_forms_tags %} {% load cloudinary %}
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% load cloudinary %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -82,9 +84,14 @@
         </div>
       </div>
     </header>
-    <!-- MESSAGES --> {% if messages or message_success %} {% for message in messages %} <div class="alert alert-success alert-css" id="message" data="modal" data-toggle="modal" role="alert" style="z-index:15">
-      {{ message }}
-    </div> {% endfor %} {% endif %}
+    <!-- MESSAGES --> 
+    {% if messages or message_success %} 
+    {% for message in messages %} 
+    <div class="alert alert-success alert-css" id="message" data="modal" data-toggle="modal" role="alert" style="z-index:15">
+     {{ message }}
+    </div> 
+    {% endfor %} 
+    {% endif %}
     <!---->
    {% block search %} 
    {% endblock search %} 
@@ -114,6 +121,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-    
+  
+  <script>
+  // Js for timing the alert to vanish after 4 seconds
+  let message = document.getElementById("message");
+  setTimeout(function() {
+    message.style.display = "none";
+  }, 4000);
+
+  </script>
   </body>
 </html>
