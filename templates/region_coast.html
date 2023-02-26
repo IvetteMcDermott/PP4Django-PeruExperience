@@ -20,7 +20,12 @@
 <section class="display-region d-flex flex-col"> {% for place in object_list %} <div class="card display-card">
         <a href="{% url 'place_information' place.slug %}" class="post-link">
             <div class="d-flex justify-content-end pin-css"> {% if user.is_authenticated %} {% if request.user in place.interests.all %} <i class="bi bi-pin-angle-fill"></i> {% else %} <i class="bi bi-pin-angle"></i> {% endif %} {% endif %} </div>
-            <div class="image-container" style=" min-width: 13em; max-height: 50%; "> {% if "placeholder" in place.image.url %} <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1675697614/PP1/desktop_PER%C3%BA_p0clvq.png" class="card-img-top" alt="image" style="object-fit: scale-down;"> {% else %} <img src="{{ place.image.url }}" class="card-img-top" style="object-fit: scale-down;" alt="image"> {% endif %} </div>
+            <div class="image-container" style=" min-width: 13em; max-height: 50%; "> 
+                {% if "placeholder" in place.image.url %} 
+                <img src="https://res.cloudinary.com/dwjq6izv5/image/upload/v1675697614/PP1/desktop_PER%C3%BA_p0clvq.png" class="card-img-top" alt="image" style=" width: 100%; height:100%; object-fit: scale-down;"> 
+                {% else %} 
+                <img src="{{ place.image.url }}" class="card-img-top" style="object-fit: scale-down; min-width: 13em; max-height: 100%;" alt="image"> 
+                {% endif %} </div>
             <div class="card-body">
                 <h4 class="card-title text-center">{{ place.name }}
                 </h4>
