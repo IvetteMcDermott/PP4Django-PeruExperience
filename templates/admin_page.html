@@ -25,11 +25,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
+
+                            {% csrf_token %}
+
                             {{ form.as_p }}
 
                             {{ form.media }}
 
-                            {% csrf_token %}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

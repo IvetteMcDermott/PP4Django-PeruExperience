@@ -6,9 +6,10 @@
                 <form method="post" id="form_section" action="{% url 'search_place' %}" enctype="multipart/form-data">
                     <div class=" d-flex justify-content-center align-items-start" style="margin:10px;">
                         <p>Search by name</p>
+                        {% csrf_token %}
+
                         {{ search_place_form | crispy }}
                         <input type="text" name="search" style="margin-left:5px; margin-right:5px;">
-                        {% csrf_token %}
                         <button type="submit" class="btn btn-outline-danger color " style="font-size: 14px; padding:3px;">Go</button>
                     </div>
                 </form>

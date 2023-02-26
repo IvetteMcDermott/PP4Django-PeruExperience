@@ -18,7 +18,7 @@
                 </div>
                 <div class="modal-body">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form | crispy }}
                     {{ form.media }} 
                 </div>
                 <div class="modal-footer">
