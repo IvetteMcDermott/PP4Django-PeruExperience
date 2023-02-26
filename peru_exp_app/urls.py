@@ -9,7 +9,6 @@ urlpatterns = [
     path('admin/', views.admin, name='admin'),
     path('searchpage/', views.search, name='search'),
     path('searchplace/', views.search_place, name='search_place'),
-    path('searchlocation/', views.search_locations, name='search_locations'),
     path('home/coast/', views.Coast.as_view(), name='coast_places_display'),
     path('home/andes/', views.Andes.as_view(), name='andes_places_display'),
     path('home/jungle/', views.Jungle.as_view(), name='jungle_places_display'),

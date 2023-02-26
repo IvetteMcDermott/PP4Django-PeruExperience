@@ -283,15 +283,14 @@
 
 <script>
     function updateBody(event) {
-        console.log(event)
-        console.log(event.target.attributes[4].value)
-        console.log(event.target.attributes[6].value)
-        let target = event.target.attributes[4].value
-        let result = target.slice(1)
-        console.log(result)
-        let parent = document.getElementById(result)
-        parent.querySelector("input[type='text']").value=event.target.attributes[6].value
-
+        console.log(event);
+        console.log(event.target.attributes[4].value);
+        console.log(event.target.attributes[6].value);
+        let target = event.target.attributes[4].value;
+        let result = target.slice(1);
+        console.log(result);
+        let parent = document.getElementById(result);
+        parent.querySelector("input[type='text']").value=event.target.attributes[6].value;
     }
 </script>
 {% endblock %}

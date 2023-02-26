@@ -147,22 +147,6 @@ class AdminPage(SuccessMessageMixin, CreateView):
     success_message = 'The new place has been add successfully!'
 
 
-def search_locations(request, page=1):
-    """ VIEW FOR SEARCH A PLACE POST """
-    if request.method == 'POST':
-        region = request.POST.get('searchregion')
-        search = Place.objects.all().filter(region=region)
-        location = request.POST.get('searchlocation')
-        search_result = search.filter(type_location=location)
-        template = 'search.html'
-        context = {
-                'searched': region,
-                'search_result': search_result,
-                'location': location,
-            }
-        return render(request, template, context)
-
-
 def search_place(request):
     """ VIEW FOR SEARCH A PLACE POST """
     if request.method == 'POST':
