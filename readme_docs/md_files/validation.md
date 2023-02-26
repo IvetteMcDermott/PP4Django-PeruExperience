@@ -22,18 +22,15 @@ No errors present in the last report. Small changes were done to adjust to the s
 
 
 ### Place details
-An error is present in the last report. Small changes were done to adjust to the standars but this one is generated in the crispy form and by CkEditor, it adds tags when saved and when the updating form brings the item back the tags overlap as picture show. Other minor similar errors had been fix but this one as it is inside the form, so far have not find a way to solve. And been that it is part of the CRUD functionality for comments, have leave it for the moment until a fix is found.
+No errors present in the last report. Changes were done to adjust to the standars.
 
-![detail-page](/readme_docs/readme_images/validation/w3%20detail%20validation%20-%20error%20p.png)
-
-Source Code
-![source-code](/readme_docs/readme_images/validation/about%20p%20error.png)
+![details](/readme_docs/readme_images/validation/w3-information-validation.png)
 
 
 ### Profile
-An error is present in the last report. Small changes were done to adjust to the standars but this one is generated in the crispy form and by CkEditor, it adds tags when saved and when the updating form brings the item back the tags overlap as picture show. Other minor similar errors had been fix but this one as it is inside the form, so far have not find a way to solve. And been that it is part of the CRUD functionality for comments, have leave it for the moment until a fix is found. Same error is being generating in the details page with the form for update it.
+No errors present in the last report. Changes were done to adjust to the standars.
 
-![profiles](/readme_docs/readme_images/validation/w3%20profile%20validation%20-%20error%20p.png)
+![profiles](/readme_docs/readme_images/validation/w3-profile-validation%20.png)
 
 ### Community
 No errors present in the last report. Small changes were done to adjust to the standars.

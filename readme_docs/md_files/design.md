@@ -33,13 +33,13 @@
 
 ## Color Scheme
 
-The color used in the app had been inspired by a palette based in ancient cultures from [icolorpalette](https://icolorpalette.com/peru-and-peru).
+The colors in the app had been inspired by a palette based in ancient cultures from [icolorpalette](https://icolorpalette.com/peru-and-peru). They had been used for the font and details as when seen in the bigger portions they were too strong and the idea of the cards on the polaroid style did not work nicely with.
 
 ![palette](/readme_docs/readme_images/design/palette.png)
 
 ## Font
 
-The font selected is Raleway, that I think it complements the used in the logo and style.
+The font selected is Raleway, which I think it complements the used ones in the logo and style.
 
 ## Images Logo
 
@@ -51,6 +51,6 @@ Admin Page Image
 
 ![admin](/readme_docs/readme_images/design/admin%20site%20logo.png)
 
-Lading Image
+Landing Image
 
 ![landing](/readme_docs/readme_images/design/desktop%20PER%C3%BA.png)
