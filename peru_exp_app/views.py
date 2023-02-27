@@ -193,11 +193,11 @@ def search(request):
     return render(request, 'search.html')
 
 
-""" USER PROFILE SECTION """
+""" INTERESTS/BOOKMARS SECTION """
 
 
 def interests(request, *args, **kwargs):
-    """ VIEW FOR USER PROFILE """
+    """ VIEW FOR USER INTERESTS """
     user = request.user
     template = 'interests.html'
     interests = Place.objects.filter(interests=request.user.id)
@@ -208,6 +208,7 @@ def interests(request, *args, **kwargs):
 
 
 def add_interest(request, slug):
+    """ VIEW FOR ADD A USER INTEREST TO THEIR LIST """
     interested = False
     if request.method == 'POST':
         place = get_object_or_404(Place, slug=slug)

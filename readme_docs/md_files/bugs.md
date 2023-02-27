@@ -2,13 +2,13 @@
 
 - ### Place details
 
-An error is present in the last report. Small changes were done to adjust to the standards but this one is generated in the crispy form and by CkEditor, it adds tags when saved and when the updating form brings the item back the tags overlap as a picture show. 
+An error was present in this report. TIt was generated between the form and CkEditor when rendering it to the HTML, it adds tags when saved and when the updating form brings the item back the tags overlap as a picture show. 
 
-![detail-page](/readme_docs/readme_images/validation/w3%20detail%20validation%20-%20error%20p.png)
+![detail-page](/readme_docs/readme_images/validation/w3-profile-validation-error-p.png)
 
 Source Code
 
-![source-code](/readme_docs/readme_images/validation/about%20p%20error.png)
+![source-code](/readme_docs/readme_images/validation/about-p-error.png)
 
 FIX: It was sorted out changing the form.as_p to form | crispy in the front end HTML
 
@@ -16,7 +16,7 @@ FIX: It was sorted out changing the form.as_p to form | crispy in the front end 
 
 Same situation that previous, an error was generated between the form and the ckseditor.
 
-![profiles](/readme_docs/readme_images/validation/w3%20profile%20validation%20-%20error%20p.png)
+![profiles](/readme_docs/readme_images/validation/w3-profile-validation-error-p.png)
 
 FIX: It was sorted out changing the form.as_p to form | crispy in the front end HTML
 

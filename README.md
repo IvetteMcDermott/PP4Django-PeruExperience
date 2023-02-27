@@ -240,3 +240,42 @@ The step for this can be found [here](./readme_docs/md_files/deployment.md)
 
 # Credits
 
+For this project I had made use of my own images but 2 taken that I did not count with one that shows the place as deserved.
+
+Kuelap Image:
+https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/03/28/15/kuelap-house.jpg?quality=75&width=982&height=726&auto=webp 
+
+Colca Canyon:
+https://www.pxfuel.com/
+
+For the actual information of the places I had take it from Wikipedia and Peru Travel, the official turistic site of the Peruvian goverment. I plan to add my own experiences about each and add more places when I have the time for after the end of the course.
+
+About the coding, I have to recognize the help of my mentor Brian Macharia, who always is supportive and helpful. Tutor assistance had been great help as well, as there was so much to learn at once. Online I had found a lot of blogs that I had read and seen videos from where I tried to avoid taking code just as it is but understand the logic and from there work. But as in all, there are exceptions as there is just so many ways to do the things.
+
+Stack Overflow is one of the mains for finding answers to specific questions https://stackoverflow.com
+
+This one from where I got the redirect request.META line
+
+https://stackoverflow.com/questions/35796195/how-to-redirect-to-previous-page-in-django-after-post-request#:~:text=You%20can%20add%20a%20next,the%20value%20of%20this%20path.
+
+From this one I found the link to the Django docs for the second app for Profiles that I implemented
+
+https://docs.djangoproject.com/en/2.0/topics/http/urls/#url-namespaces-and-included-urlconfs
+
+The previous button feature, I saw few options but this one was the one I went for
+
+https://stackoverflow.com/questions/524992/how-to-implement-a-back-link-on-django-templates
+
+For the community page, where just displays the users that updated the profile I am using .exclude
+
+https://chartio.com/resources/tutorials/how-to-filter-for-empty-or-null-values-in-a-django-queryset/
+
+Some other places I review
+
+https://ordinarycoders.com/
+
+https://www.pycodemates.com/2022/03/integrate-ckeditor-to-django-admin-and-form-fields.html
+
+https://www.pythontutorial.net/django-tutorial/
+
+Finally but not less important, as they were of big help the study-group calls where seeing other project I learned and also where I found Daysi McGirr and Matt Boden especialy who helped me to sort the Js function for access within a form.
