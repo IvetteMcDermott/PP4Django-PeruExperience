@@ -267,7 +267,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer {
     background-color: rgb(212, 220, 221);
-    width: 100%;
+    
     /* margin: 0; */
     /* margin-top: 10px; */
     height: 3em;
@@ -321,7 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 /* MEDIA */
 
 @media screen and (min-width: 1950px){
-    body {
+    body, footer {
         width: 80%;
         margin-left: 0px;
         margin: auto;
