@@ -1,35 +1,6 @@
 # Design
 
-## Wireframes
-
-### Index Page
-
-![index](/readme_docs/readme_images/wireframes/home_page.jpg)
-
-### Regions Pageg
-
-![region](/readme_docs/readme_images/wireframes/regions_list.jpg)
-
-### Detail Place
-
-![detail-page](/readme_docs/readme_images/wireframes/place_detail.jpg)
-
-### Search Page
-
-![search](/readme_docs/readme_images/wireframes/search%20page.png)
-
-### Profile
-
-![profile](/readme_docs/readme_images/wireframes/profile%20wireframe.png)
-
-### Community Page
-
-![community](/readme_docs/readme_images/wireframes//community%20page%20only.pnghome_page.jpg)
-
-### Admin Page
-
-![admin](/readme_docs/readme_images/wireframes/admin%20page.png)
-
+The idea had been present the information in a old polaroid style using cards from bootstrap. Using colours that represent the culture for the details and small amounts of ancient textiles from the culture of each region to give character to them.
 
 ## Color Scheme
 
@@ -45,12 +16,12 @@ The font selected is Raleway, which I think it complements the used ones in the 
 
 Logo
 
-![logo](/readme_docs/readme_images/design/THUMBNAIL%20PER%C3%9A.png)
+![logo](/readme_docs/readme_images/design/thumbnail-peru.png)
 
 Admin Page Image
 
-![admin](/readme_docs/readme_images/design/admin%20site%20logo.png)
+![admin](/readme_docs/readme_images/design/admin-site-logo.png)
 
 Landing Image
 
-![landing](/readme_docs/readme_images/design/desktop%20PER%C3%BA.png)
+![landing](/readme_docs/readme_images/design/desktop-peru.png)

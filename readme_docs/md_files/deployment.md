@@ -18,7 +18,7 @@ Deployment proccess:
         - PORT 8000
         - Django (Framework)
 
-![vars](/readme_docs/readme_images/deployment/heroku%20config%20values.jpg)
+![vars](/readme_docs/readme_images/deployment/heroku-config-values.jpg)
 
     - Go to Deploy in the nav bar. In Deploment Method, select GitHub/Connect to GitHub.
     - In Connect to GitHub, write the repository name and click in search.
@@ -27,11 +27,11 @@ Deployment proccess:
     - Verify that "Branch to deploy" is master/main.
     - Click Deploy.
 
-![first](/readme_docs/readme_images/deployment/Heroku%20build%20first%20deployment.jpg)
+![first](/readme_docs/readme_images/deployment/Heroku-build-first-deployment.jpg)
 
-![first-success](/readme_docs/readme_images/deployment/SS%20Installation%20and%20Setting%20Django%20project%20and%20app%20-%20open%20browser.png)
+![first-success](/readme_docs/readme_images/deployment/SS-Installation-and-Setting-Django-project-and-app-open-browser.png)
 
-![deploy-after-validation](/readme_docs/readme_images/deployment/deploy%20after%20validation.png)
+![deploy-after-validation](/readme_docs/readme_images/deployment/deploy-after-validation.png)
 
 
 Steps to use this repository:

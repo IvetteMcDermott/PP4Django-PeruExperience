@@ -1,15 +1,22 @@
-![💻] (https://pp4django-peru-experience.herokuapp.com/)
+![responsiviness](./readme_docs/readme_images/design/ss-am-i-responsive.png)
 
 
 # About
 
+
+Live Site: [💻](!https://pp4django-peru-experience.herokuapp.com/)
+---
+<br>
 This site had been created thinking of providing information in a more personal way about Peruvian touristic attractions and experiencing them. At this stage the information that the site displays had been taken from Wikipedia as it is mentioned in the credits. 
 It has a search engine by name that allows the users to find a specific place of interest. 
 It has different levels of features according to the type of user that accesses the site. For the registed users for example, there is a pin icon that allows them to use the interests option that permits them to bookmark and keep them for future visits. It also opens the option to create a profile and get in touch with the app community. The community functionality is one to be developed in the future.
 
+<br>
+
 # UX
 
 ## Target User
+---
 
 The target user is a person that enjoys to know new places and is looking for information about Peru's touristic ones, open to the possibity to belong to a community where could be found travelling partners.
 
@@ -26,8 +33,12 @@ It's expected that the user can not just visualize information relevant to the t
 It's expected that the admin user can not just access to all the previous features, but that they can post and keep alive the place posting regularily new places, updating them and keeping the control in the interaction of the users and the app. Also managing the community in the future.
 
 ## User Stories
+---
+
+The Project board has many others that are not listed here as they are referent to set the project and backend creation.  
 
 ## User Stories - User Related 
+<br>
 
 ### User Story: Registration, Log In and Log Out
 
@@ -51,7 +62,7 @@ As a registered User, I want to be able to comment on the places/posts.
    #1 As User I want to be able to format the text in my comments.
       - Add RichTextField to the field for it.
 
-   #1 As Administrator I want to be able to format the text in the post that I created.
+   #2 As Administrator I want to be able to format the text in the post that I created.
       - Add RichTextField to the field for it.
 
 ### User Story: Edit Comments
@@ -121,15 +132,15 @@ Won't have. Found that there would not be a need for it. Since in the future wit
 
 ### Unregistered User
 
-![unregistered](./readme_docs/readme_images/diagrams/flowchart%20unregister%20user.png)
+![unregistered](./readme_docs/readme_images/diagrams/flowchart-unregister-user.png)
 
 ### Registered User
 
-![register](./readme_docs/readme_images/diagrams/flowchart%20register%20user.png)
+![register](./readme_docs/readme_images/diagrams/flowchart-register-user.png)
 
 ### Admin User
 
-![admin](./readme_docs/readme_images/diagrams/flowchart%20admin%20user.png)
+![admin](./readme_docs/readme_images/diagrams/flowchart-admin-user.png)
 
 
 # Features
@@ -149,6 +160,8 @@ The list and screenshot about them can be found [here](readme_docs/md_files/feat
 The details to the bugs can be found [here](./readme_docs/md_files/bugs.md)
 
 # Design
+
+The wireframes can be found [here](./readme_docs/md_files/wireframes.md)
 
 The details to the design can be found [here](./readme_docs/md_files/design.md)
 
