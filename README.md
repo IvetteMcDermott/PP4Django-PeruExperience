@@ -4,7 +4,7 @@
 # About
 
 
-Live Site: [💻](!https://pp4django-peru-experience.herokuapp.com)
+Live Site: [💻 here](https://pp4django-peru-experience.herokuapp.com)
 ---
 <br>
 This site had been created thinking of providing information in a more personal way about Peruvian touristic attractions and experiencing them. At this stage the information that the site displays had been taken from Wikipedia as it is mentioned in the credits. 
